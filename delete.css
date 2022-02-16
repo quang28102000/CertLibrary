@@ -1,0 +1,282 @@
+#button_manager button {
+  margin-top: 30px;
+  width: 389.28px;
+  height: 107.46px;
+  left: 260px;
+  top: 442px;
+
+  background: #e6e6e6;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 20px 20px 25px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 45px;
+}
+
+#btn1 {
+  display: flex;
+  justify-content: space-evenly;
+}
+#btn2 {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#information {
+  border: 1px solid black;
+  border-radius: 15px;
+  position: sticky;
+  width: 901px;
+  height: 120px;
+  left: 286px;
+  top: 782px;
+}
+#container {
+  margin-top: -30px;
+  margin-bottom: 30px;
+}
+
+#information div {
+  margin-left: 20px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#information1 div {
+  margin-right: 400px;
+  margin-top: -150px;
+  display: flex;
+  float: right;
+  align-items: center;
+}
+#up {
+  display: flex;
+  justify-content: space-around;
+}
+#up p {
+  position: sticky;
+  width: 601px;
+  height: 41px;
+  left: 169px;
+  top: 707px;
+
+  font-family: Karma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 38px;
+  line-height: 100%;
+  /* or 38px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.32px;
+
+  color: #000000;
+
+  text-shadow: 2px 8px 4px rgba(0, 0, 0, 0.25);
+}
+#up button {
+  margin-left: 270px;
+  padding-top: 15px;
+}
+
+#up input {
+  position: sticky;
+  width: 250px;
+  height: 34px;
+  left: 0px;
+  top: 708px;
+
+  background: #ececec;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 20px;
+  margin-bottom: 40px;
+}
+
+#up2 button {
+  width: 95px;
+  height: 45px;
+  margin-left: 300px;
+  margin-bottom: 40px;
+  background: #979292;
+  border-radius: 25px;
+}
+
+#up2 p {
+  font-family: Karma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 100%;
+  /* or 22px */
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.32px;
+  color: #000000;
+
+  position: relative;
+  top: 70px;
+}
+#checkid {
+  position: relative;
+  top: 75px;
+  right: 100px;
+  left: 220px;
+
+  border: 2px solid #020202;
+  box-sizing: border-box;
+  border-radius: 2px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 10px;
+}
+
+#couseName input {
+  position: sticky;
+  width: 67%;
+
+  background: #e9e9e9;
+  opacity: 0.6;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+#platform input {
+  position: sticky;
+  width: 67%;
+
+  background: #e9e9e9;
+  opacity: 0.6;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+#showAll p {
+  position: sticky;
+  width: 136px;
+  height: 16px;
+  left: 1129px;
+  top: 1504px;
+
+  font-family: Karma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 100%;
+  /* or 20px */
+
+  display: flex;
+  align-items: center;
+  text-align: right;
+  letter-spacing: -0.32px;
+
+  color: #040a96;
+}
+#paging {
+  /* position: sticky; */
+  /* width: 30.86px; */
+  /* height: 14.1px;
+    left: 625.57px;
+    top: 1520px; */
+  display: flex;
+  justify-content: center;
+
+  font-family: Post No Bills Jaffna;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+
+  color: #000000;
+}
+
+/* header */
+header {
+  position: static;
+  height: 201px;
+  left: 0px;
+  top: 0px;
+
+  background: #c4c4c4;
+}
+
+#logo {
+  position: absolute;
+  width: 121px;
+  height: 70px;
+  left: 22px;
+  top: 26px;
+}
+.ava {
+  /* border-radius: 50%; */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  display: inline-block;
+  vertical-align: middle;
+}
+#logo_ava {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+  padding-top: 15px;
+}
+
+#navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#navigation button {
+  position: sticky;
+  width: 303.75px;
+  height: 59px;
+  /* left: 88px;
+      top: 150px; */
+
+  background: #d5d5d5;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+/* footer */
+
+footer {
+  padding-top: 25px;
+  display: flex;
+
+  justify-content: space-evenly;
+  margin-top: 50px;
+  position: sticky;
+  height: 124px;
+  left: 1px;
+  top: 1881px;
+
+  background: #d8d8d8;
+}
+
+#editIcon button {
+  border: none;
+  background: none;
+  font-size: 30px;
+  float: right;
+  padding-right: 150px;
+  margin-top: -30px;
+}
+
+svg {
+  margin-top: -150px;
+  margin-bottom: -130px;
+}
