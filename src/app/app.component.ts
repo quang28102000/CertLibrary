@@ -20,7 +20,7 @@ export class AppComponent {
   numberOfEmployeesInLast7days!: Number;
 
   constructor(private courseService: CourseService,
-    private employeeService: EmployeeService) { }
+              private employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.getCourses();

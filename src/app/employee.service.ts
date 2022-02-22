@@ -34,5 +34,4 @@ export class EmployeeService {
     public getNumberOfCourses(): Observable<Number> {
         return this.http.get<Number>(`${this.apiServiceUrl}/course/numberOfCourses`);
     }
-
 }
