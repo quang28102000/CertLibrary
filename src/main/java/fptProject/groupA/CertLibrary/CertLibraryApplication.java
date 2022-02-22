@@ -1,24 +1,13 @@
-package groupA.certLibrary.CertLibrary;
+package fptProject.groupA.CertLibrary;
+
+import java.util.Arrays;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
-import groupA.certLibrary.CertLibrary.model.Course;
-import groupA.certLibrary.CertLibrary.repo.CourseRepo;
-import groupA.certLibrary.CertLibrary.service.CourseService;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
 
 @SpringBootApplication
 public class CertLibraryApplication {
