@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Course } from './course';
 import { CourseService } from './course.service';
+import { Employee } from './employee';
 import { EmployeeService } from './employee.service';
+import { UserProfile } from './user-profile';
 
 @Component({
   selector: 'app-root',
@@ -11,72 +13,17 @@ import { EmployeeService } from './employee.service';
 })
 export class AppComponent {
   courses!: Course[];
-  numberOfCourses!: Number;
-
-  incompleteCoursesByEmployee!: Number;
-  registeredCoursesByEmployee!: Number;
-  unregisteredCourseByEmployee!: Number;
-  completeCourseByEmployee!: Number;
-  numberOfEmployeesInLast7days!: Number;
+  userProfile!: UserProfile;
+  employees!: Employee[];
 
   constructor(private courseService: CourseService,
-              private employeeService: EmployeeService) { }
+    private employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.getEmployees();
+    this.getUserProfile();
     this.getCourses();
-    this.getNumberOfCourses();
-    // 
-    this.getIncompleCoursesByEmployee();
-    this.getRegisteredCoursesByEmployee();
-    this.getUnregisteredCoursesByEmployee();
-    this.getCompleteCoursesByEmployee();
-    this.getNumberOfEmployeesInLast7days();
   }
-
-  public getIncompleCoursesByEmployee(): void {
-    this.employeeService.getIncompleteCoursesByEmployee().subscribe(
-      (response: Number) => {
-        this.incompleteCoursesByEmployee = response;
-        console.log(response);
-      }, (error: HttpErrorResponse) => console.log(error.message)
-    );
-  };
-
-  public getRegisteredCoursesByEmployee(): void {
-    this.employeeService.getRegisteredCoursesByEmployee().subscribe(
-      (response: Number) => {
-        this.registeredCoursesByEmployee = response;
-        console.log(response);
-      }, (error: HttpErrorResponse) => console.log(error.message)
-    );
-  }
-
-  public getUnregisteredCoursesByEmployee(): void {
-    this.employeeService.getUnregisteredCoursesByEmployee().subscribe(
-      (response: Number) => {
-        this.unregisteredCourseByEmployee = response;
-        console.log(response);
-      }, (error: HttpErrorResponse) => console.log(error.message)
-    );
-  }
-
-  public getCompleteCoursesByEmployee(): void {
-    this.employeeService.getCompleteCoursesByEmployee().subscribe(
-      (response: Number) => {
-        this.completeCourseByEmployee = response;
-        console.log(response);
-      }, (error: HttpErrorResponse) => console.log(error.message)
-    );
-  };
- 
-  public getNumberOfEmployeesInLast7days(): void {
-    this.employeeService.getNumberOfEmployeesInLast7days().subscribe(
-      (response: Number) => {
-        this.numberOfEmployeesInLast7days = response;
-        console.log(response);
-      }, (error: HttpErrorResponse) => console.log(error.message)
-    );
-  };
 
   public getCourses(): void {
     this.courseService.getCourses().subscribe(
@@ -90,10 +37,19 @@ export class AppComponent {
     )
   }
 
-  public getNumberOfCourses(): void {
-    this.courseService.getNumberOfCourses().subscribe(
-      (response: Number) => {
-        this.numberOfCourses = response;
+  public getUserProfile(): void {
+    this.employeeService.getUserProfile().subscribe(
+      (response: UserProfile) => {
+        this.userProfile = response;
+        console.log(response);
+      }, (error: HttpErrorResponse) => alert(error.message)
+    );
+  };
+
+  public getEmployees(): void {
+    this.employeeService.getEmployees().subscribe(
+      (response: Employee[]) => {
+        this.employees = response;
         console.log(response);
       },
       (error: HttpErrorResponse) => {

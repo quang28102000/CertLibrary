@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { environment } from 'src/environments/environment';
+import { Employee } from "./employee";
+import { UserProfile } from "./user-profile";
 @Injectable({
     providedIn: 'root'
 })
@@ -11,27 +13,13 @@ export class EmployeeService {
 
     constructor(private http: HttpClient) { }
 
-    public getRegisteredCoursesByEmployee(): Observable<Number> {
-        return this.http.get<Number>(`${this.apiServiceUrl}/course/registeredCoursesByEmployee`);
+    public getEmployees(): Observable<Employee[]> {
+        return this.http.get<Employee[]>(`${this.apiServiceUrl}/course/getEmployees`);
     }
 
-    public getUnregisteredCoursesByEmployee(): Observable<Number> {
-        return this.http.get<Number>(`${this.apiServiceUrl}/course/unregisteredCoursesByEmployee`);
+
+    public getUserProfile(): Observable<UserProfile> {
+        return this.http.get<UserProfile>(`${this.apiServiceUrl}/course/userProfile`); 
     }
 
-    public getCompleteCoursesByEmployee(): Observable<Number> {
-        return this.http.get<Number>(`${this.apiServiceUrl}/course/completeCourseByEmployee`);
-    }
-
-    public getIncompleteCoursesByEmployee(): Observable<Number> {
-        return this.http.get<Number>(`${this.apiServiceUrl}/course/incompleteCourseByEmployee`);
-    }
-
-    public getNumberOfEmployeesInLast7days(): Observable<Number> {
-        return this.http.get<Number>(`${this.apiServiceUrl}/course/numberOfEmployeesInLast7days`);
-    }
- 
-    public getNumberOfCourses(): Observable<Number> {
-        return this.http.get<Number>(`${this.apiServiceUrl}/course/numberOfCourses`);
-    }
 }
