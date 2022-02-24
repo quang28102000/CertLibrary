@@ -1,0 +1,102 @@
+{"properties": [
+  {
+    "name": "jdbc.driver",
+    "type": "java.lang.String",
+    "description": "A description for 'jdbc.driver'"
+  },
+  {
+    "name": "jdbc.url",
+    "type": "java.lang.String",
+    "description": "A description for 'jdbc.url'"
+  },
+  {
+    "name": "jdbc.password",
+    "type": "java.lang.String",
+    "description": "A description for 'jdbc.password'"
+  },
+  {
+    "name": "hibernate.dialect",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.dialect'"
+  },
+  {
+    "name": "hibernate.show_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.show_sql'"
+  },
+  {
+    "name": "hibernate.packagesToScan",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.packagesToScan'"
+  },
+  {
+    "name": "connection.pool.maxIdleTime",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.maxIdleTime'"
+  },
+  {
+    "name": "connection.pool.maxPoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.maxPoolSize'"
+  },
+  {
+    "name": "connection.pool.minPoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.minPoolSize'"
+  },
+  {
+    "name": "connection.pool.initialPoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.initialPoolSize'"
+  },
+  {
+    "name": "jdbc.user",
+    "type": "java.lang.String",
+    "description": "A description for 'jdbc.user'"
+  },
+  {
+    "name": "hibernate.packagesToScan",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.packagesToScan'"
+  },
+  {
+    "name": "hibernate.packagesToScan",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.packagesToScan'"
+  },
+  {
+    "name": "hibernate.packagesToScan",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.packagesToScan'"
+  },
+  {
+    "name": "hibernate.packagesToScan",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.packagesToScan'"
+  },
+  {
+    "name": "connection.pool.maxIdleTime",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.maxIdleTime'"
+  },
+  {
+    "name": "connection.pool.maxIdleTime",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.maxIdleTime'"
+  },
+  {
+    "name": "connection.pool.maxIdleTime",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.maxIdleTime'"
+  },
+  {
+    "name": "connection.pool.maxIdleTime",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.maxIdleTime'"
+  },
+  {
+    "name": "connection.pool.maxIdleTime",
+    "type": "java.lang.String",
+    "description": "A description for 'connection.pool.maxIdleTime'"
+  }
+]}

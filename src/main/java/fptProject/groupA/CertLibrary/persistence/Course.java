@@ -4,23 +4,30 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "course")
+@NamedQueries({
+	@NamedQuery(name = "GET_ALL", query = "FROM Course")
+})
 public class Course {
 
+	public static final String GET_ALL = "GET_ALL";
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "course_id", nullable = false, updatable = false)
 	private Integer id;
 
@@ -33,9 +40,24 @@ public class Course {
 	@Column(name = "category")
 	private String category;
 
-	@OneToMany(mappedBy = "course")
-	private List<CourseEmployee> courseEmployees;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "course_employee",
+			joinColumns = @JoinColumn(name="course_id"),
+			inverseJoinColumns = @JoinColumn(name="employee_id")
+			)
+	@JsonIgnore
+	private List<Employee> employees;
 	
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -66,11 +88,6 @@ public class Course {
 
 	public void setCategory(String category) {
 		this.category = category;
-	}
-
-	@Override
-	public String toString() {
-		return "Course [id=" + id + ", tittle=" + tittle + ", platform=" + platform + ", category=" + category + "]";
 	}
 
 }
