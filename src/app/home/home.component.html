@@ -1,0 +1,221 @@
+<div>
+    <p id="labeltxt">Thống kê chung</p>
+    <p id="tag">Nhân Viên:</p>
+    <br><br><br><br>
+    <nav id="btn">
+        <button class="show-popup-employee" (click)="Click()">Số người đã đăng kí khoá học
+            <p>{{registeredCoursesByEmployee}}/...</p>
+        </button>
+        <button class="show-popup-employee">Số người chưa hoàn thành khoá học
+            <p>{{unregisteredCoursesByEmployee}}/...</p>
+        </button>
+        <button class="show-popup-employee">
+            số người chưa đăng kí hoá học
+            <p>{{incompleteCourseByEmployee}}/...</p>
+        </button>
+    </nav>
+
+    <br>
+    <nav id="btn">
+        <button class="show-popup-employee">Số người đã hoàn thành khoá học
+            <p>{{completeCourseByEmployee}}/...</p>
+        </button>
+        <button class="show-popup-employee">Số người mới đăng ký trong 7 ngày gần nhất
+            <p>{{numberOfEmployeesInLast7days}}</p>
+        </button>
+    </nav>
+
+    <dialog id="employee-popup" class="popup">
+        <header class="dialog-header">
+            <h1>Số người đăng kí khoá học</h1>
+        </header>
+        <div class="dialog-content">
+            <table id="customers">
+                <tr>
+                    <th>Stt</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>Trạng thái</th>
+                    <th>Tên khoá học</th>
+                    <th>Phân loại</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyen Van A</td>
+                    <td>anguyenvan@gmail.com</td>
+                    <td>Processing</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Internet Technology</td>
+                </tr>
+            </table>
+            <button class="btn btn-cancel cancel">Cancel</button>
+        </div>
+    </dialog>
+
+
+    <br><br><br>
+    <nav>
+        <p id="tag">Khóa học:</p>
+        <br><br><br><br>
+        <nav id="btn">
+            <button class="show-popup-course"  (click)="Click2()">
+                Tổng số khóa học
+                <p>{{numberOfCourses}}</p>
+            </button>
+        </nav>
+        <br>
+        <nav id="btn">
+            <button class="show-popup-course">Số khóa học đã hoàn thành
+                <p>.../...</p>
+            </button>
+            <button class="show-popup-course">Số khóa học chưa hoàn thành
+                <p>.../...</p>
+            </button>
+        </nav>
+    </nav>
+
+    <dialog id="course-popup" class="popup">
+        <header class="dialog-header">
+            <h1>Tổng số khoá học</h1>
+        </header>
+        <div class="dialog-content">
+            <table id="courses">
+                <tr>
+                    <th>Tên Nhân viên</th>
+                    <th>Tên Khoá Học</th>
+                    <th>Nền Tảng</th>
+                    <th>Loại khoá học</th>
+                    <th>Tổng thời gian học</th>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+                <tr>
+                    <td>Nguyen Van A</td>
+                    <td>Khoa hoc cho nguoi moi bat dau</td>
+                    <td>Coursera</td>
+                    <td>Internet Technology</td>
+                    <td>15 hr</td>
+                </tr>
+            </table>
+            <button class="btn btn-cancel cancel">Cancel</button>
+        </div>
+    </dialog>
+</div>

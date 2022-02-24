@@ -1,16 +1,37 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { DialogEmployee } from './home/home.component';
+import { UserScreenComponent } from './user-screen/user-screen.component';
+import { MatTableModule } from '@angular/material/table'; 
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    UserScreenComponent,
+    DialogEmployee
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

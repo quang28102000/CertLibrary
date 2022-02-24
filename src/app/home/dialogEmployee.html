@@ -1,0 +1,154 @@
+<header class="dialog-header">
+    <h1>Số người đăng kí khoá học</h1>
+</header>
+<!-- <div class="dialog-content">
+    <table id="customers">
+        <tr>
+            <th>Id</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Trạng thái</th>
+            <th>Tên khoá học</th>
+            <th>Phân loại</th>
+        </tr>
+
+        <tr *ngFor="let item of data">
+            <td>{{item.employee_id}}</td>
+            <td>{{item.full_name}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.category}}</td>
+        </tr>
+
+        <tr>
+            <td>ANV1</td>
+            <td>Nguyen Van A</td>
+            <td>anguyenvan@gmail.com</td>
+            <td>Processing</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Internet Technology</td>
+        </tr>
+        <tr>
+            <td>ANV2</td>
+            <td>Nguyen Van A</td>
+            <td>anguyenvan@gmail.com</td>
+            <td>Processing</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Internet Technology</td>
+        </tr>
+        <tr>
+            <td>ANV3</td>
+            <td>Nguyen Van A</td>
+            <td>anguyenvan@gmail.com</td>
+            <td>Processing</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Internet Technology</td>
+        </tr>
+        <tr>
+            <td>ANV4</td>
+            <td>Nguyen Van A</td>
+            <td>anguyenvan@gmail.com</td>
+            <td>Processing</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Internet Technology</td>
+        </tr>
+        <tr>
+            <td>ANV5</td>
+            <td>Nguyen Van A</td>
+            <td>anguyenvan@gmail.com</td>
+            <td>Processing</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Internet Technology</td>
+        </tr>
+        <tr>
+            <td>ANV6</td>
+            <td>Nguyen Van A</td>
+            <td>anguyenvan@gmail.com</td>
+            <td>Processing</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Internet Technology</td>
+        </tr>
+        <tr>
+            <td>ANV7</td>
+            <td>Nguyen Van A</td>
+            <td>anguyenvan@gmail.com</td>
+            <td>Processing</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Internet Technology</td>
+        </tr>
+    </table>
+</div> -->
+
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} 
+  
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Tên </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.name}} </mat-cell>
+      </ng-container>
+  
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} 333</mat-cell>
+      </ng-container>
+  
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Trạng Thái </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="course_title">
+        <mat-header-cell *matHeaderCellDef> Tên Khoá Học </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.course_title}} </mat-cell>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Phân Loại </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+      </ng-container>
+  
+      <!-- The exapnded row contents-->
+      <!-- Expanded Content Column - The detail row is made up of this one column -->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let detail"> 
+          Maaz
+        </mat-cell>
+      </ng-container> -->
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <!-- <mat-row (click)="test()" *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+              class="element-row" 
+              [class.expanded]="expandedElement == row"
+              (click)="expandedElement = row"></mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+              [@detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'"
+              style="overflow: hidden"> 
+      </mat-row>
+  
+    </mat-table>
+
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </div>
+
+
+

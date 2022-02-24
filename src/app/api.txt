@@ -1,0 +1,43 @@
+[
+    "AN1": {
+        "employeeId": "ANV1",
+        "fullname": "Nguyen Van A",
+        "email": "ANV1@fpt.com.vn",
+        "skills": [
+            "SQL", "Java", "Angular", "C#", "JavaScript", "Data Analysis"
+        ],
+        "recentCourse":[
+            "The Completed 2022 Web Developement Bootcamp",
+            "Spring Boot Tutorial | Spring Boot Full Stack",
+            "Connecting Front-End to Back-End"
+        ],
+        "statitis": [
+            "totalCourse": 5,
+            "enrolledCourse": 5,
+            "processingCourse": 2,
+            "completedCourse": 2,
+            "totalCertificate": 2,
+        ]
+    },
+    "AN2": {
+        "employeeId": "ANV2",
+        "fullname": "Nguyen Van AN2",
+        "email": "ANV1@fpt.com.vn2",
+        "skills": [
+            "SQL2", "Java2", "Angular2", "C#2", "JavaScript2", "Data Analysis2"
+        ],
+        "recentCourse":[
+            "The Completed 2022 Web Developement Bootcamp2",
+            "Spring Boot Tutorial | Spring Boot Full Stack2",
+            "Connecting Front-End to Back-End2"
+        ],
+        "statitis": [
+            "totalCourse": 6,
+            "enrolledCourse": 6,
+            "processingCourse": 3,
+            "completedCourse": 3,
+            "totalCertificate": 3,
+        ]
+    }
+    
+]

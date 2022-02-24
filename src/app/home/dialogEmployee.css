@@ -1,0 +1,16 @@
+  mat-row:hover{
+    background-color: rgb(235, 233, 233);
+  }
+
+.mat-column-id {
+    flex: 0 0 20%;
+}
+.mat-column-name {
+    flex: 0 0 20%;
+}
+.mat-column-email {
+  flex: 0 0 35%;
+}
+/* .mat-column-course_title {
+  flex: 0 0 30%;
+} */
