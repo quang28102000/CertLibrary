@@ -42,7 +42,7 @@ export class AppComponent {
       (response: UserProfile) => {
         this.userProfile = response;
         console.log(response);
-      }, (error: HttpErrorResponse) => alert(error.message)
+      }, (error: HttpErrorResponse) => alert(error.message) 
     );
   };
 
