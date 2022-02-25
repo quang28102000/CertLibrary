@@ -22,7 +22,7 @@ export class AppComponent {
   ngOnInit() {
     this.getEmployees();
     this.getUserProfile();
-    this.getCourses();
+    this.getCourses(); 
   }
 
   public getCourses(): void {
