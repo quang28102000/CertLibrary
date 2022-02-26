@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Course } from './course';
+import { CourseDto } from './course-dto';
 import { CourseService } from './course.service';
 import { Employee } from './employee';
 import { EmployeeService } from './employee.service';
@@ -16,13 +17,23 @@ export class AppComponent {
   userProfile!: UserProfile;
   employees!: Employee[];
 
+  // statistics
+  statistics!: Map<Number, Employee[]>
+
+  // courses dto
+  coursesDto!: CourseDto[];
+
   constructor(private courseService: CourseService,
     private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.getEmployees();
     this.getUserProfile();
-    this.getCourses(); 
+
+    this.getEmployees();
+    this.getUserHomePageStatistics();
+
+    // this.getCourses();
+    this.getCoursesDto();
   }
 
   public getCourses(): void {
@@ -36,15 +47,75 @@ export class AppComponent {
       }
     )
   }
+  
+  public getCoursesDto(): void {
+    this.courseService.getCoursesDto().subscribe(
+      (response: CourseDto[]) => {
+        this.coursesDto = response;
+        console.log(response);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
 
   public getUserProfile(): void {
     this.employeeService.getUserProfile().subscribe(
       (response: UserProfile) => {
         this.userProfile = response;
         console.log(response);
-      }, (error: HttpErrorResponse) => alert(error.message) 
+      }, (error: HttpErrorResponse) => alert(error.message)
     );
   };
+
+  public getUserHomePageStatistics(): void {
+    // Map<status, Map<count, employees>>
+    const employeesSubcribedCourse = new Map<Number, Map<Number, Employee[]>>();
+
+    this.employeeService.getEmployees().subscribe(
+      (employees: Employee[]) => {
+        // đã đăng ký
+        employeesSubcribedCourse.set(
+          1,
+          new Map().set(
+            employees.filter(emp => Number(emp.status) === 1).length,
+            employees.filter(emp => Number(emp.status) === 1)
+          )
+        );
+
+        // chưa đăng ký
+        employeesSubcribedCourse.set(
+          2,
+          new Map().set(
+            employees.filter(emp => Number(emp.status) === 2).length,
+            employees.filter(emp => Number(emp.status) === 2)
+          )
+        );
+        
+        // đã hoàn thành
+        employeesSubcribedCourse.set(
+          3,
+          new Map().set(
+            employees.filter(emp => Number(emp.status) === 3).length,
+            employees.filter(emp => Number(emp.status) === 3)
+          )
+        );
+
+        // chưa hoàn thành
+        employeesSubcribedCourse.set(
+          4,
+          new Map().set(
+            employees.filter(emp => Number(emp.status) === 4).length,
+            employees.filter(emp => Number(emp.status) === 4)
+          )
+        );
+
+        console.log(...[...employeesSubcribedCourse.entries()]);
+
+      }
+    )
+  }
 
   public getEmployees(): void {
     this.employeeService.getEmployees().subscribe(
