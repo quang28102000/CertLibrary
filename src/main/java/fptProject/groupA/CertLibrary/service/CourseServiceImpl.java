@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fptProject.groupA.CertLibrary.dao.CourseDao;
 import fptProject.groupA.CertLibrary.persistence.Course;
+import fptProject.groupA.CertLibrary.persistence.CourseDto;
 
 @Service
 @Transactional
@@ -27,6 +28,11 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public Integer numberOfCourses() {
 		return courseDao.numberOfCourses();
+	}
+
+	@Override
+	public List<CourseDto> getCoursesDto() {
+		return courseDao.getCoursesDto();
 	}
 
 }

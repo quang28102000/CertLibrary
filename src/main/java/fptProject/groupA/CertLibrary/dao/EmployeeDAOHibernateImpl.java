@@ -1,4 +1,4 @@
-package fptProject.groupA.CertLibrary.dao;
+ package fptProject.groupA.CertLibrary.dao;
 
 
 import java.util.List;
@@ -18,23 +18,19 @@ import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 @Repository
 public class EmployeeDAOHibernateImpl implements EmployeeDao {
 
-	private static final String GET_USER_PROFILE_DTOS = 
-			"SELECT e.employee_id AS " + UserProfileDto.ID + ", "
-					+ "e.full_name AS " + UserProfileDto.FULL_NAME + ", "
-					+ "TRIM(e.email) AS " + UserProfileDto.EMAIL + ", \n"
-			+ "		GROUP_CONCAT(DISTINCT(es.skill_name) SEPARATOR ';') " + UserProfileDto.SKILLS + ", \n"
-			+ "		GROUP_CONCAT(DISTINCT(c.course_tittle) SEPARATOR ';') " + UserProfileDto.COURSES + " \n"
-			+ "	FROM employee AS e JOIN course_employee AS ce \n"
-			+ "	 ON e.employee_id = ce.employee_id JOIN employee_skills AS es \n"
-			+ "	 ON e.employee_id = es.employee_id JOIN course AS c \n"
-			+ "	 ON ce.course_id = c.course_id \n";
+	private static final String GET_USER_PROFILE_DTOS = "SELECT e.employee_id AS " + UserProfileDto.ID + ", "
+			+ "e.full_name AS " + UserProfileDto.FULL_NAME + ", "
+			+ "TRIM(e.email) AS " + UserProfileDto.EMAIL + ", \n"
+	+ "		GROUP_CONCAT(DISTINCT(es.skill_name) SEPARATOR ';') " + UserProfileDto.SKILLS + ", \n"
+	+ "		GROUP_CONCAT(DISTINCT(c.course_tittle) SEPARATOR ';') " + UserProfileDto.COURSES + " \n"
+	+ "	FROM employee AS e JOIN course_employee AS ce \n"
+	+ "	 ON e.employee_id = ce.employee_id JOIN employee_skills AS es \n"
+	+ "	 ON e.employee_id = es.employee_id JOIN course AS c \n"
+	+ "	 ON ce.course_id = c.course_id "
+	+ "  WHERE e.employee_id = 1";
 	
 	private static final String GET_EMPLOYEE_DTOS = 
-			"SELECT e.employee_id AS " + EmployeeDto.ID 
-			+ ", e.full_name AS " + EmployeeDto.FULL_NAME 
-			+ ", e.email AS " + EmployeeDto.EMAIL 
-			+ ", ce.status AS " + EmployeeDto.STATUS 
-			+ ", c.platform AS " + EmployeeDto.PLATFORM + " \r\n"
+			"SELECT e.employee_id AS id, e.full_name AS fullName, e.email AS email, ce.status AS status, c.course_tittle AS course, c.platform AS platform \r\n"
 			+ "FROM employee AS e \r\n"
 			+ "JOIN course_employee AS ce \r\n"
 			+ " ON e.employee_id = ce.employee_id\r\n"
@@ -76,6 +72,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.STATUS, StandardBasicTypes.INTEGER)
+			.addScalar(EmployeeDto.COURSE, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
 			.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	
 		return (List<EmployeeDto>)query.getResultList();

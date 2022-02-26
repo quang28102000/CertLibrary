@@ -6,16 +6,27 @@ public class EmployeeDto {
 	public static final String FULL_NAME = "fullName";
 	public static final String EMAIL = "email";
 	public static final String STATUS = "status";
+	public static final String COURSE = "course";
 	public static final String PLATFORM = "platform";
 
 	private Integer id;
 	private String fullName;
 	private String email;
 	private String status;
+	private String course;
 	private String platform;
 
 	public EmployeeDto() {
 
+	}
+
+	public EmployeeDto(Integer id, String fullName, String email, String status, String platform) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.email = email;
+		this.status = status;
+		this.platform = platform;
 	}
 
 	public Integer getId() {
@@ -58,10 +69,18 @@ public class EmployeeDto {
 		this.platform = platform;
 	}
 
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
+
 	@Override
 	public String toString() {
 		return "EmployeeDto [id=" + id + ", fullName=" + fullName + ", email=" + email + ", status=" + status
-				+ ", platform=" + platform + "]";
+				+ ", course=" + course + ", platform=" + platform + "]";
 	}
 
 }
