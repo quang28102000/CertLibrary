@@ -89,7 +89,7 @@
       <!-- Id Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} 
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.id}} 
   
         </mat-cell>
       </ng-container>
@@ -103,25 +103,25 @@
       <!-- Email Column -->
       <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.email}} 333</mat-cell>
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.email}} 333</mat-cell>
       </ng-container>
   
       <!-- Status Column -->
       <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef> Trạng Thái </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.status}} </mat-cell>
       </ng-container>
 
       <!-- Status Column -->
       <ng-container matColumnDef="course_title">
         <mat-header-cell *matHeaderCellDef> Tên Khoá Học </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.course_title}} </mat-cell>
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.course_title}} </mat-cell>
       </ng-container>
 
       <!-- Status Column -->
       <ng-container matColumnDef="category">
         <mat-header-cell *matHeaderCellDef> Phân Loại </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.category}} </mat-cell>
       </ng-container>
   
       <!-- The exapnded row contents-->

@@ -1,76 +1,173 @@
-body{
-    margin: 0;
-    padding: 0;
+.nav{
+  margin-left: 8%;
 }
+
+
 header {
-    position: static;
-    height: 201px;
-    left: 0px;
-    top: 0px;
-  
-    background: #c4c4c4;
-  }
-  
-  footer {
-    position: static;
-    height: 124px;
-    left: 1px;
-    top: 1881px;
-  
-    background: #d8d8d8;
-  }
+  position: static;
+  height: 201px;
+  left: 0px;
+  top: 0px;
 
-  footer {
-    font-size: 20px;
-    padding-top: 25px;
-    display: flex;
+  background-image: url(src/img/Background.png);
+}
+
+#logo {
+  position: absolute;
+  width: 121px;
+  height: 70px;
+  left: 22px;
+  top: 26px;
+}
+.PageLogo{
+  position: absolute;
+  width: 300px;
+  height: 110px;
+  left: 40%;
+  right: 30%;
+  top: 1px; 
+}
+.ava {
+
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  display: inline-block;
+  vertical-align: middle;
+}
+#logo_ava {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+  padding-top: 15px;
+}
+
+#navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#navigation button {
+  position: sticky;
+  width: 303.75px;
+  height: 59px;
+  /* left: 88px;
+      top: 150px; */
   
-    justify-content: space-evenly;
-    margin-top: 50px;
-  }
-  #logo {
-    position: absolute;
-    width: 121px;
-    height: 70px;
-    left: 22px;
-    top: 26px;
-  }
-  .ava {
-    /* border-radius: 50%; */
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-  
-    display: inline-block;
-    vertical-align: middle;
-  }
-  #logo_ava {
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 50px;
-    padding-top: 15px;
-  }
-  #navigation {
-    display: flex;
-    justify-content: center;
-    margin: 12px 10px 0px 10px ;
-  }
-  
-  #navigation button {
-    position:static;
-    width: 40vmin;
-    height: 59px;
-    /* left: 88px;
-    top: 150px; */
-  
-    background: #d5d5d5;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-  }
+  background: #6DC3D6;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+#navigation a{
+  color: #e2ecff;
+  font-weight:500;
+
+}
+
+#labeltxt {
+  position: relative;
+  width: 498px;
+  height: 82px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 35px;
+  margin-bottom: 25px;
+
+  /* top: 309px; */
+
+  font-family: Karma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 100%;
+  /* or 64px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.32px;
+
+  color: #265A99;
+
+  text-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
+}
+
+#tag {
+  position: static;
+  width: 229px;
+  height: 46px;
+  margin-left: 70px;
+  /* top: 486px; */
+
+  font-family: Karma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 100%;
+  /* identical to box height, or 46px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.32px;
+
+  color: #3B76BD;
+
+  text-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
+}
 
 
-.active-link{
-  background: #B7B4B4 !important;
-  color: #fff;
+#btn {
+  display: flex;
+
+  justify-content: space-evenly;
+  margin: 10px;
+  padding: 10px; 
+  filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
+
+}
+button{
+
+  font-size: 20px;
+}
+
+div nav button {
+  width: 416px;
+  height: 128px;
+  margin: 7px;
+  background: #CDDDF0;
+  border: 0.5px solid #807f7f;
+  box-sizing: border-box;
+  border-radius: 9px;
+}
+#paging {
+
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: Post No Bills Jaffna;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+
+  
+}
+
+
+footer {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 70px;
+  height: 124px;
+  left: 1px;
+  top: 1881px;
+  background: #4CAFC5;
+  position: static;
 }

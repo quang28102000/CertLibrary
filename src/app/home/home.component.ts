@@ -39,9 +39,9 @@ export class HomeComponent implements OnInit {
     this.dialog.open(DialogEmployee, {
       data: this.employees
     });
-    if(this.employeeService.isDialogClosed== true){
-      this.dialog.closeAll();
-    } 
+    // if(this.employeeService.isDialogClosed== true){
+    //   this.dialog.closeAll();
+    // } 
   }
 
   Click2(){
@@ -151,7 +151,7 @@ isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow
 
   cellClicked(element: { id: string; }) {
     console.log(element.id + ' cell clicked');
-    this.courseService.isDialogClosed == true;
+    // this.courseService.isDialogClosed == true;
     this.router.navigate(['user-screen', element.id]);
   }
 }

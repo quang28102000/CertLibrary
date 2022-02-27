@@ -1,0 +1,52 @@
+<div class="container-sm">
+  <div class="bar">
+      <select class="form-select" aria-label="Default select example">
+          <option value="All" selected>Danh mục</option>
+          <option *ngFor="let course of courses" value="{{course.category}}">{{course.category}}</option>
+      </select>
+      <select class="form-select" aria-label="Default select example">
+          <option value="All" selected>Nền tảng</option>
+          <option *ngFor="let course of courses" value="{{course.platform}}">{{course.platform}}</option>
+      </select>
+      <input type="text" id="searchTxt">
+      <button id="searchbtn" class="btn"><i class="fa fa-search"></i></button>
+  </div>
+
+  <div class="button-toggle">
+      <!-- <mat-button-toggle-group class="btn-toggle" name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle value="Tất cả">Tất cả</mat-button-toggle>
+          <mat-button-toggle value="Đang học">Đang học</mat-button-toggle>
+          <mat-button-toggle value="Đã học">Đã học</mat-button-toggle>
+      </mat-button-toggle-group> -->
+
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check bt" name="btnradio" id="btnradio1" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio1">Tất cả</label>
+
+          <input type="radio" class="btn-check bt" name="btnradio" id="btnradio2" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio2">Đã học</label>
+
+          <input type="radio" class="btn-check bt" name="btnradio" id="btnradio3" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio3">Đang học</label>
+        </div>
+  </div>
+  <button class="btn btn-circle-plus"><i class="fa fa-plus"></i></button>
+</div>
+
+
+<div class="container cards">
+  <div class="grid" *ngFor="let course of courses">
+    <div class="g-col-3">
+      <button class="card" style="width: 18rem;">
+        <img src="https://prod-discovery.edx-cdn.org/media/course/image/156313d6-f892-4b08-9cee-43ea582f4dfb-7b98c686abcc.small.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h3 style="font-weight:500;">{{course.course_tittle}}</h3>
+          <p class="card-text">Platform:{{course.platform}}</p>
+        </div>
+      </button>
+
+    </div>
+  </div>
+
+</div>
+

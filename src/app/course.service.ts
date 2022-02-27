@@ -16,6 +16,13 @@ export class CourseService {
 
   constructor(private http: HttpClient) { }
 
+  public getList():Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiServiceUrl}/course/all`);
+  }
+  
+
+
+
   public getRegisteredCoursesByEmployee(): Observable<Course[]>{
     return this.http.get<Course[]>(`${this.apiServiceUrl}/course/registeredCoursesByEmployee`);
   }

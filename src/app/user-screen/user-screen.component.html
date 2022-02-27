@@ -10,14 +10,17 @@
           <div class="col-md-8">
             <p>Mã nhân viên:</p>
             <div class="uin">
+              ANV1
               {{info?.id}}
             </div>
             <p>Tên nhân viên:</p>
             <div class="uin">
+              Nguyen Van A
               {{info?.fullName}}
             </div>
             <p>Email:</p>
             <div class="uin">
+              nguyenvana@fsoft.com.vn
               {{info?.email}}
             </div>
           </div>
@@ -32,16 +35,31 @@
               <p class="sk">{{item}}</p>
             </div>
           </div>
+          <div class="container">
+            <div class="row">
+            <div class="col">
+            <p class="sk">Sql</p>
+            </div>
+            <div class="col">
+            <p class="sk">Java</p>
+            </div>
+            <div class="col">
+            <p class="sk">Angular</p>
+            </div>
+            </div>
+            </div>
+
+
         </div>
         <a href="#">Hiển thị thêm</a><br><br>
         <h3>Các khóa gần đây:</h3>
         <p class="CD" *ngFor="let item of info?.courses">
           {{item}}
       </p>
-        <!-- <p class="CNY">The Complete 2022 Web Development Bootcamp</p>
+        <p class="CNY">The Complete 2022 Web Development Bootcamp</p>
         <p class="CNY">Spring Boot Tutorial </p>
         <p class="CD">Full Stack Web Development with Angular</p>
-        <p class="CD">Connecting Front-End to Back-End</p> -->
+        <p class="CD">Connecting Front-End to Back-End</p>
         <a href="#">Hiển thị thêm</a>
       </div>
         <div class="col-md-1">

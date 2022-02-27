@@ -14,13 +14,16 @@ import { UserScreenComponent } from './user-screen/user-screen.component';
 import { MatTableModule } from '@angular/material/table'; 
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CourseListComponent } from './course-list/course-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UserScreenComponent,
-    DialogEmployee
+    DialogEmployee,
+    CourseListComponent
+    
   ],
   imports: [
     BrowserModule,
