@@ -13,10 +13,10 @@ export class UserScreenService {
   constructor(private http: HttpClient) { }
 
   public getInfomation(userId:string){
-    //const url = `${this.apiServiceUrl}/course/userProfile/${userId}`;
+    const url = `${this.apiServiceUrl}/course/userProfile/${userId}`;
     //const url = `${this.apiServiceUrl}/course/userProfile`;
 
-    const url = `${this.apiServiceUrl}/course/userProfile`;
+    // const url = `${this.apiServiceUrl}/course/userProfile`;
     // const url = `${this.apiServiceUrl}/ANV1`;
     return this.http
     .get<any>(url);

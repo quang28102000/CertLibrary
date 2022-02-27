@@ -1,8 +1,8 @@
 export interface Employee{
-    employee_id: number;
-    full_name: string;
-    user_name: string;
-    password: string;
-    email: string;
-    profile_image: string;
+    id: Number;
+    fullName: String;
+    email: String;
+    status: String;
+    course: String;
+    platform: String;
 }

@@ -38,13 +38,12 @@
   <div class="grid" *ngFor="let course of courses">
     <div class="g-col-3">
       <button class="card" style="width: 18rem;">
-        <img src="https://prod-discovery.edx-cdn.org/media/course/image/156313d6-f892-4b08-9cee-43ea582f4dfb-7b98c686abcc.small.png" class="card-img-top" alt="...">
+        <img src="{{course.image}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h3 style="font-weight:500;">{{course.course_tittle}}</h3>
+          <h3 style="font-weight:500;">{{course.name}}</h3>
           <p class="card-text">Platform:{{course.platform}}</p>
         </div>
       </button>
-
     </div>
   </div>
 

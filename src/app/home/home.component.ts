@@ -7,6 +7,10 @@ import { CourseService } from '../course.service';
 import { EmployeeService } from '../employee.service';
 import { of } from 'rxjs';
 import { RouteConfigLoadEnd, Router } from '@angular/router';
+import { CourseDto } from '../model/course-dto';
+import { Employee } from '../model/Employee';
+import { Course } from '../course';
+import { HomeService } from '../Service/home.service';
 
 export interface DialogData {
   data: any[];
@@ -25,23 +29,30 @@ export class HomeComponent implements OnInit {
   public completeCourseByEmployee!: any;
   public incompleteCourseByEmployee!:any;
 
+  courses!: Course[];
   public employees!: any[];
-  
+
+
+  statistics!:  Map<Number, Employee[]>;
+  coursesDto!: CourseDto[];
 
   constructor(public dialog: MatDialog,
-    private employeeService: EmployeeService) {}
+    private employeeService: EmployeeService,
+    private homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.GetNumber();
+    this.getUserHomePageStatistics();
+    this.test();
+  }
+
+  public test():void{
+    console.log("test", this.statistics);
   }
 
   Click(){
     this.dialog.open(DialogEmployee, {
-      data: this.employees
+      data: this.statistics.get(1)
     });
-    // if(this.employeeService.isDialogClosed== true){
-    //   this.dialog.closeAll();
-    // } 
   }
 
   Click2(){
@@ -50,77 +61,42 @@ export class HomeComponent implements OnInit {
     // });
   }
 
-  GetNumber(){
-    this.employeeService.getRegisteredCoursesByEmployee().subscribe(
-      (response: any) =>{
-        this.registeredCoursesByEmployee = response;
-        console.log(response);
-      },
-      (error: HttpErrorResponse) =>{
-        console.log(error.message);
-      }
-    )
 
-    this.employeeService.getUnregisteredCoursesByEmployee().subscribe(
-      (response: any) =>{
-        this.unregisteredCoursesByEmployee = response;
-        console.log(response);
-      },
-      (error: HttpErrorResponse) =>{
-        console.log(error.message);
-      }
-    )
+  public getUserHomePageStatistics(): void {
+    // Map<status, Map<count, employees>>
+    const employeesSubcribedCourse = new Map<Number,Employee[]>();
 
-    this.employeeService.getNumberOfCourses().subscribe(
-      (response: any) =>{
-        this.numberOfCourses = response;
-        console.log(response);
-      },
-      (error: HttpErrorResponse) =>{
-        console.log(error.message);
-      }
-    )
+    this.homeService.getEmployees().subscribe(
+      (employees: Employee[]) => {
+        // đã đăng ký
+        employeesSubcribedCourse.set(
+          1, employees.filter(emp => Number(emp.status) === 1)
+        );
 
-    this.employeeService.getNumberOfEmployeesInLast7days().subscribe(
-      (response: any) =>{
-        this.numberOfEmployeesInLast7days = response;
-        console.log(response);
-      },
-      (error: HttpErrorResponse) =>{
-        console.log(error.message);
-      }
-    )
+        // chưa đăng ký
+        employeesSubcribedCourse.set(
+          2,
+            employees.filter(emp => Number(emp.status) === 2)
+        );
+        
+        // đã hoàn thành
+        employeesSubcribedCourse.set(
+          3,employees.filter(emp => Number(emp.status) === 3)
+        );
 
-    this.employeeService.getCompleteCourseByEmployee().subscribe(
-      (response: any) =>{
-        this.completeCourseByEmployee = response;
-        console.log(response);
-      },
-      (error: HttpErrorResponse) =>{
-        console.log(error.message);
-      }
-    )
+        // chưa hoàn thành
+        employeesSubcribedCourse.set(
+          4, employees.filter(emp => Number(emp.status) === 4)
+        );
 
-    this.employeeService.getIncompleteCourseByEmployee().subscribe(
-      (response: any) =>{
-        this.incompleteCourseByEmployee = response;
-        console.log(response);
-      },
-      (error: HttpErrorResponse) =>{
-        console.log(error.message);
-      }
-    )
-
-    this.employeeService.getIncompleteCourseByEmployee().subscribe(
-      (response: any) =>{
-        this.incompleteCourseByEmployee = response;
-        console.log(response);
-      },
-      (error: HttpErrorResponse) =>{
-        console.log(error.message);
+        //console.log(...[...employeesSubcribedCourse.entries()]);
+          this.statistics = employeesSubcribedCourse;
+          console.log(this.statistics);
       }
     )
   }
+
+  
     
 }
 
@@ -139,9 +115,7 @@ export class DialogEmployee {
       
   }
 
-  displayedColumns = ['id', 'name', 'email', 'status', 'course_title', 'category'];
-
-  dataSource = new ExampleDataSource();
+  displayedColumns = ['id', 'name', 'email', 'status', 'course_title', 'platform'];
 
 isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
   expandedElement: any;
@@ -151,7 +125,6 @@ isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow
 
   cellClicked(element: { id: string; }) {
     console.log(element.id + ' cell clicked');
-    // this.courseService.isDialogClosed == true;
     this.router.navigate(['user-screen', element.id]);
   }
 }
@@ -163,28 +136,6 @@ export interface Element {
   status:number,
   course_title:string,
   category: string
-}
-
-const ELEMENT_DATA: Element[] = [
-  {id:'ANV1', name:'Nguyen Van A', email:'ANV1@fsoft.com.vn', course_title:'Basic Angular 4x Programming', status:1, category:'Angular'},
-  {id:'ANV2', name:'Nguyen Van A', email:'ANV1@fsoft.com.vn', course_title:'Basic Angular 4x Programming', status:1, category:'Angular'},
-  {id:'ANV3', name:'Nguyen Van A', email:'ANV1@fsoft.com.vn', course_title:'Basic Angular 4x Programming', status:1, category:'Angular'},
-  {id:'ANV4', name:'Nguyen Van A', email:'ANV1@fsoft.com.vn', course_title:'Basic Angular 4x Programming', status:1, category:'Angular'},
-  {id:'ANV5', name:'Nguyen Van A', email:'ANV1@fsoft.com.vn', course_title:'Basic Angular 4x Programming', status:1, category:'Angular'},
-  {id:'ANV6', name:'Nguyen Van A', email:'ANV1@fsoft.com.vn', course_title:'Basic Angular 4x Programming', status:1, category:'Angular'},
-  {id:'ANV7', name:'Nguyen Van A', email:'ANV1@fsoft.com.vn', course_title:'Basic Angular 4x Programming', status:1, category:'Angular'},
-  {id:'ANV8', name:'Nguyen Van A', email:'ANV1@fsoft.com.vn', course_title:'Basic Angular 4x Programming', status:1, category:'Angular'},
-];
-
-export class ExampleDataSource extends DataSource<any> {
-  connect(): Observable<Element[]> {
-    const rows: Element[] = [];
-    ELEMENT_DATA.forEach(element => rows.push(element));
-    console.log(rows);
-    return of(rows);
-  }
-
-  disconnect() { }
 }
 
 

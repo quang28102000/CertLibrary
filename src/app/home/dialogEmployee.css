@@ -3,13 +3,16 @@
   }
 
 .mat-column-id {
-    flex: 0 0 20%;
+    flex: 0 0 10%;
 }
 .mat-column-name {
     flex: 0 0 20%;
 }
 .mat-column-email {
-  flex: 0 0 35%;
+  flex: 0 0 25%;
+}
+.mat-column-course_title{
+  flex: 0 0 30%;
 }
 /* .mat-column-course_title {
   flex: 0 0 30%;

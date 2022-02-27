@@ -81,7 +81,7 @@
 </div> -->
 
 <div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="data">
   
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -97,7 +97,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Tên </mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.fullName}} </mat-cell>
       </ng-container>
   
       <!-- Email Column -->
@@ -115,13 +115,13 @@
       <!-- Status Column -->
       <ng-container matColumnDef="course_title">
         <mat-header-cell *matHeaderCellDef> Tên Khoá Học </mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.course_title}} </mat-cell>
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.course}} </mat-cell>
       </ng-container>
 
       <!-- Status Column -->
-      <ng-container matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef> Phân Loại </mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.category}} </mat-cell>
+      <ng-container matColumnDef="platform">
+        <mat-header-cell *matHeaderCellDef> Nền Tảng </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.platform}} </mat-cell>
       </ng-container>
   
       <!-- The exapnded row contents-->

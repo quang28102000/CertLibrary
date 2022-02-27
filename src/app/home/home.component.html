@@ -4,24 +4,24 @@
     <br><br><br><br>
     <nav id="btn">
         <button class="show-popup-employee" (click)="Click()">Số người đã đăng kí khoá học
-            <p>{{registeredCoursesByEmployee}}/...</p>
+            <p>{{statistics.get(1)!.length}}/...</p>
         </button>
         <button class="show-popup-employee">Số người chưa hoàn thành khoá học
-            <p>{{unregisteredCoursesByEmployee}}/...</p>
+            <p>{{statistics.get(2)!.length}}/...</p>
         </button>
         <button class="show-popup-employee">
             số người chưa đăng kí hoá học
-            <p>{{incompleteCourseByEmployee}}/...</p>
+            <p>{{statistics.get(3)!.length}}/...</p>
         </button>
     </nav>
 
     <br>
     <nav id="btn">
         <button class="show-popup-employee">Số người đã hoàn thành khoá học
-            <p>{{completeCourseByEmployee}}/...</p>
+            <p>{{statistics.get(4)!.length}}/...</p>
         </button>
         <button class="show-popup-employee">Số người mới đăng ký trong 7 ngày gần nhất
-            <p>{{numberOfEmployeesInLast7days}}</p>
+            <p>...</p>
         </button>
     </nav>
 
