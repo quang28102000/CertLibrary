@@ -19,7 +19,7 @@ export class EmployeeService {
 
 
     public getUserProfile(): Observable<UserProfile> {
-        return this.http.get<UserProfile>(`${this.apiServiceUrl}/course/userProfile`); 
+        return this.http.get<UserProfile>(`${this.apiServiceUrl}/course/userProfile/4`); 
     }
 
 }
