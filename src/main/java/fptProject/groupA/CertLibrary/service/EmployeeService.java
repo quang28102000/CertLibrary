@@ -7,5 +7,5 @@ import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 
 public interface EmployeeService {
 	List<EmployeeDto> getEmployees();
-	UserProfileDto findEmployeeProfile();
+	UserProfileDto findEmployeeProfile(Integer id);
 }

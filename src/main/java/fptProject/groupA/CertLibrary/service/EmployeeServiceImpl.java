@@ -19,8 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public UserProfileDto findEmployeeProfile() {
-		return employeeDao.findEmployeeProfile();
+	public UserProfileDto findEmployeeProfile(Integer id) {
+		return employeeDao.findEmployeeProfile(id);
 	}
 
 	@Override

@@ -39,9 +39,11 @@ public class HomePageController {
 		return new ResponseEntity<>(getEmployees, HttpStatus.OK);
 	};
 
-	@GetMapping("/userProfile")
-	public ResponseEntity<UserProfileDto> getUserProfile() {
-		UserProfileDto userProfile = employeeService.findEmployeeProfile();
+	@GetMapping("/userProfile/{id}")
+	public ResponseEntity<UserProfileDto> getUserProfile(
+			@PathVariable(name = "id", required = false) Integer id
+	) {
+		UserProfileDto userProfile = employeeService.findEmployeeProfile(id);
 		return new ResponseEntity<UserProfileDto>(userProfile, HttpStatus.OK);
 	}
 

@@ -27,7 +27,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	+ "	 ON e.employee_id = ce.employee_id JOIN employee_skills AS es \n"
 	+ "	 ON e.employee_id = es.employee_id JOIN course AS c \n"
 	+ "	 ON ce.course_id = c.course_id "
-	+ "  WHERE e.employee_id = 1";
+	+ "  WHERE e.employee_id = :employeeId";
 	
 	private static final String GET_EMPLOYEE_DTOS = 
 			"SELECT e.employee_id AS id, e.full_name AS fullName, e.email AS email, ce.status AS status, c.course_tittle AS course, c.platform AS platform \r\n"
@@ -47,7 +47,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public UserProfileDto findEmployeeProfile() {
+	public UserProfileDto findEmployeeProfile(Integer id) {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
 		
 		NativeQuery<?> query = openSession.createNativeQuery(GET_USER_PROFILE_DTOS);
@@ -57,6 +57,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			 .addScalar(UserProfileDto.EMAIL, StandardBasicTypes.STRING)
 			 .addScalar(UserProfileDto.SKILLS, StandardBasicTypes.STRING)
 			 .addScalar(UserProfileDto.COURSES, StandardBasicTypes.STRING)
+				.setParameter("employeeId", id)
 			 .setResultTransformer(Transformers.aliasToBean(UserProfileDto.class));
 		
 		return (UserProfileDto) query.getSingleResult();
