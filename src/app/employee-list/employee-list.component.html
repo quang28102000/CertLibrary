@@ -1,0 +1,96 @@
+<div class="container">
+    <h1>
+        Danh Sách Nhân Viên
+    </h1>
+    <table class="table table-hover table-striped">
+        <thead>
+            <th scope="col">STT</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Email</th>
+            <th scope="col">Khoá học</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Ngày bắt đầu</th>
+            <th scope="col">Ngày kết thúc</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of employees">
+            <td></td>
+            <td>{{item.fullName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.course}}</td>
+            <td>
+              {{item.status}}
+            </td>
+            <td>22-01-2022</td>
+            <td>22-01-2023</td>
+          </tr>
+          <!-- status: 1.Đang học, 2. Đã học, 3. Chưa thi, 4. Thi nhưng chưa có bằng -->
+
+          <!--<tr>
+            <td>1</td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Hoan thanh</td>
+            <td>22-01-2022</td>
+            <td>22-01-2023</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Hoan thanh</td>
+            <td>22-01-2022</td>
+            <td>22-01-2023</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Hoan thanh</td>
+            <td>22-01-2022</td>
+            <td>22-01-2023</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Hoan thanh</td>
+            <td>22-01-2022</td>
+            <td>22-01-2023</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Hoan thanh</td>
+            <td>22-01-2022</td>
+            <td>22-01-2023</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Hoan thanh</td>
+            <td>22-01-2022</td>
+            <td>22-01-2023</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>Hoan thanh</td>
+            <td>22-01-2022</td>
+            <td>22-01-2023</td>
+          </tr> -->
+          
+         
+        </tbody>
+      </table>
+</div>

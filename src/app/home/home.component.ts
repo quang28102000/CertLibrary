@@ -4,7 +4,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { CourseService } from '../course.service';
-import { EmployeeService } from '../employee.service';
 import { of } from 'rxjs';
 import { RouteConfigLoadEnd, Router } from '@angular/router';
 import { CourseDto } from '../model/course-dto';
@@ -37,7 +36,6 @@ export class HomeComponent implements OnInit {
   coursesDto!: CourseDto[];
 
   constructor(public dialog: MatDialog,
-    private employeeService: EmployeeService,
     private homeService: HomeService) {}
 
   ngOnInit(): void {

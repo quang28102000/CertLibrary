@@ -19,6 +19,7 @@ import { DialogCourse } from './course-list/course-list.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     UserScreenComponent,
     DialogEmployee,
     DialogCourse,
-    CourseListComponent
+    CourseListComponent,
+    EmployeeListComponent
     
   ],
   imports: [
