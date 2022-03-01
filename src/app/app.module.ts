@@ -15,6 +15,10 @@ import { MatTableModule } from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CourseListComponent } from './course-list/course-list.component';
+import { DialogCourse } from './course-list/course-list.component';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,7 @@ import { CourseListComponent } from './course-list/course-list.component';
     HomeComponent,
     UserScreenComponent,
     DialogEmployee,
+    DialogCourse,
     CourseListComponent
     
   ],
@@ -35,6 +40,8 @@ import { CourseListComponent } from './course-list/course-list.component';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

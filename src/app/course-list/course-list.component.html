@@ -8,17 +8,13 @@
           <option value="All" selected>Nền tảng</option>
           <option *ngFor="let course of courses" value="{{course.platform}}">{{course.platform}}</option>
       </select>
-      <input type="text" id="searchTxt">
-      <button id="searchbtn" class="btn"><i class="fa fa-search"></i></button>
-  </div>
+      <input type="text" id="searchTxt" [(ngModel)]="searchTxt">
+      <!-- <button id="searchbtn" class="btn"><i class="fa fa-search" (click)="Search(searchTxt)"></i></button> -->
+       <button id="searchbtn" class="btn"><i class="fa fa-search"></i></button>
+
+    </div>
 
   <div class="button-toggle">
-      <!-- <mat-button-toggle-group class="btn-toggle" name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle value="Tất cả">Tất cả</mat-button-toggle>
-          <mat-button-toggle value="Đang học">Đang học</mat-button-toggle>
-          <mat-button-toggle value="Đã học">Đã học</mat-button-toggle>
-      </mat-button-toggle-group> -->
-
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
           <input type="radio" class="btn-check bt" name="btnradio" id="btnradio1" autocomplete="off">
           <label class="btn btn-outline-primary" for="btnradio1">Tất cả</label>
@@ -33,11 +29,10 @@
   <button class="btn btn-circle-plus"><i class="fa fa-plus"></i></button>
 </div>
 
-
 <div class="container cards">
-  <div class="grid" *ngFor="let course of courses">
+  <div class="grid" *ngFor="let course of courses | filter: searchTxt">
     <div class="g-col-3">
-      <button class="card" style="width: 18rem;">
+      <button class="card" style="width: 18rem;" (click)="courseDetail(course)">
         <img src="{{course.image}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h3 style="font-weight:500;">{{course.name}}</h3>
