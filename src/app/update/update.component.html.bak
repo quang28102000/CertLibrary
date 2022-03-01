@@ -1,0 +1,95 @@
+<head>
+    <title>Information</title>
+
+    <script src="https://kit.fontawesome.com/57662d1238.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<app-header></app-header>
+
+    <nav id="button_manager">
+        <div id="btn1">
+            <button>Đăng ký khoá học</button>
+            <button>Thông tin khoá học</button>
+        </div>
+        <div id="btn2">
+            <button>Xoá khoá học</button>
+            <button>Cập nhật khoá học</button>
+        </div>
+    </nav>
+    <br><br><br>
+
+    <svg viewBox="-10 15 1330 450">
+        <path fill="none" stroke="black"
+            d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300">
+        </path>
+    </svg>
+
+    <div id="up">
+        <p>Thông tin khoá học</p>
+        <div>
+            <input type="text" id="search"> <button>search</button>
+        </div>
+    </div>
+    <br><br>
+    
+    <nav id="container" *ngFor="let item of Infor" >
+        <nav id="information">
+            <div id="couseName">
+                <p>Tên khoá học</p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <input type="text" name="" id="" value="{{ item.full_name }}">
+            </div>
+            <div id="platform">
+                <p>Nền tảng</p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="text"
+                    name="" id="" value="{{ item.full_name }}">
+            </div>
+            <div id="status">
+                <p>Trạng thái</p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="text"
+                    name="" id="" value="{{ item.full_name }}">
+            </div>
+            <div id="startDay">
+                <p>Ngày bắt đầu</p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <input type="text" name="" id="" value="{{ item.full_name }}">
+            </div>
+            <div id="endDay">
+                <p>Ngày kết thúc</p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="text" name="" id="" value="{{ item.full_name }}">
+            </div>
+            <div id="totalTime">
+                <p>Tổng thời gian học</p>&nbsp; &nbsp; <input type="text" name="" id="" value="{{ item.full_name }}">
+            </div>
+
+        </nav>
+        <nav id="information1">
+            <div id="type">
+                <p>Khoá học</p>&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="text" name=""
+                    id="" value="{{ item.full_name }}">
+            </div>
+            <br><br><br><br>
+            <div id="certificate">
+                <p>Chứng chỉ</p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button>Link</button>
+            </div>
+        </nav>
+        <nav id="editIcon">
+            <button> <i class='fas fa-edit'></i>Edit</button>
+            <!-- <i class='fas fa-edit' style='font-size:24px'></i> -->
+        </nav>
+    </nav>
+
+
+    <nav id="showAll">
+        <p>Hiển thị tất cả</p>
+    </nav>
+
+
+    <svg viewBox="-10 15 1330 450">
+        <path fill="none" stroke="black"
+            d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300">
+        </path>
+    </svg>
+
+    <nav id="paging">
+        <p>&nbsp;&nbsp; 1&nbsp;&nbsp; </p>
+        <p>&nbsp;&nbsp; 2&nbsp;&nbsp; </p>
+        <p>&nbsp;&nbsp; 3&nbsp;&nbsp; </p>
+    </nav>
+
+<app-footer></app-footer>
+</body>
