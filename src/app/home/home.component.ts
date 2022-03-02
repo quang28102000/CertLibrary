@@ -31,11 +31,13 @@ export class HomeComponent implements OnInit {
   courses!: Course[];
   public employees!: any[];
 
+  public employeesInLast7Days!: any[];
 
   statistics!:  Map<Number, Employee[]>;
   coursesDto!: CourseDto[];
 
   constructor(public dialog: MatDialog,
+    private router: Router,
     private homeService: HomeService) {}
 
   ngOnInit(): void {
@@ -47,17 +49,14 @@ export class HomeComponent implements OnInit {
     console.log("test", this.statistics);
   }
 
-  Click(){
-    this.dialog.open(DialogEmployee, {
-      data: this.statistics.get(1)
-    });
+
+  rowClick(id: any, button: any){
+    const app = document.getElementsByClassName("btn-close")[button] as HTMLElement;
+    app?.click();
+    this.router.navigate(['user-screen', id]);
   }
 
-  Click2(){
-    // this.dialog.open(DialogCourse, {
-    //   data: this.employees
-    // });
-  }
+
 
 
   public getUserHomePageStatistics(): void {
@@ -88,8 +87,16 @@ export class HomeComponent implements OnInit {
         );
 
         //console.log(...[...employeesSubcribedCourse.entries()]);
+        this.employees = employees;
           this.statistics = employeesSubcribedCourse;
           console.log(this.statistics);
+      }
+    )
+
+    this.homeService.getEmployeesInLast7Days().subscribe(
+      res => {
+        this.employeesInLast7Days = res;
+        console.log( 'EmployeesInLast7Days', res);
       }
     )
   }
@@ -97,67 +104,3 @@ export class HomeComponent implements OnInit {
   
     
 }
-
-
-@Component({
-  selector: 'dialog-employee',
-  templateUrl: 'dialogEmployee.html',
-  styleUrls: ['dialogEmployee.css']
-})
-export class DialogEmployee {
-  public employees!: any[];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any[],
-    private courseService: CourseService,
-    private router: Router,
-    public dialog: MatDialog) {
-      
-  }
-
-  displayedColumns = ['id', 'name', 'email', 'status', 'course_title', 'platform'];
-
-isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
-  expandedElement: any;
-  test() {
-    console.log('test');
-  }
-
-  cellClicked(element: { id: string; }) {
-    console.log(element.id + ' cell clicked');
-    this.router.navigate(['user-screen', element.id]);
-  }
-}
-
-export interface Element {
-  id: string,
-  name: string,
-  email:string,
-  status:number,
-  course_title:string,
-  category: string
-}
-
-
-// @Component({
-//   selector: 'dialog-course',
-//   templateUrl: 'dialogCourse.html',
-//   styleUrls: ['dialogCourse.css']
-// })
-// export class DialogCourse {
-//   public employees!: any[];
-//   constructor(@Inject(MAT_DIALOG_DATA) public data: any[],
-//     private employeeService: EmployeeService) {
-      
-//   }
-
-//   GetAllEmployee(){
-//     this.employeeService.getCourses().subscribe(
-//       (response: any[]) =>{
-//         this.employees = response;
-//         console.log(response);
-//       },
-//       (error: HttpErrorResponse) =>{
-//         alert(error.message);
-//       }
-//     )
-//   }
-// }

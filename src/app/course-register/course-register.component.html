@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="grid-container">
+        <button class="btn grid-item"><a href="#">Đăng kí khoá học</a></button>
+        <button class="btn grid-item"><a href="#">Thông tin khoá học</a></button>
+        <button class="btn grid-item"><a href="#">Xoá khoá học</a></button>
+        <button class="btn grid-item"><a href="#">Cập nhật khoá học</a></button>
+    </div>
+    <hr>
+    <div class="form">
+        <h1>Mẫu đăng kí khoá học</h1>
+        <div class="fields">
+            <div class="field">
+                <label>* Chọn Nhân Viên</label><br>
+                <input type="text" name="employeeName" list="exampleList" [(ngModel)]="employeeId">
+                <datalist id="exampleList">
+                    <option *ngFor="let item of employees" value="{{item.id}}">{{item.fullName}}</option>>  
+                </datalist>
+            </div>
+
+            <!-- <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>* Mã nhân viên</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="employeeId">
+                    <mat-hint>Hint</mat-hint>
+                </mat-form-field>
+            </div> -->
+
+            <div class="field">
+                <p>
+                    <mat-form-field appearance="fill">
+                        <mat-label>* Nền tảng</mat-label>
+                        <mat-select [(value)]="platform">
+                          <mat-option value="Udemy">Udemy</mat-option>
+                          <mat-option value="Coursera">Coursera</mat-option>
+                          <mat-option value="CodeCademy">CodeCademy</mat-option>
+                          <mat-option value="Khác">Khác</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </p>
+            </div>
+
+            <div class="field">
+                <mat-form-field appearance="fill">
+                    <mat-label>* Trạng thái</mat-label>
+                    <mat-select [(value)]="status">
+                      <mat-option value="1">Đang học</mat-option>
+                      <mat-option value="2">Đã học</mat-option>
+                      <mat-option value="3">Chưa thi</mat-option>
+                      <mat-option value="4">Đã thi chưa có bằng</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+            <!-- status: 1.Đang học, 2. Đã học, 3. Chưa thi, 4. Thi nhưng chưa có bằng -->
+
+
+            <div class="field">
+                <label>* Ngày bắt đầu</label><br>
+                <mat-form-field appearance="fill">
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="start">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="field">
+                <label>Ngày kết thúc (dự kiến)</label><br>
+                <mat-form-field appearance="fill">
+                    <input matInput [matDatepicker]="picker2" [(ngModel)]="end">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="field">
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>* Tổng thời gian học (hr)</mat-label>
+                        <input type="number" matInput placeholder="Placeholder" [(ngModel)]="totalTime">
+                        <mat-hint>15hr</mat-hint>
+                    </mat-form-field>
+                </p>
+            </div>
+
+            <div class="field">
+                <label>* Tên Khoá Học</label><br>
+                <input type="text" name="courseName" list="courseList" [(ngModel)]="course_name">
+                <datalist id="courseList">
+                    <option *ngFor="let item of courses" value="{{item.name}}"></option>>  
+                </datalist>
+            </div>
+
+            <div class="field">
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Đường dẫn chứng chỉ</mat-label>
+                        <input matInput placeholder="Placeholder" [(ngModel)]="certLink">
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </p>
+            </div>
+
+
+            
+        </div>
+        <button class="btn-success" (click)="Add()">Submit</button>
+    </div>
+
+</div>

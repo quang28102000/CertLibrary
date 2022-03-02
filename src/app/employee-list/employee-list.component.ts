@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployeeService } from '../Service/employee.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { EmployeeService } from '../Service/employee.service';
 })
 export class EmployeeListComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,
+    private router: Router) { }
 
   public employees!: any[];
   ngOnInit(): void {
@@ -22,6 +24,11 @@ export class EmployeeListComponent implements OnInit {
       console.log("employee-list", res);
     })
 
+  }
+
+  rowClick(employee: any){
+    console.log('row clicked', employee);
+    this.router.navigate(['user-screen', employee.id]);
   }
 
 }

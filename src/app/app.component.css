@@ -171,3 +171,7 @@ footer {
   background: #4CAFC5;
   position: static;
 }
+
+a{
+  text-decoration: none;
+}

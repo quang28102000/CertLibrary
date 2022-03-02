@@ -13,7 +13,7 @@
             <th scope="col">Ngày kết thúc</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of employees">
+          <tr *ngFor="let item of employees" (click)="rowClick(item)">
             <td></td>
             <td>{{item.fullName}}</td>
             <td>{{item.email}}</td>
@@ -21,8 +21,8 @@
             <td>
               {{item.status}}
             </td>
-            <td>22-01-2022</td>
-            <td>22-01-2023</td>
+            <td>{{item.startDate}}</td>
+            <td>{{item.endDate}}</td>
           </tr>
           <!-- status: 1.Đang học, 2. Đã học, 3. Chưa thi, 4. Thi nhưng chưa có bằng -->
 

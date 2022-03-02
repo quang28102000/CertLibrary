@@ -20,7 +20,11 @@ export class HomeService {
 }
 
 
-public getUserProfile(): Observable<UserProfile> {
-    return this.http.get<UserProfile>(`${this.apiServiceUrl}/course/userProfile/4`); 
-}
+  public getUserProfile(): Observable<UserProfile> {
+      return this.http.get<UserProfile>(`${this.apiServiceUrl}/course/userProfile/4`); 
+  }
+
+  public getEmployeesInLast7Days(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.apiServiceUrl}/course/getEmployeesInLast7Days`); 
+  }
 }
