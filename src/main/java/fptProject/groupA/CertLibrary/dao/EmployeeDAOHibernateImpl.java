@@ -2,12 +2,14 @@
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.transform.Transformers;
+import org.hibernate.type.CalendarDateType;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,12 +32,28 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	+ "  WHERE e.employee_id = :employeeId";
 	
 	private static final String GET_EMPLOYEE_DTOS = 
-			"SELECT e.employee_id AS id, e.full_name AS fullName, e.email AS email, ce.status AS status, c.course_tittle AS course, c.platform AS platform \r\n"
+			"SELECT e.employee_id AS id, e.full_name AS fullName, e.email AS email, \r\n"
+			+ "ce.status AS status, CAST(ce.start_date AS DATE) AS startDate, CAST(ce.end_date AS DATE) AS endDate,\r\n"
+			+ "c.course_tittle AS course, c.platform AS platform \r\n"
 			+ "FROM employee AS e \r\n"
 			+ "JOIN course_employee AS ce \r\n"
 			+ " ON e.employee_id = ce.employee_id\r\n"
 			+ "JOIN course AS c\r\n"
 			+ " ON ce.course_id = c.course_id;";
+	
+	private static final String GET_SUBSCRIBED_EMPLOYESS_IN_LAST_7_DAYS_DTOS =
+			"SELECT e.employee_id AS " + EmployeeDto.ID + ", "
+				+ "e.full_name AS " + EmployeeDto.FULL_NAME + ", "
+				+ "e.email AS " + EmployeeDto.EMAIL + ","
+				+ "ce.status AS " + EmployeeDto.STATUS + ", "
+				+ "c.course_tittle AS " + EmployeeDto.COURSE + ", "
+				+ "c.platform AS " + EmployeeDto.PLATFORM + "\r\n"
+			+ "FROM course_employee AS ce\r\n"
+			+ "JOIN employee AS e\r\n"
+			+ "ON ce.employee_id = e.employee_id\r\n"
+			+ "JOIN course AS c\r\n"
+			+ "ON ce.course_id = c.course_id\r\n"
+			+ "WHERE status = 1 AND ce.start_date > DATE_SUB(CURRENT_DATE(), INTERVAL 7 day);";
 	
 	private EntityManager entityManager;
 	
@@ -73,10 +91,27 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.STATUS, StandardBasicTypes.INTEGER)
+			.addScalar(EmployeeDto.START_DATE, StandardBasicTypes.DATE)
+			.addScalar(EmployeeDto.END_DATE, StandardBasicTypes.DATE)
 			.addScalar(EmployeeDto.COURSE, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
 			.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	
 		return (List<EmployeeDto>)query.getResultList();
+	}
+
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<EmployeeDto> findSubscribedEmployeesInLast7Days() {
+		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		NativeQuery<?> query = openSession.createNativeQuery(GET_SUBSCRIBED_EMPLOYESS_IN_LAST_7_DAYS_DTOS);
+		query.addScalar(EmployeeDto.ID, StandardBasicTypes.INTEGER)
+		.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
+		.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
+		.addScalar(EmployeeDto.STATUS, StandardBasicTypes.INTEGER)
+		.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
+		.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	
+	return (List<EmployeeDto>)query.getResultList();
 	}
 
 }

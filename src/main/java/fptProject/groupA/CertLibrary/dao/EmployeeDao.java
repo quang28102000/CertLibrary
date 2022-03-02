@@ -8,4 +8,5 @@ import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 public interface EmployeeDao {
 	List<EmployeeDto> getEmployees();
 	UserProfileDto findEmployeeProfile(Integer id);
+	List<EmployeeDto> findSubscribedEmployeesInLast7Days();
 }

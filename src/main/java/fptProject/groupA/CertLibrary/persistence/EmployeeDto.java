@@ -1,11 +1,17 @@
 package fptProject.groupA.CertLibrary.persistence;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Optional;
+
 public class EmployeeDto {
 
 	public static final String ID = "id";
 	public static final String FULL_NAME = "fullName";
 	public static final String EMAIL = "email";
 	public static final String STATUS = "status";
+	public static final String START_DATE = "startDate";
+	public static final String END_DATE = "endDate";
 	public static final String COURSE = "course";
 	public static final String PLATFORM = "platform";
 
@@ -13,19 +19,26 @@ public class EmployeeDto {
 	private String fullName;
 	private String email;
 	private String status;
+	private Date startDate;
+	private Date endDate;
 	private String course;
 	private String platform;
+
 
 	public EmployeeDto() {
 
 	}
 
-	public EmployeeDto(Integer id, String fullName, String email, String status, String platform) {
-		super();
+	
+	public EmployeeDto(Integer id, String fullName, String email, String status, Date startDate, Date endDate,
+			String course, String platform) {
 		this.id = id;
 		this.fullName = fullName;
 		this.email = email;
 		this.status = status;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.course = course;
 		this.platform = platform;
 	}
 
@@ -76,11 +89,28 @@ public class EmployeeDto {
 	public void setCourse(String course) {
 		this.course = course;
 	}
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 
 	@Override
 	public String toString() {
 		return "EmployeeDto [id=" + id + ", fullName=" + fullName + ", email=" + email + ", status=" + status
-				+ ", course=" + course + ", platform=" + platform + "]";
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", course=" + course + ", platform=" + platform
+				+ "]";
 	}
 
 }

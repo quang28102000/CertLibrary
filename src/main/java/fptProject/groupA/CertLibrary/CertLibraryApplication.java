@@ -14,7 +14,7 @@ public class CertLibraryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CertLibraryApplication.class, args);
-	}
+	} 
 
 	@Bean
 	public CorsFilter corsFilter() {

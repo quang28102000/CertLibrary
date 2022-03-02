@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
+import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 import fptProject.groupA.CertLibrary.persistence.EmployeeDto;
 import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 import fptProject.groupA.CertLibrary.service.CourseService;
@@ -50,7 +51,20 @@ public class HomePageController {
 	@GetMapping("/coursesDto")
 	public ResponseEntity<List<CourseDto>> getCoursesDto() {
 		List<CourseDto> courses = courseService.getCoursesDto();
-		courses.forEach(c -> System.out.println(c));
 		return new ResponseEntity<List<CourseDto>>(courses, HttpStatus.OK);
+	}
+
+	@GetMapping("/coursesHomePageDto")
+	public ResponseEntity<List<CourseHomePageDto>> getCoursesHomePageDto() {
+		List<CourseHomePageDto> courses = courseService.getCoursesHomePageDto();
+		courses.forEach(c -> System.out.println(c));
+		return new ResponseEntity<List<CourseHomePageDto>>(courses, HttpStatus.OK);
+	}
+
+	
+	@GetMapping("/getEmployeesInLast7Days")
+	public ResponseEntity<List<EmployeeDto>> getEmployeesInLast7Days() {
+		List<EmployeeDto> employees = employeeService.findSubscribedEmployeesInLast7Days();
+		return new ResponseEntity<List<EmployeeDto>>(employees, HttpStatus.OK);
 	}
 }

@@ -28,4 +28,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.getEmployees();
 	}
 
+	@Override
+	public List<EmployeeDto> findSubscribedEmployeesInLast7Days() {
+		return employeeDao.findSubscribedEmployeesInLast7Days();
+	}
+
 }

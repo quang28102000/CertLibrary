@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
+import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 
 @Repository
 public class CourseDAOHibernateImpl implements CourseDao {
@@ -25,6 +26,17 @@ public class CourseDAOHibernateImpl implements CourseDao {
 			+ "JOIN course_skills AS cs\r\n"
 			+ "ON cd.course_id = cs.course_id\r\n"
 			+ "GROUP BY cd.course_id;";
+	
+	private static final String GET_COURSES_HOME_PAGE_DTO = 
+			"SELECT e.employee_id AS id, e.full_name AS fullName, c.course_tittle AS tittle, \r\n"
+			+ "c.platform AS platform, c.category AS category, cd.course_length AS courseLength \r\n"
+			+ "FROM employee AS e\r\n"
+			+ "JOIN course_employee AS ce\r\n"
+			+ "ON e.employee_id = ce.employee_id\r\n"
+			+ "JOIN course AS c\r\n"
+			+ "ON ce.course_id = c.course_id\r\n"
+			+ "JOIN course_detail AS cd\r\n"
+			+ "ON c.course_id = cd.course_id;";
 	
 	private EntityManager entityManager;
 	
@@ -63,6 +75,21 @@ public class CourseDAOHibernateImpl implements CourseDao {
 								.addScalar(CourseDto.SKILLS, StandardBasicTypes.STRING)
 								.setResultTransformer(Transformers.aliasToBean(CourseDto.class));
 		return (List<CourseDto>) query.getResultList();
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<CourseHomePageDto> getCoursesHomePageDto() {
+		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		NativeQuery<?> query = openSession.createNativeQuery(GET_COURSES_HOME_PAGE_DTO);
+		query.addScalar(CourseHomePageDto.ID, StandardBasicTypes.INTEGER)
+						.addScalar(CourseHomePageDto.FULL_NAME, StandardBasicTypes.STRING)
+						.addScalar(CourseHomePageDto.TITTLE, StandardBasicTypes.STRING)
+						.addScalar(CourseHomePageDto.PLATFORM, StandardBasicTypes.STRING)
+						.addScalar(CourseHomePageDto.CATEGORY, StandardBasicTypes.STRING)
+						.addScalar(CourseHomePageDto.COURSE_LENGTH, StandardBasicTypes.INTEGER)
+						.setResultTransformer(Transformers.aliasToBean(CourseHomePageDto.class));
+		return (List<CourseHomePageDto>) query.getResultList();
 	}
 
 }
