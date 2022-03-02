@@ -3,6 +3,7 @@ import { HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Course } from './course';
+import { CourseRegisterDTO } from './model/course-register';
 
 @Injectable({
   providedIn: 'root'
@@ -20,31 +21,10 @@ export class CourseService {
     return this.http.get<any[]>(`${this.apiServiceUrl}/course/coursesDto`);
   }
   
-
-
-
-  public getRegisteredCoursesByEmployee(): Observable<Course[]>{
-    return this.http.get<Course[]>(`${this.apiServiceUrl}/course/registeredCoursesByEmployee`);
-  }
-
-  public getUnregisteredCoursesByEmployee(): Observable<Course[]>{
-    return this.http.get<Course[]>(`${this.apiServiceUrl}/course/unregisteredCoursesByEmployee`);
-  }
-
-  public getNumberOfEmployeesInLast7days(): Observable<number>{
-    return this.http.get<number>(`${this.apiServiceUrl}/course/numberOfEmployeesInLast7days`);
-  }
-
-  public getNumberOfCourses(): Observable<number>{
-    return this.http.get<number>(`${this.apiServiceUrl}/course/numberOfCourses`);
-  }
-
-  public getCompleteCourseByEmployee(): Observable<number>{
-    return this.http.get<number>(`${this.apiServiceUrl}/course/completeCourseByEmployee`);
-  }
-
-  public getIncompleteCourseByEmployee(): Observable<number>{
-    return this.http.get<number>(`${this.apiServiceUrl}/course/incompleteCourseByEmployee`);
+  public addCourseRegister(courseRegister: CourseRegisterDTO){
+    const url = `${this.apiServiceUrl}/course/`;
+    return this.http
+    .post<any>(url, courseRegister);
   }
 
 

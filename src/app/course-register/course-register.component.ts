@@ -1,36 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { CourseService } from '../course.service';
 import { EmployeeService } from '../Service/employee.service';
-import { DateAdapter } from '@angular/material/core';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
-import {MomentDateAdapter} from '@angular/material-moment-adapter';
-import { Moment } from 'moment'; 
-import * as _moment from 'moment';
 import { CourseRegisterDTO } from '../model/course-register';
-const moment = _moment; 
 
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'LL',
-  },
-  display: {
-    dateInput: 'DD-MM-YYY',
-    monthYearLabel: 'YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'YYYY',
-  },
-};
 
 @Component({
   selector: 'app-course-register',
   templateUrl: './course-register.component.html',
-  styleUrls: ['./course-register.component.css'],
-  providers:[
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-  ]
+  styleUrls: ['./course-register.component.css']
 })
 export class CourseRegisterComponent implements OnInit {
 
@@ -82,13 +59,24 @@ export class CourseRegisterComponent implements OnInit {
     var startDate = new Date(this.start).toLocaleDateString();
     var endDate = new Date(this.end).toLocaleDateString();
 
-    // var addNew: CourseRegisterDTO = new CourseRegisterDTO()
+    const addNew: CourseRegisterDTO = {
+      employee_id: this.employeeId,
+      course_name: this.course_name,
+      platform: this.platform,
+      status: this.status,
+      startDate: startDate,
+      endDate: endDate,
+      certLink: this.certLink,
+      totalTime: this.totalTime
+    };
 
-    console.log(this.employeeId + " " + this.platform 
-                + " " + this.status + " " + startDate
-                + " " + endDate + " " + this.certLink
-                + " " + this.totalTime + " " + this.course_name);
+    // console.log(this.employeeId + " " + this.platform 
+    //             + " " + this.status + " " + startDate
+    //             + " " + endDate + " " + this.certLink
+    //             + " " + this.totalTime + " " + this.course_name);
 
+    console.log('add',addNew);
+    this.courseService.addCourseRegister(addNew);
             
   }
 
