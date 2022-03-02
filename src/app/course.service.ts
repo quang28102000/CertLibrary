@@ -22,7 +22,7 @@ export class CourseService {
   }
   
   public addCourseRegister(courseRegister: CourseRegisterDTO){
-    const url = `${this.apiServiceUrl}/course/`;
+    const url = `${this.apiServiceUrl}/course/addCourseRegister`;
     return this.http
     .post<any>(url, courseRegister);
   }
