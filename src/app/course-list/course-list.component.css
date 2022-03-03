@@ -110,3 +110,98 @@ mat-button-toggle{
 .bt{
   background-color: #87BEFF;
 }
+
+
+.img{
+  width:100%;
+  height:auto;
+  overflow: hidden;
+}
+
+
+
+
+/*  */
+.course-name{
+  font-weight: 900;
+  color: #265A99;
+  font-size: 30px;
+  letter-spacing: 2px;
+  padding: 10px 0 10px 0;
+  margin: 10px 0 10px 0;
+  line-height: 130%;
+  text-align: left;
+}
+h2{
+  font-size: 20px;;
+}
+h4{
+  font-size: 30px;
+}
+.sk {
+  background-color: #B8E2EF;
+  padding: 1px;
+  text-align: center;
+  border: solid 0.5px;
+  border-radius: 7px;
+}
+.St{
+  background: #F1FFFE;;
+  border-radius: 2px;
+  padding-left: 15px;
+  padding-top: 3px;
+  color: #16B608;
+  opacity: 0.8;
+  width: 125px;
+  height: 26px;
+  font-size: 17px;
+}
+.info {
+  background: #D2F7F5;
+  border-radius: 2px;
+  padding-left: 15px;
+  padding-top: 1px;
+  font-size: 17px;
+}
+#line{
+  margin: 20px 0 20px 0;
+}
+.bt {
+  height: 50px;
+  border-radius: 20px;
+  background-color: #2BA1C8;
+  border: #FFFF solid 0.5px;
+  color: #ffff;
+}
+.delete{
+  width: 100%;
+}
+.save{
+  width: 100%;
+}
+
+.popup-header{
+  margin-top: 15px;
+  font-size: 25px;
+  margin-left: 35%;
+  color: #265A99;
+}
+
+/* Table */
+table {
+  counter-reset: rowNumber;
+}
+
+table tr {
+  counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  /* margin-left: 0.5em; */
+}
+
+th {
+  text-align:center;
+}

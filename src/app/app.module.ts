@@ -14,7 +14,6 @@ import { MatTableModule } from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CourseListComponent } from './course-list/course-list.component';
-import { DialogCourse } from './course-list/course-list.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
@@ -29,7 +28,6 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {ReactiveFormsModule} from '@angular/forms';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
 
 
 @NgModule({
@@ -37,7 +35,6 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
     AppComponent,
     HomeComponent,
     UserScreenComponent,
-    DialogCourse,
     CourseListComponent,
     EmployeeListComponent,
     CourseRegisterComponent

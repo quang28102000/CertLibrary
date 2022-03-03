@@ -27,7 +27,7 @@
 
             <div class="field">
                 <p>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>* Nền tảng</mat-label>
                         <mat-select [(value)]="platform">
                           <mat-option value="Udemy">Udemy</mat-option>
@@ -40,7 +40,7 @@
             </div>
 
             <div class="field">
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="outline">
                     <mat-label>* Trạng thái</mat-label>
                     <mat-select [(value)]="status">
                       <mat-option value="1">Đang học</mat-option>
@@ -55,8 +55,8 @@
 
             <div class="field">
                 <label>* Ngày bắt đầu</label><br>
-                <mat-form-field appearance="fill">
-                    <input matInput [matDatepicker]="picker" [(ngModel)]="start">
+                <mat-form-field appearance="outline">
+                    <input class="datepicker" matInput [matDatepicker]="picker" [(ngModel)]="start">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -64,8 +64,8 @@
 
             <div class="field">
                 <label>Ngày kết thúc (dự kiến)</label><br>
-                <mat-form-field appearance="fill">
-                    <input matInput [matDatepicker]="picker2" [(ngModel)]="end">
+                <mat-form-field appearance="outline">
+                    <input class="datepicker" matInput [matDatepicker]="picker2" [(ngModel)]="end">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
@@ -75,7 +75,7 @@
                 <p>
                     <mat-form-field appearance="outline">
                         <mat-label>* Tổng thời gian học (hr)</mat-label>
-                        <input type="number" matInput placeholder="Placeholder" [(ngModel)]="totalTime">
+                        <input type="number" matInput placeholder="0" [(ngModel)]="totalTime">
                         <mat-hint>15hr</mat-hint>
                     </mat-form-field>
                 </p>
