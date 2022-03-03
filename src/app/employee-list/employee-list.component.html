@@ -18,9 +18,11 @@
             <td>{{item.fullName}}</td>
             <td>{{item.email}}</td>
             <td>{{item.course}}</td>
-            <td>
-              {{item.status}}
-            </td>
+            <td *ngIf="item.status == 1">Đã đăng kí</td>
+            <td *ngIf="item.status == 2">Chưa đăng kí</td>
+            <td *ngIf="item.status == 3">Đã hoàn thành</td>
+            <td *ngIf="item.status == 4">Chưa hoàn thành</td>
+
             <td>{{item.startDate}}</td>
             <td>{{item.endDate}}</td>
           </tr>
