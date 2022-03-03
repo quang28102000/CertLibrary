@@ -42,7 +42,7 @@
                         <p>Tên nhân viên: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
                     </div>
                     <div class="col-md-10">
-                        <div class="Content">{{item.full_name}}</div>
+                        <div class="Content">{{item}}</div>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                         <p>Tên khoá học: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
                     </div>
                     <div class="col-md-10">
-                        <div class="Content">{{item.course_tittle}}</div>
+                        <div class="Content">{{item.course_Tittle}}</div>
                     </div>
                 </div>
 
@@ -60,8 +60,8 @@
                         <p>Chứng chỉ: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     </div>
                     <div class="col-md-10">
-                        <div class="Content" *ngIf="item.cert_link == ''"> Not yet </div>
-                        <div class="Content"><a  href="{{item.cert_link}}">{{item.cert_link}}</a>
+                        <div class="Content" *ngIf="item.cert_Link == ''"> Not yet </div>
+                        <div class="Content"><a  href="{{item.cert_Link}}">{{item.cert_Link}}</a>
                         
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                         <p>Ngày bắt đầu: </p>&nbsp;
                     </div>
                     <div class="col-md-3">
-                        <div class="Content">{{item.start_date}}</div>
+                        <div class="Content">{{item.start_Date}}</div>
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-1">
@@ -108,7 +108,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="Content" *ngIf="item.end_date == ''"> Not yet</div>
-                        <div class="Content">{{item.end_date}}</div>
+                        <div class="Content">{{item.end_Date}}</div>
                     </div>
 
                 </div>
@@ -118,7 +118,7 @@
                         <p>Tổng thời gian học: </p>&nbsp; &nbsp;
                     </div>
                     <div class="col-md-3">
-                        <div class="Content">{{item.course_length}} hours</div>
+                        <div class="Content">{{item.course_Length}} hours</div>
                     </div>
                     <div col-md-10>
 

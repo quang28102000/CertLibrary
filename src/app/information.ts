@@ -1,15 +1,15 @@
 import { DatePipe } from "@angular/common";
 
 export interface Information {
-  full_name: string;
-  course_id: number;
-  employee_id: number;
+  full_Name: string;
+  course_ID: number;
+  employee_ID: number;
   status: number;
-  start_date: String;
-  end_date: String;
-  cert_link: String;
-  course_tittle: String;
+  start_Date: String;
+  end_Date: String;
+  cert_Link: String;
+  course_Tittle: String;
   category: String;
   platform: String;
-  course_length: String;
+  course_Length: String;
 }
