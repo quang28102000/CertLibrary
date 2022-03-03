@@ -11,7 +11,7 @@ public class InforPageDto {
 	public static final String START_DATE = "start_Date";
 	public static final String END_DATE = "end_Date";
 	public static final String CERT_LINK = "cert_Link";
-	public static final String COURSE_TITLE = "course_Title";
+	public static final String COURSE_TITLE = "course_Tittle";
 	public static final String CATEGORY = "category";
 	public static final String PLATFORM = "platform";
 	public static final String COURSE_LENGTH = "course_Length";
@@ -23,7 +23,7 @@ public class InforPageDto {
 	private Date start_Date;
 	private Date end_Date;
 	private String cert_Link;
-	private String course_Title;
+	private String course_Tittle;
 	private String category;
 	private String platform;
 	private Integer course_Length;
@@ -33,7 +33,7 @@ public class InforPageDto {
 	}
 
 	public InforPageDto(String full_Name, Integer course_ID, Integer employee_ID, Integer status, Date start_Date,
-			Date end_Date, String cert_Link, String course_Title, String category, String platform,
+			Date end_Date, String cert_Link, String course_Tittle, String category, String platform,
 			Integer course_Length) {
 		super();
 		this.full_Name = full_Name;
@@ -43,7 +43,7 @@ public class InforPageDto {
 		this.start_Date = start_Date;
 		this.end_Date = end_Date;
 		this.cert_Link = cert_Link;
-		this.course_Title = course_Title;
+		this.course_Tittle = course_Tittle;
 		this.category = category;
 		this.platform = platform;
 		this.course_Length = course_Length;
@@ -106,11 +106,11 @@ public class InforPageDto {
 	}
 
 	public String getCourse_Title() {
-		return course_Title;
+		return course_Tittle;
 	}
 
-	public void setCourse_Title(String course_Title) {
-		this.course_Title = course_Title;
+	public void setCourse_Title(String course_Tittle) {
+		this.course_Tittle = course_Tittle;
 	}
 
 	public String getCategory() {
@@ -141,7 +141,7 @@ public class InforPageDto {
 	public String toString() {
 		return "InforPageDto [full_Name=" + full_Name + ", course_ID=" + course_ID + ", employee_ID=" + employee_ID
 				+ ", status=" + status + ", start_Date=" + start_Date + ", end_Date=" + end_Date + ", cert_Link="
-				+ cert_Link + ", course_Title=" + course_Title + ", category=" + category + ", platform=" + platform
+				+ cert_Link + ", course_Tittle=" + course_Tittle + ", category=" + category + ", platform=" + platform
 				+ ", course_Length=" + course_Length + "]";
 	}
 	

@@ -18,7 +18,7 @@ public class InforPageController {
 	@Autowired
 	public InforPageService inforPageService;
 
-	@GetMapping("/**")
+	@GetMapping("/all")
 	public ResponseEntity<List<InforPageDto>> getAllInformation() {
 		List<InforPageDto> information = inforPageService.getInforDto();
 		return new ResponseEntity<>(information, HttpStatus.OK);

@@ -19,8 +19,11 @@ import org.springframework.stereotype.Repository;
 public class InforDAOHibernateImpl implements InforDAO {
 
 	private final String GET_INFOR_DTO = "SELECT c.full_name, a.course_id, a.employee_id, a.status, a.start_date, a.end_date, a.cert_link,\r\n"
-			+ " b.course_tittle, b.category, b.platform, d.course_length FROM certlibrary.course_employee a inner join certlibrary.course b \r\n"
-			+ " inner join certlibrary.employee c inner join certlibrary.course_detail d where a.isDeleted = 0";
+			+ " b.course_tittle, b.category, b.platform, d.course_length FROM certlibrary.course_employee a "
+			+ "inner join certlibrary.course b on a.course_id = b.course_id\r\n"
+			+ " inner join certlibrary.employee c on c.employee_id = a.employee_id "
+			+ "inner join certlibrary.course_detail d on d.course_id = b.course_id "
+			+ "where a.isDeleted = 0  order by a.employee_id asc;";
 
 	private final String ADD_NEW_COURSE = "insert into course(course_tittle, platform, category) "
 			+ "values (':course_tittle', ':platform', ':category')";
@@ -51,38 +54,19 @@ public class InforDAOHibernateImpl implements InforDAO {
 		return (List<InforPageDto>) query.getResultList();
 	}
 
-//	public static void main() {
-//		InforDAOHibernateImpl daoHibernateImpl = null;
-//		List<InforPageDto> l = new ArrayList<>();
-//		l = daoHibernateImpl.getInforDto();
-//		System.out.println(l);
-//
-//	}
+
 
 	@Override
 	public void addNewCourse(String tittle, String platform, String category) {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
 
-		NativeQuery<?> query = openSession.createNativeQuery(ADD_NEW_COURSE);
+		NativeQuery<?> query = openSession.createNativeQuery("insert into course(course_tittle, platform, category) "
+				+ "values (':course_tittle', ':platform', ':category')");
 
 		query.setParameter("course_tittle", tittle).setParameter("platform", platform).setParameter("category", category)
 				.setResultTransformer(Transformers.aliasToBean(UserProfileDto.class));
 
 	}
-
-//	public Integer getLastestCourse(String title) {
-//		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
-//		int id;
-//
-//		NativeQuery<?> query = openSession.createNativeQuery(ADD_NEW_COURSE);
-//
-//		query.addScalar(CourseDto.NAME, StandardBasicTypes.STRING)
-//				.addScalar(CourseDto.PLATFORM, StandardBasicTypes.STRING)
-//				.addScalar(CourseDto.CATEGORY, StandardBasicTypes.STRING).setParameter("course_tittle", tittle)
-//				.setResultTransformer(Transformers.aliasToBean(UserProfileDto.class));
-//		
-//		return CourseDto.ID;
-//	}
 	
 	public Integer getLastestCourse() {
 		Session currentSession = entityManager.unwrap(Session.class);
