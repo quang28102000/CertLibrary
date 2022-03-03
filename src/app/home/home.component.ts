@@ -21,13 +21,8 @@ export interface DialogData {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public registeredCoursesByEmployee!: any;
-  public unregisteredCoursesByEmployee!: any;
-  public numberOfCourses!: any;
-  public numberOfEmployeesInLast7days!: any;
-  public completeCourseByEmployee!: any;
-  public incompleteCourseByEmployee!:any;
 
+  public popup_data: any;
   courses!: Course[];
   public employees!: any[];
 
@@ -47,6 +42,14 @@ export class HomeComponent implements OnInit {
 
   public test():void{
     console.log("test", this.statistics);
+  }
+
+  SetPopUpData(num: any){
+    if(num==5){
+      this.popup_data = this.employeesInLast7Days
+    }else{
+      this.popup_data = this.statistics.get(num);
+    }
   }
 
 

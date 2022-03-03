@@ -11,9 +11,19 @@
         <div class="fields">
             <div class="field">
                 <label>* Chọn Nhân Viên</label><br>
-                <input type="text" name="employeeName" list="exampleList" [(ngModel)]="employeeId">
+                <input type="text" name="employeeName" list="exampleList" [(ngModel)]="employee_info">
                 <datalist id="exampleList">
-                    <option *ngFor="let item of employees" value="{{item.id}}">{{item.fullName}}</option>>  
+                    <option *ngFor="let item of employees" value="{{item.id}} ` {{item.fullName}}"></option> 
+                </datalist>
+            </div>
+
+            <input type="text" value="{{employee_name}}">
+
+            <div class="field">
+                <label>* Tên Khoá Học</label><br>
+                <input type="text" name="courseName" list="courseList" [(ngModel)]="course_info">
+                <datalist id="courseList">
+                    <option *ngFor="let item of courses" value="{{item.id}} ` {{item.name}}">
                 </datalist>
             </div>
 
@@ -54,8 +64,8 @@
 
 
             <div class="field">
-                <label>* Ngày bắt đầu</label><br>
                 <mat-form-field appearance="outline">
+                    <mat-label>* Ngày bắt đầu</mat-label>
                     <input class="datepicker" matInput [matDatepicker]="picker" [(ngModel)]="start">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
@@ -63,8 +73,8 @@
             </div>
 
             <div class="field">
-                <label>Ngày kết thúc (dự kiến)</label><br>
                 <mat-form-field appearance="outline">
+                    <mat-label>Ngày kết thúc (dự kiến)</mat-label>
                     <input class="datepicker" matInput [matDatepicker]="picker2" [(ngModel)]="end">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
@@ -81,13 +91,6 @@
                 </p>
             </div>
 
-            <div class="field">
-                <label>* Tên Khoá Học</label><br>
-                <input type="text" name="courseName" list="courseList" [(ngModel)]="course_name">
-                <datalist id="courseList">
-                    <option *ngFor="let item of courses" value="{{item.name}}"></option>>  
-                </datalist>
-            </div>
 
             <div class="field">
                 <p>
@@ -100,9 +103,7 @@
             </div>
 
 
-            
+            <button class="btn-success" (click)="Add()">Submit</button>
         </div>
-        <button class="btn-success" (click)="Add()">Submit</button>
     </div>
-
 </div>

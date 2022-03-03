@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { EmployeeService } from '../Service/employee.service';
 import { CourseRegisterDTO } from '../model/course-register';
+import { map, Observable, startWith } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { Employee } from '../model/Employee';
 
 
 @Component({
@@ -11,18 +14,19 @@ import { CourseRegisterDTO } from '../model/course-register';
 })
 export class CourseRegisterComponent implements OnInit {
 
+  public filterCategory: any;
   //list 
-  public employees!: any[];
+  public employees!: Employee[];
   public courses!: any[];
 
   //
-  public employeeId: any;
-  public employeeName!: any;
+  public employee_name: any;
+  public employee_info!: string;
   public platform!: any;
   public status!: any;
   public start!: any;
   public totalTime!: any;
-  public course_name!: any;
+  public course_info!: string;
   public end!: any;
   public certLink!: any;
 
@@ -48,10 +52,11 @@ export class CourseRegisterComponent implements OnInit {
     })
   }
 
-  SelectEmployee(){
-    console.log('id',1);
-    this.employeeId == 1;
-  }
+  // SelectEmployee(){
+  //   console.log('id',1);
+  //   this.employeeId == 1;
+  // }
+
 
 
 
@@ -59,9 +64,18 @@ export class CourseRegisterComponent implements OnInit {
     var startDate = new Date(this.start).toLocaleDateString();
     var endDate = new Date(this.end).toLocaleDateString();
 
+    var course_name = this.course_info.split(' ` ')[1];
+    var course_id = this.course_info.split(' ` ')[0];
+
+    var employee_id = this.employee_info.split(' ` ')[0];
+    var employee_name = this.employee_info.split(' ` ')[1];
+
+    // console.log(course_id + course_name);
     const addNew: CourseRegisterDTO = {
-      employee_id: this.employeeId,
-      course_name: this.course_name,
+      employee_id: employee_id,
+      employee_name: employee_name,
+      course_id: course_id,
+      course_name: course_name,
       platform: this.platform,
       status: this.status,
       startDate: startDate,
