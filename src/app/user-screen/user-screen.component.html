@@ -47,18 +47,18 @@
             </div> -->
 
 
+          </div>
+          <a href="#">Hiển thị thêm</a><br><br>
+          <h3>Các khóa gần đây:</h3>
+          <p class="CD" *ngFor="let item of info?.courses; let i = index">
+            <a (click)="onOpen(i + 1)" >{{item}}</a>
+          </p>
+          <!--<a (click)="onOpen(1)" class="CNY">The Complete 2022 Web Development Bootcamp</a><br>
+          <a href="javascript :void(0)" class="CNY">Spring Boot Tutorial </a><br>
+          <a href="#" class="CD">Full Stack Web Development with Angular</a><br>
+          <a href="#" class="CD">Connecting Front-End to Back-End</a><br>-->
+          <a href="#">Hiển thị thêm</a>
         </div>
-        <a href="#">Hiển thị thêm</a><br><br>
-        <h3>Các khóa gần đây:</h3>
-        <p class="CD" *ngFor="let item of info?.courses">
-          {{item}}
-      </p>
-        <!-- <p class="CNY">The Complete 2022 Web Development Bootcamp</p>
-        <p class="CNY">Spring Boot Tutorial </p>
-        <p class="CD">Full Stack Web Development with Angular</p>
-        <p class="CD">Connecting Front-End to Back-End</p> -->
-        <a href="#">Hiển thị thêm</a>
-      </div>
         <div class="col-md-1">
           <svg viewBox="-780 15 1330 450" id="divider">
             <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>

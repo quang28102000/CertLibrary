@@ -118,9 +118,6 @@ mat-button-toggle{
   overflow: hidden;
 }
 
-
-
-
 /*  */
 .course-name{
   font-weight: 900;
@@ -204,4 +201,39 @@ table tr td:first-child::before {
 
 th {
   text-align:center;
+}
+
+
+#showAll p {
+  position: sticky;
+  width: 136px;
+  height: 16px;
+  left: 1129px;
+  top: 1504px;
+  margin: 30px 70px 20px 10px;
+  font-family: Karma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 100%;
+  /* or 20px */
+
+  text-align: right;
+  letter-spacing: -0.32px;
+
+  color: #040a96;
+}
+#paging  {
+
+  display: flex;
+  justify-content: center;
+
+  font-family: Post No Bills Jaffna;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+
+
 }

@@ -3,13 +3,13 @@
     <p id="tag">Nhân Viên:</p>
     <br><br><br><br>
     <nav id="btn">
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup5" (click)="SetPopUpData(1)">Số người đã đăng kí khoá học
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(1)">Số người đã đăng kí khoá học
             <p>{{statistics.get(1)!.length}}/...</p>
         </button>
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup5" (click)="SetPopUpData(2)">Số người chưa hoàn thành khoá học
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(2)">Số người chưa hoàn thành khoá học
             <p>{{statistics.get(2)!.length}}/...</p>
         </button>
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup5" (click)="SetPopUpData(3)">
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(3)">
             số người chưa đăng kí hoá học
             <p>{{statistics.get(3)!.length}}/...</p>
         </button>
@@ -17,11 +17,11 @@
 
     <br>
     <nav id="btn">
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup5" (click)="SetPopUpData(4)">Số người đã hoàn thành khoá học
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(4)">Số người đã hoàn thành khoá học
             <p>{{statistics.get(4)!.length}}/...</p>
         </button>
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup5" (click)="SetPopUpData(5)">Số người mới đăng ký trong 7 ngày gần nhất
-            <p>{{employeesInLast7Days.length}}/{{employees.length}}</p>
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(5)">Số người mới đăng ký trong 7 ngày gần nhất
+            <p>{{employeesInLast7Days?.length}}/{{employees?.length}}</p>
         </button>
     </nav>
 
@@ -34,9 +34,9 @@
         <p id="tag">Khóa học:</p>
         <br><br><br><br>
         <nav id="btn">
-            <button class="show-popup-course">
+            <button class="show-popup-course" data-bs-toggle="modal" href="#popup2">
                 Tổng số khóa học
-                <p>...</p>
+                <p>{{courses?.length}}</p>
             </button>
         </nav>
         <br>
@@ -51,187 +51,18 @@
     </nav>
 </div>
 
-<!-- Popup Đã Đăng Ký -->
-
-<div class="modal fade bd-example-modal-lg" id="popup1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" >
-          <h1 class="tt">Danh Sách Sinh Viên Đã Đăng Ký Khoá Học</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body">
-
-            <table class="table table-hover table-striped">
-                <thead>
-                    <th scope="col">STT</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Khoá học</th>
-                    <th scope="col">Trạng thái</th>
-                    <th scope="col">Nền Tảng</th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of statistics.get(1)" (click)="rowClick(item.id, 0)">
-                    <td></td>
-                    <td>{{item.fullName}}</td>
-                    <td>{{item.email}}</td>
-                    <td>{{item.course}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.platform}}</td>
-                  </tr>
-                </tbody>
-            </table>
-            
-
-        </div>
-        <div class="modal-footer">
+  <!-- PopUp Employee -->
   
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Popup Chưa Hoàn Thành -->
-
-<div class="modal fade bd-example-modal-lg" id="popup2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" >
-          <h1 class="tt">Danh Sách Sinh Viên Chưa Hoàn Thành Khoá Học</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body">
-
-            <table class="table table-hover table-striped">
-                <thead>
-                    <th scope="col">STT</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Khoá học</th>
-                    <th scope="col">Trạng thái</th>
-                    <th scope="col">Nền Tảng</th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of statistics.get(2)" (click)="rowClick(item.id, 1)">
-                    <td></td>
-                    <td>{{item.fullName}}</td>
-                    <td>{{item.email}}</td>
-                    <td>{{item.course}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.platform}}</td>
-                  </tr>
-                </tbody>
-            </table>
-            
-
-        </div>
-        <div class="modal-footer">
-  
-        </div>
-      </div>
-    </div>
-  </div>
-  
-
-<!-- Popup Chưa Đăng Kí -->
-
-<div class="modal fade bd-example-modal-lg" id="popup3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" >
-          <h1 class="tt">Danh Sách Sinh Viên Chưa Đăng Ký Khoá Học</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body">
-
-            <table class="table table-hover table-striped">
-                <thead>
-                    <th scope="col">STT</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Khoá học</th>
-                    <th scope="col">Trạng thái</th>
-                    <th scope="col">Nền Tảng</th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of statistics.get(3)" (click)="rowClick(item.id, 2)">
-                    <td></td>
-                    <td>{{item.fullName}}</td>
-                    <td>{{item.email}}</td>
-                    <td>{{item.course}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.platform}}</td>
-                  </tr>
-                </tbody>
-            </table>
-            
-
-        </div>
-        <div class="modal-footer">
-  
-        </div>
-      </div>
-    </div>
-  </div>
-  
-<!-- Popup Đã Hoàn Thành -->
-
-<div class="modal fade bd-example-modal-lg" id="popup4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" >
-          <h1 class="tt">Danh Sách Sinh Viên Đã Hoàn Thành</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body">
-
-            <table class="table table-hover table-striped">
-                <thead>
-                    <th scope="col">STT</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Khoá học</th>
-                    <th scope="col">Trạng thái</th>
-                    <th scope="col">Nền Tảng</th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of statistics.get(4)" (click)="rowClick(item.id, 3)">
-                    <td></td>
-                    <td>{{item.fullName}}</td>
-                    <td>{{item.email}}</td>
-                    <td>{{item.course}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.platform}}</td>
-                  </tr>
-                </tbody>
-            </table>
-            
-
-        </div>
-        <div class="modal-footer">
-  
-        </div>
-      </div>
-    </div>
-  </div>
-  
-<!-- Popup 7 Ngay -->
-
-<div class="modal fade bd-example-modal-lg" id="popup6" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal fade bd-example-modal-lg" id="popup1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header" >
           <h1 class="tt">Danh Sách Sinh Viên Mới Đăng Ký Trong 7 Ngày Gần Nhất</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
+  
         <div class="modal-body">
-
+  
             <table class="table table-hover table-striped">
                 <thead>
                     <th scope="col">STT</th>
@@ -242,13 +73,54 @@
                     <th scope="col">Nền Tảng</th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of employeesInLast7Days" (click)="rowClick(item.id, 4)">
+                  <tr *ngFor="let item of popup_data" (click)="rowClick(item.id, 0)">
                     <td></td>
                     <td>{{item.fullName}}</td>
                     <td>{{item.email}}</td>
                     <td>{{item.course}}</td>
                     <td>{{item.status}}</td>
                     <td>{{item.platform}}</td>
+                  </tr>
+                </tbody>
+            </table>
+            
+  
+        </div>
+        <div class="modal-footer">
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Popup Course -->
+
+<div class="modal fade bd-example-modal-lg" id="popup2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <h1 class="tt">Tổng số khoá học</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+
+            <table class="table table-hover table-striped">
+                <thead>
+                    <th scope="col">STT</th>
+                    <th scope="col">Khoá học</th>
+                    <th scope="col">Nền tảng</th>
+                    <th scope="col">Loại</th>
+                    <th scope="col">Thời lượng</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of courses">
+                    <td></td>
+                    <td>{{item?.name}}</td>
+                    <td>{{item?.platform}}</td>
+                    <td>{{item?.category}}</td>
+                    <td>{{item?.courseLength}}</td>
                   </tr>
                 </tbody>
             </table>
@@ -263,44 +135,3 @@
   </div>
   
 
-  <!-- PopUp chung -->
-  
-<div class="modal fade bd-example-modal-lg" id="popup5" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header" >
-        <h1 class="tt">Danh Sách Sinh Viên Mới Đăng Ký Trong 7 Ngày Gần Nhất</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-
-          <table class="table table-hover table-striped">
-              <thead>
-                  <th scope="col">STT</th>
-                  <th scope="col">Tên</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Khoá học</th>
-                  <th scope="col">Trạng thái</th>
-                  <th scope="col">Nền Tảng</th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of popup_data" (click)="rowClick(item.id, 5)">
-                  <td></td>
-                  <td>{{item.fullName}}</td>
-                  <td>{{item.email}}</td>
-                  <td>{{item.course}}</td>
-                  <td>{{item.status}}</td>
-                  <td>{{item.platform}}</td>
-                </tr>
-              </tbody>
-          </table>
-          
-
-      </div>
-      <div class="modal-footer">
-
-      </div>
-    </div>
-  </div>
-</div>

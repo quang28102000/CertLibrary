@@ -28,7 +28,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {ReactiveFormsModule} from '@angular/forms';
+import { CourseInfoComponent } from './course-info/course-info.component';
 
+import { DialogCourseRecent } from './user-screen/user-screen.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     UserScreenComponent,
     CourseListComponent,
     EmployeeListComponent,
-    CourseRegisterComponent
+    CourseRegisterComponent,
+    CourseInfoComponent,
+    DialogCourseRecent
     
   ],
   imports: [

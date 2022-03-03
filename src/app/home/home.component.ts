@@ -23,7 +23,7 @@ export interface DialogData {
 export class HomeComponent implements OnInit {
 
   public popup_data: any;
-  courses!: Course[];
+  public courses!: any[];
   public employees!: any[];
 
   public employeesInLast7Days!: any[];
@@ -33,15 +33,20 @@ export class HomeComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private router: Router,
-    private homeService: HomeService) {}
+    private homeService: HomeService,
+    private courseService: CourseService) {}
 
   ngOnInit(): void {
     this.getUserHomePageStatistics();
-    this.test();
+    this.getCourses();
+    
   }
 
-  public test():void{
-    console.log("test", this.statistics);
+  getCourses(){
+    this.courseService.getList().subscribe(res => {
+      this.courses = res;
+      console.log("course-list", res);
+    })
   }
 
   SetPopUpData(num: any){

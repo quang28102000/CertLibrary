@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { UserScreenService } from '../Service/user-screen.service';
 
 @Component({
@@ -8,14 +9,18 @@ import { UserScreenService } from '../Service/user-screen.service';
   templateUrl: './user-screen.component.html',
   styleUrls: ['./user-screen.component.css']
 })
+
 export class UserScreenComponent implements OnInit {
 
-  public id!:any; 
+  public id!:any;
   public info:any;
+  router: any;
+
 
   constructor(
     private userScreenService: UserScreenService,
     private route: ActivatedRoute,
+    private dialogRef: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -36,4 +41,44 @@ export class UserScreenComponent implements OnInit {
     )
   }
 
+
+
+  onOpen(Id: number) {
+    this.dialogRef.open(DialogCourseRecent, {
+      data: {
+        id : Id
+      }
+    });
+
+  }
+
 }
+
+@Component({
+  selector: 'dialog-course-recent',
+  templateUrl: './dialog-course-recent.html',
+  styleUrls: ['./dialog-course-recent.css']
+})
+export class DialogCourseRecent implements OnInit{
+
+  public CRid: any;
+
+
+  constructor(private userScreenService: UserScreenService,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.CRid = data.id
+  }
+
+  courses: any;
+  getCourseRecent(cId: number): void {
+    this.userScreenService.getCourseR(cId).subscribe(
+      (updateCourseR) => this.courses = updateCourseR
+    )
+  }
+
+  ngOnInit(): void {
+    this.getCourseRecent(this.CRid);
+  }
+
+}
+

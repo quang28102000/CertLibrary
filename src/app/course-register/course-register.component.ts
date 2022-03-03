@@ -90,7 +90,7 @@ export class CourseRegisterComponent implements OnInit {
     //             + " " + this.totalTime + " " + this.course_name);
 
     console.log('add',addNew);
-    this.courseService.addCourseRegister(addNew);
+    this.courseService.addCourseRegister(addNew).subscribe((data)=> console.log('send',data));
             
   }
 
