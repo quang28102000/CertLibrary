@@ -1,260 +1,106 @@
+#button_manager{
+  margin-top: 90px;
+}
 #button_manager button {
-    margin-top: 30px;
-    width: 389.28px;
-    height: 107.46px;
-    left: 260px;
-    top: 442px;
-  
-    background: #e6e6e6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    box-shadow: 20px 20px 25px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 45px;
-  }
-  
-  #btn1 {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  #btn2 {
-    padding-top: 30px;
-    display: flex;
-    justify-content: space-evenly;
-  }
-  #up {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  #information {
-    border: 1px solid black;
-    border-radius: 15px;
-    position: sticky;
-    width: 1045px;
-    height: 349px;
-    left: 220px;
-    top: 1138px;
-  }
-  #container {
-    margin-top: -30px;
-  }
-  
-  #information div {
-    margin-left: 100px;
-    margin-top: -1px;
-    display: flex;
-    align-items: center;
-  }
-  
-  #information1 div {
-    margin-right: 370px;
-    margin-top: -110px;
-    display: flex;
-    float: right;
-    align-items: center;
-  }
-  
-  #up p {
-    position: relative;
-    width: 601px;
-    height: 41px;
-    left: 30px;
-    top: 40px;
-  
-    font-family: Karma;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 38px;
-    line-height: 100%;
-    /* or 38px */
-  
-    display: flex;
-    align-items: center;
-    text-align: center;
-    letter-spacing: -0.32px;
-  
-    color: #000000;
-  
-    text-shadow: 2px 8px 4px rgba(0, 0, 0, 0.25);
-  }
-  
-  #up input {
-    position: sticky;
-    width: 250px;
-    height: 34px;
-    left: 0px;
-    top: 708px;
-  
-    background: #ececec;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 20px;
-    margin-bottom: 40px;
-  }
-  
-  #up button {
-    margin-top: 90px;
-  }
-  #employeeName input {
-    position: sticky;
-    width: 67%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-
-  #couseName input {
-    position: sticky;
-    width: 67%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-  #certificate input {
-    position: sticky;
-    width: 67%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-  
-  #status input {
-    position: sticky;
-    width: 10%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-  
-  #startDay input {
-    position: sticky;
-    width: 20%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-  
-  #endDay input {
-    position: sticky;
-    width: 20%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-  
-  #totalTime input {
-    position: sticky;
-    width: 20%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-  
-  #platform input {
-    position: sticky;
-    width: 175%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-  
-  #platform p {
-      width: -webkit-fill-available;
-  }
-  
-  #type input {
-    position: sticky;
-    width: 165%;
-  
-    background: #e9e9e9;
-    opacity: 0.6;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-
-  #type p {
-    width: -webkit-fill-available;
-}
-
-#showAll p {
-  position: sticky;
-  width: 136px;
-  height: 16px;
-  left: 1129px;
-  top: 1504px;
-
-  font-family: Karma;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 100%;
-  /* or 20px */
-
-  display: flex;
-  align-items: center;
-  text-align: right;
-  letter-spacing: -0.32px;
-
-  color: #040a96;
-}
-#paging {
-  /* position: sticky; */
-  /* width: 30.86px; */
-  /* height: 14.1px;
-    left: 625.57px;
-    top: 1520px; */
-  display: flex;
-  justify-content: center;
-
-  font-family: Post No Bills Jaffna;
-  font-style: normal;
+  width: 500px;
+  height: 120px;
+  margin: 40px 5px 0px 5px;
+  color: #265A99;
+  background: #B5DFE9;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 20px 20px 25px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 45px;
+  font-size: 28px;
   font-weight: bold;
-  font-size: 18px;
-  line-height: 27px;
-  text-align: center;
-
-  color: #000000;
 }
-#editIcon button {
-  /* border: none; */
-  background: none;
-  /* font-size: 30px; */
-  float: right;
-  margin-right: 135px;
-  margin-top: -30px;
-  background: #b7b4b4;
-  /* Shadow Group */
-
-  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-  border-radius: 50px;
+.choose
+{
+  background-color: #6DC3D6;
+}
+.choose2{
+background-color: #1EBBE0;
+}
+#btn1 {
+  display: flex;
+  justify-content: space-evenly;
+}
+#btn2 {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
 }
 svg {
   margin-top: -150px;
   margin-bottom: -130px;
 }
+
+
+
+#up{
+  margin-top: 80px;
+  margin-bottom:50px;
+} 
+#up h1{
+  font-family: Karma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 100%;
+  color:#265A99;
+}
+
+  #information {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 30px 30px 5px 15px;
+    justify-content:center;
+    font-size: 18px;
+    font-weight:600;
+    margin-left: 50px;
+  }
+  #edit{
+    margin: 400px 0 0 0;
+  }
+  #cover{
+    margin: 15px 0 15px 0;
+  }
+  .Content{
+    background-color: #e8f0f1;
+    font-weight: 350;
+  }
+  #showAll p {
+    position: sticky;
+    width: 136px;
+    height: 16px;
+    left: 1129px;
+    top: 1504px;
+    margin: 20px;
+    font-family: Karma;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 100%;
+    /* or 20px */
+  
+    display: flex;
+    align-items: center;
+    text-align: right;
+    letter-spacing: -0.32px;
+  
+    color: #040a96;
+  }
+  #paging  {
+
+    display: flex;
+    justify-content: center;
+  
+    font-family: Post No Bills Jaffna;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+  
+
+  }

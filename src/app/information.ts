@@ -5,8 +5,8 @@ export interface Information {
   course_id: number;
   employee_id: number;
   status: number;
-  start_date: Date;
-  end_date: Date;
+  start_date: String;
+  end_date: String;
   cert_link: String;
   course_tittle: String;
   category: String;
