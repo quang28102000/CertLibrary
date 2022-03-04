@@ -3,14 +3,19 @@
     <p id="tag">Nhân Viên:</p>
     <br><br><br><br>
     <nav id="btn">
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(1)">Số người đã đăng kí khoá học
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+          (click)="SetPopUpData(1, 'Danh sách sinh viên đăng kí khoá học')">
+            Số người đã đăng kí khoá học
             <p>{{statistics.get(1)!.length}}/{{employees?.length}}</p>
         </button>
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(2)">
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+          (click)="SetPopUpData(2, 'Danh sách sinh viên chưa đăng kí khoá học')">
           Số người chưa đăng kí khoá học
           <p>{{statistics.get(2)!.length}}/{{employees?.length}}</p>
       </button>
-      <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(3)">Số người đã hoàn thành khoá học
+      <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+          (click)="SetPopUpData(3, 'Danh sách sinh viên hoàn thành khoá học')">
+          Số người đã hoàn thành khoá học
         <p>{{statistics.get(3)!.length}}/{{employees?.length}}</p>
     </button>
         
@@ -19,10 +24,14 @@
     <br>
     <nav id="btn">
         
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(4)">Số người chưa hoàn thành khoá học
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+            (click)="SetPopUpData(4, 'Danh sách sinh viên chưa hoàn thành khoá học')">
+            Số người chưa hoàn thành khoá học
           <p>{{statistics.get(4)!.length}}/{{employees?.length}}</p>
       </button>
-        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" (click)="SetPopUpData(5)">Số người mới đăng ký trong 7 ngày gần nhất
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+          (click)="SetPopUpData(5, 'Danh sách sinh viên đăng kí khoá học trong 7 ngày gần nhất')">
+            Số người mới đăng ký trong 7 ngày gần nhất
             <p>{{employeesInLast7Days?.length}}/{{employees?.length}}</p>
         </button>
     </nav>
@@ -59,7 +68,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header" >
-          <h1 class="tt">Danh Sách Sinh Viên Mới Đăng Ký Trong 7 Ngày Gần Nhất</h1>
+          <h1 class="tt">{{popup_title}}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
   
@@ -77,16 +86,16 @@
                 <tbody>
                   <tr *ngFor="let item of popup_data" (click)="rowClick(item.id, 0)">
                     <td></td>
-                    <td>{{item.fullName}}</td>
-                    <td>{{item.email}}</td>
-                    <td>{{item.course}}</td>
-                    <td *ngIf="item.status == 1" >Đã đăng kí</td>
-                    <td *ngIf="item.status == 2" >Chưa đăng kí</td>
-                    <td *ngIf="item.status == 3" >Đã hoàn thành</td>
-                    <td *ngIf="item.status == 4" >Chưa hoàn thành</td>
+                    <td>{{item?.fullName}}</td>
+                    <td>{{item?.email}}</td>
+                    <td>{{item?.course}}</td>
+                    <td *ngIf="item?.status == 1" >Đã đăng kí</td>
+                    <td *ngIf="item?.status == 2" >Chưa đăng kí</td>
+                    <td *ngIf="item?.status == 3" >Đã hoàn thành</td>
+                    <td *ngIf="item?.status == 4" >Chưa hoàn thành</td>
 
 
-                    <td>{{item.platform}}</td>
+                    <td>{{item?.platform}}</td>
                   </tr>
                 </tbody>
             </table>

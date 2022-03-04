@@ -22,6 +22,7 @@ export interface DialogData {
 })
 export class HomeComponent implements OnInit {
 
+  public popup_title: any;
   public popup_data: any;
   public courses!: any[];
   public employees!: any[];
@@ -49,7 +50,8 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  SetPopUpData(num: any){
+  SetPopUpData(num: any, title: string){
+    this.popup_title = title
     if(num==5){
       this.popup_data = this.employeesInLast7Days
     }else{
@@ -73,7 +75,7 @@ export class HomeComponent implements OnInit {
 
     this.homeService.getEmployees().subscribe(
       (employees: Employee[]) => {
-        // đã đăng ký
+        // đã đăng ký = chuwa ht + ddax ht
         employeesSubcribedCourse.set(
           1, employees.filter(emp => Number(emp.status) === 1)
         );

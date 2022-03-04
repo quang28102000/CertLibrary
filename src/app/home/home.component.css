@@ -109,6 +109,9 @@ table tr td:first-child::before {
   /* margin-left: 0.5em; */
 }
 
+th{
+  text-align: center;
+}
 
 
 
