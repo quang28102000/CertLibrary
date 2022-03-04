@@ -36,4 +36,8 @@ public class CourseServiceImpl implements CourseService {
 		return courseDao.getCoursesDto();
 	}
 
+	public CourseDto addCourse(CourseDto courseDto) {
+//		System.err.println(courseDto);
+		return courseDao.addCourse(courseDto);
+	}
 }

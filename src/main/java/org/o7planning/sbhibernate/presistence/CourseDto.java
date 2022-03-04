@@ -34,6 +34,12 @@ public class CourseDto {
 		this.courseLength = courseLength;
 		this.skills = skills;
 	}
+	
+	public CourseDto(String name,String platform, String category) {
+		this.name = name;
+		this.platform = platform;
+		this.category = category;
+	}
 
 	public Integer getId() {
 		return id;

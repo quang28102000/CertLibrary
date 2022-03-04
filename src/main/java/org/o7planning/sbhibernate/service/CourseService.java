@@ -11,4 +11,5 @@ public interface CourseService {
 	List<Course> getAll();
 	Integer numberOfCourses();
 	List<CourseDto> getCoursesDto();
+	CourseDto addCourse(CourseDto courseDto);
 }

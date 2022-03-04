@@ -19,16 +19,28 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class addDAOHibernateImpl implements addDAO {
 
+	@Autowired
+	public addDAOHibernateImpl(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	@Autowired
 	private EntityManager entityManager;
 
 	@Override
 	public courseRegisterDto addNewCourse(courseRegisterDto registerDto) {
+		System.err.println(registerDto);
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		org.hibernate.Transaction txn = openSession.beginTransaction();
 		NativeQuery<?> query = openSession.createNativeQuery(
 				"INSERT INTO certlibrary.course_employee(course_id, employee_id, status, start_date, isDeleted )"
-						+ " values (:course_id, employee_id, :status, :start_date, '0');");
-		query.setParameter("course_id", registerDto.COURSE_ID).setParameter("employee_id", registerDto.EMPLOYEE_ID)
-				.setParameter("status", registerDto.STATUS).setParameter("start_date", registerDto.START_DATE);
+						+ " values (:course_id, :employee_id, :status, :start_date, '0');");
+		query.setParameter("course_id", registerDto.getCourse_ID())
+				.setParameter("employee_id", registerDto.getEmployee_ID())
+				.setParameter("status", registerDto.getStatus()).setParameter("start_date", registerDto.getStart_Date())
+				.executeUpdate();
+		txn.commit();
+		System.err.println(registerDto.getEmployee_ID());
 		return registerDto;
 	}
 

@@ -2,8 +2,10 @@ package org.o7planning.sbhibernate.controller;
 
 import java.util.List;
 
+import org.o7planning.sbhibernate.presistence.CourseDto;
 import org.o7planning.sbhibernate.presistence.InforPageDto;
 import org.o7planning.sbhibernate.presistence.courseRegisterDto;
+import org.o7planning.sbhibernate.service.CourseService;
 import org.o7planning.sbhibernate.service.InforPageService;
 import org.o7planning.sbhibernate.service.addService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,21 @@ public class addPageController {
 	
 	@Autowired
 	public addService addService;
+	
+	@Autowired
+	public CourseService courseService;
 
 	@PostMapping("/addCourseRegister")
     public ResponseEntity<courseRegisterDto> addEmployee(@RequestBody courseRegisterDto CourseRegisterDto) {
     	courseRegisterDto dto = addService.addCourseRegis(CourseRegisterDto);
-    	System.out.println(CourseRegisterDto);
+//    	System.out.println(CourseRegisterDto);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+    }
+    
+    @PostMapping("/addCourse")
+    public ResponseEntity<CourseDto> addCourse(@RequestBody CourseDto courseDto) {
+    	CourseDto dto = courseService.addCourse(courseDto);
+//    	System.out.println(courseDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 }
