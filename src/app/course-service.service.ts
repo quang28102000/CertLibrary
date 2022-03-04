@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Course } from './course';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,9 @@ export class CourseServiceService {
 
   public addCourseRegister(CourseRegister: CourseRegister): Observable<CourseRegister> {
     return this.http.post<CourseRegister>(`${this.apiServiceUrl}/course/addCourseRegister`, CourseRegister);
+  }
+
+  public addCourse(Course: Course): Observable<Course> {
+    return this.http.post<Course>(`${this.apiServiceUrl}/course/addCourse`, Course);
   }
 }

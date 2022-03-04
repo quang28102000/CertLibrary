@@ -1,10 +1,10 @@
 export interface CourseRegister {
-    employee_id: string;
-    course_id: string;
+    employee_ID: string;
+    course_ID: string;
     // platform: string;
     status: number;
-    startDate: String;
-    endDate: String;
-    certLink: string;
+    start_Date: String;
+    end_Date: String;
+    cert_Link: string;
     // totalTime:string;
 }

@@ -16,14 +16,15 @@
 </div> -->
 
 <div id="addCourse">
+    <h3>Add course_Employee</h3>
     <form #addForm="ngForm" (ngSubmit)="onAddCourse(addForm)">
         <div class="form-group">
             <label for="name">Employee id</label>
-            <input type="text" ngModel name="emId" class="form-control" id="emId" placeholder="emId" required>
+            <input type="text" ngModel name="employee_ID" class="form-control" id="employee_ID" placeholder="emId" required>
         </div>
         <div class="form-group">
             <label for="email">Course id</label>
-            <input type="email" ngModel name="coId" class="form-control" id="coId" placeholder="coId" required>
+            <input type="email" ngModel name="course_ID" class="form-control" id="course_ID" placeholder="coId" required>
         </div>
         <div class="form-group">
             <label for="phone">status</label>
@@ -31,20 +32,44 @@
         </div>
         <div class="form-group">
             <label for="phone">Start date</label>
-            <input type="text" ngModel name="startDate" class="form-control" id="startDate" placeholder="startDate"
+            <input type="text" ngModel name="start_Date" class="form-control" id="start_Date" placeholder="startDate"
                 required>
         </div>
         <div class="form-group">
             <label for="phone">End date</label>
-            <input type="text" ngModel name="endDate" class="form-control" id="endDate" placeholder="endDate">
+            <input type="text" ngModel name="end_Date" class="form-control" id="end_Date" placeholder="endDate">
         </div>
         <div class="form-group">
             <label for="phone">certLink</label>
-            <input type="text" ngModel name="endDate" class="form-control" id="endDate" placeholder="endDate">
+            <input type="text" ngModel name="cert_Link" class="form-control" id="cert_Link" placeholder="cert_Link">
         </div>
         <div class="modal-footer">
             <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
+</div>
+
+<br><br>
+
+<div id="addCourse1">
+    <h3>Add course</h3>
+    <form #addForm1="ngForm" (ngSubmit)="onAddCourse1(addForm1)">
+        <div class="form-group">
+            <label for="name">Course name</label>
+            <input type="text" ngModel name="name" class="form-control" id="name" placeholder="courseTittle" required>
+        </div>
+        <div class="form-group">
+            <label for="email">platform</label>
+            <input type="email" ngModel name="platform" class="form-control" id="platform" placeholder="platform" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">category</label>
+            <input type="text" ngModel name="category" class="form-control" id="category" placeholder="category" required>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="add-course-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button [disabled]="addForm1.invalid" type="submit" class="btn btn-primary">Save changes</button>
         </div>
     </form>
 </div>
