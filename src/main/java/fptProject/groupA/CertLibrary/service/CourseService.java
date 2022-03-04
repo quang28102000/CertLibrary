@@ -4,6 +4,7 @@ import java.util.List;
 
 import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
+import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 
 public interface CourseService {
@@ -11,5 +12,6 @@ public interface CourseService {
 	Integer numberOfCourses();
 	List<CourseDto> getCoursesDto();
 	List<CourseHomePageDto> getCoursesHomePageDto();
+	CourseEmployee addCourseForEmployee(CourseEmployee courseForEmployee);
 
 }

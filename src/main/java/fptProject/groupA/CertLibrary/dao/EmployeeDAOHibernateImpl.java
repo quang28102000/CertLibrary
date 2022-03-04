@@ -47,8 +47,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 				+ "e.email AS " + EmployeeDto.EMAIL + ","
 				+ "ce.status AS " + EmployeeDto.STATUS + ", "
 				+ "c.course_tittle AS " + EmployeeDto.COURSE + ", "
-				+ "c.platform AS " + EmployeeDto.PLATFORM + "\r\n"
-			+ "FROM course_employee AS ce\r\n"
+				+ "c.platform AS " + EmployeeDto.PLATFORM + " FROM course_employee AS ce\r\n"
 			+ "JOIN employee AS e\r\n"
 			+ "ON ce.employee_id = e.employee_id\r\n"
 			+ "JOIN course AS c\r\n"
@@ -109,6 +108,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 		.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
 		.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
 		.addScalar(EmployeeDto.STATUS, StandardBasicTypes.INTEGER)
+		.addScalar(EmployeeDto.COURSE, StandardBasicTypes.STRING)
 		.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
 		.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	
 	return (List<EmployeeDto>)query.getResultList();

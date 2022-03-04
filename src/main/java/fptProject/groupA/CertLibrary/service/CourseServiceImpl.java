@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import fptProject.groupA.CertLibrary.dao.CourseDao;
 import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
+import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 
 @Service
@@ -39,6 +40,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<CourseHomePageDto> getCoursesHomePageDto() {
 		return courseDao.getCoursesHomePageDto();
+	}
+
+	@Override
+	public CourseEmployee addCourseForEmployee(CourseEmployee courseForEmployee) {
+		return courseDao.addCourseForEmployee(courseForEmployee);
 	}
 
 }

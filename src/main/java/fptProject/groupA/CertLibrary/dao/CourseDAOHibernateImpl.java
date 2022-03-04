@@ -13,7 +13,9 @@ import org.springframework.stereotype.Repository;
 
 import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
+import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
+import fptProject.groupA.CertLibrary.persistence.CourseRegisterDto;
 
 @Repository
 public class CourseDAOHibernateImpl implements CourseDao {
@@ -91,5 +93,24 @@ public class CourseDAOHibernateImpl implements CourseDao {
 						.setResultTransformer(Transformers.aliasToBean(CourseHomePageDto.class));
 		return (List<CourseHomePageDto>) query.getResultList();
 	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public CourseEmployee addCourseForEmployee(CourseEmployee courseForEmployee) {
+		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		NativeQuery query = openSession.createNativeQuery(
+				"INSERT INTO course_employee (course_id, employee_id, status, start_date, end_date, cert_link, is_deleted) \r\n"
+				+ "VALUES (:courseId, :employeeId, :status, :startDate, :endDate, :certLink, :isDeleted)");
+		query.setParameter("courseId", courseForEmployee.getId().getCourseId())
+				.setParameter("employeeId", courseForEmployee.getId().getEmployeeId())
+				.setParameter("status", courseForEmployee.getStatus())
+				.setParameter("startDate", courseForEmployee.getStartDate())
+				.setParameter("endDate", courseForEmployee.getEndDate())
+				.setParameter("certLink", courseForEmployee.getCertLink())
+				.setParameter("isDeleted", courseForEmployee.getIsDeleted())
+				.setResultTransformer(Transformers.aliasToBean(CourseEmployee.class));
+		return (CourseEmployee) query.getSingleResult();
+	}
+
 
 }
