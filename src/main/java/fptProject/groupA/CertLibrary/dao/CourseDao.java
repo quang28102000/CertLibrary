@@ -6,6 +6,7 @@ import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
+import fptProject.groupA.CertLibrary.persistence.Employee;
 
 public interface CourseDao {
 	List<Course> getAll();
@@ -16,5 +17,7 @@ public interface CourseDao {
 
 	List<CourseHomePageDto> getCoursesHomePageDto();
 
-	CourseEmployee addCourseForEmployee(CourseEmployee courseForEmployee);
+	Course addCourseForEmployee(Course course, Employee employee);
+	
+	CourseEmployee addCourseEmployee (CourseEmployee courseEmployee);
 }

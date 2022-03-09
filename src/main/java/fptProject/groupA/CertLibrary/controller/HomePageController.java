@@ -1,7 +1,5 @@
 package fptProject.groupA.CertLibrary.controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
-import fptProject.groupA.CertLibrary.persistence.CourseEmployee.Id;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
-import fptProject.groupA.CertLibrary.persistence.CourseRegisterDto;
+import fptProject.groupA.CertLibrary.persistence.Employee;
 import fptProject.groupA.CertLibrary.persistence.EmployeeDto;
 import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 import fptProject.groupA.CertLibrary.service.CourseService;
@@ -80,16 +82,38 @@ public class HomePageController {
 	}
 	
 
-	@PostMapping("/addCourseRegister")
-	public ResponseEntity<CourseRegisterDto> addCourseRegisterForEmployee(@RequestBody CourseRegisterDto courseRegisterDto) {
+	@PostMapping("/add")
+	public ResponseEntity<Course> addCourseRegisterForEmployee
+					(@RequestBody String jsonText) throws JsonMappingException, JsonProcessingException {
 //		CourseEmployee courseEmployee = new CourseEmployee(new Id(9, 1), 4,
 //				LocalDateTime.parse("2022-03-01 00:00:00", DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss")),
 //				LocalDateTime.parse("2022-03-03 00:00:00", DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss")),
 //				"đây là Link cert của nhân viên mới được add vào khóa mới", 0);
-		System.out.println(courseRegisterDto);
+//		System.out.println(course);
 //		CourseEmployee theCourseEmployee = courseService.addCourseForEmployee(courseEmployee);
 //		System.out.println(theCourseEmployee.toString());
-		return new ResponseEntity<CourseRegisterDto>(courseRegisterDto, HttpStatus.CREATED);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode node = mapper.readTree(jsonText);
+//		
+		Integer courseId = node.get("courseEmployee").get("courseId").intValue();
+		Integer employeeId = node.get("courseEmployee").get("employeeId").intValue();
+//		Id courseEmployeeId = node.get("courseEmployee").to;
+		
+		Course theCourse = mapper.convertValue(node.get("course"), Course.class);
+		Employee theEmployee = mapper.convertValue(node.get("employee"), Employee.class);
+		CourseEmployee theCourseEmployee = mapper.convertValue(node.get("courseEmployee"), CourseEmployee.class);
+//		format("YYYY-MM-DD hh:mm:ss")
+//		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		theCourse.setId(courseId);
+		theEmployee.setId(employeeId);
+		theCourseEmployee.setCourseId(courseId);
+		theCourseEmployee.setEmployeeId(employeeId);
+//		theCourseEmployee.setStartDate("2022-03-08 08:08:11");
+		courseService.addCourseForEmployee(theCourse, theEmployee);
+		courseService.addCourseEmployee(theCourseEmployee);
+		return new ResponseEntity<Course>(theCourse, HttpStatus.CREATED);
 	};
 	
 }

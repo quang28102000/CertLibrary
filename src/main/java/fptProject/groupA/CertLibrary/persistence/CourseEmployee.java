@@ -1,44 +1,45 @@
 package fptProject.groupA.CertLibrary.persistence;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "course_employee")
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CourseEmployee {
 
-	@EmbeddedId
-	private Id id;
+	@JsonProperty("courseId")
+	private Integer courseId;
 
-	@Column(name = "status")
+	@JsonProperty("employeeId")
+	private Integer employeeId;
+
 	private Integer status;
 
-	@Column(name = "start_date")
-	private LocalDateTime startDate;
+	@JsonProperty("startDate")
+//	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "YYYY-MM-DD hh:mm:ss")
+	private Date startDate;
 
-	@Column(name = "end_date")
-	private LocalDateTime endDate;
+	@JsonIgnoreProperties(ignoreUnknown = true)
+	private Date endDate;
 
-	@Column(name = "cert_link")
 	private String certLink;
 
-	@Column(name = "is_deleted")
 	private Integer isDeleted;
 
 	public CourseEmployee() {
 
 	}
 
-	public CourseEmployee(Id id, Integer status, LocalDateTime startDate, LocalDateTime endDate, String certLink,
-			Integer isDeleted) {
-		super();
-		this.id = id;
+	public CourseEmployee(Integer courseId, Integer employeeId, Integer status, Date startDate, Date endDate,
+			String certLink, Integer isDeleted) {
+		this.courseId = courseId;
+		this.employeeId = employeeId;
 		this.status = status;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -46,12 +47,20 @@ public class CourseEmployee {
 		this.isDeleted = isDeleted;
 	}
 
-	public Id getId() {
-		return id;
+	public Integer getCourseId() {
+		return courseId;
 	}
 
-	public void setId(Id id) {
-		this.id = id;
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
+
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public Integer getStatus() {
@@ -62,19 +71,19 @@ public class CourseEmployee {
 		this.status = status;
 	}
 
-	public LocalDateTime getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDateTime startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDateTime getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDateTime endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -96,56 +105,9 @@ public class CourseEmployee {
 
 	@Override
 	public String toString() {
-		return "CourseEmployee [id=" + id + ", status=" + status + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", certLink=" + certLink + ", isDeleted=" + isDeleted + "]";
-	}
-
-	public static class Id implements Serializable {
-
-		private static final long serialVersionUID = 1L;
-
-		@Column(name = "course_id")
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Integer courseId;
-
-		@Column(name = "employee_id")
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Integer employeeId;
-
-		public Id() {
-
-		}
-
-		public Id(Integer courseId, Integer employeeId) {
-			this.courseId = courseId;
-			this.employeeId = employeeId;
-		}
-
-		public Integer getCourseId() {
-			return courseId;
-		}
-
-		public void setCourseId(Integer courseId) {
-			this.courseId = courseId;
-		}
-
-		public Integer getEmployeeId() {
-			return employeeId;
-		}
-
-		public void setEmployeeId(Integer employeeId) {
-			this.employeeId = employeeId;
-		}
-
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
-
-		@Override
-		public String toString() {
-			return "Id [courseId=" + courseId + ", employeeId=" + employeeId + "]";
-		}
-
+		return "CourseEmployee [courseId=" + courseId + ", employeeId=" + employeeId + ", status=" + status
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", certLink=" + certLink + ", isDeleted="
+				+ isDeleted + "]";
 	}
 
 }

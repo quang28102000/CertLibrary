@@ -12,6 +12,7 @@ import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
+import fptProject.groupA.CertLibrary.persistence.Employee;
 
 @Service
 @Transactional
@@ -43,8 +44,13 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public CourseEmployee addCourseForEmployee(CourseEmployee courseForEmployee) {
-		return courseDao.addCourseForEmployee(courseForEmployee);
+	public Course addCourseForEmployee(Course course, Employee employee) {
+		return courseDao.addCourseForEmployee(course, employee);
+	}
+
+	@Override
+	public CourseEmployee addCourseEmployee(CourseEmployee courseEmployee) {
+		return courseDao.addCourseEmployee(courseEmployee);
 	}
 
 }

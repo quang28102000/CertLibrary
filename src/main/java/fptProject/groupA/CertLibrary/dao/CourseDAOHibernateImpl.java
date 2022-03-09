@@ -3,6 +3,7 @@ package fptProject.groupA.CertLibrary.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
@@ -15,9 +16,10 @@ import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
-import fptProject.groupA.CertLibrary.persistence.CourseRegisterDto;
+import fptProject.groupA.CertLibrary.persistence.Employee;
 
 @Repository
+@Transactional
 public class CourseDAOHibernateImpl implements CourseDao {
 	
 	private static final String GET_COURSE_DTO = "SELECT cd.course_id AS id, c.course_tittle AS name, cd.image AS image, \r\n"
@@ -67,6 +69,7 @@ public class CourseDAOHibernateImpl implements CourseDao {
 	@Override
 	public List<CourseDto> getCoursesDto() {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		
 		NativeQuery<?> query = openSession.createNativeQuery(GET_COURSE_DTO);
 		query.addScalar(CourseDto.ID, StandardBasicTypes.INTEGER)
 								.addScalar(CourseDto.NAME, StandardBasicTypes.STRING)
@@ -94,22 +97,53 @@ public class CourseDAOHibernateImpl implements CourseDao {
 		return (List<CourseHomePageDto>) query.getResultList();
 	}
 
-	@SuppressWarnings("deprecation")
+	
 	@Override
-	public CourseEmployee addCourseForEmployee(CourseEmployee courseForEmployee) {
+	public Course addCourseForEmployee(Course course, Employee employee) {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
-		NativeQuery query = openSession.createNativeQuery(
-				"INSERT INTO course_employee (course_id, employee_id, status, start_date, end_date, cert_link, is_deleted) \r\n"
-				+ "VALUES (:courseId, :employeeId, :status, :startDate, :endDate, :certLink, :isDeleted)");
-		query.setParameter("courseId", courseForEmployee.getId().getCourseId())
-				.setParameter("employeeId", courseForEmployee.getId().getEmployeeId())
-				.setParameter("status", courseForEmployee.getStatus())
-				.setParameter("startDate", courseForEmployee.getStartDate())
-				.setParameter("endDate", courseForEmployee.getEndDate())
-				.setParameter("certLink", courseForEmployee.getCertLink())
-				.setParameter("isDeleted", courseForEmployee.getIsDeleted())
-				.setResultTransformer(Transformers.aliasToBean(CourseEmployee.class));
-		return (CourseEmployee) query.getSingleResult();
+		
+		org.hibernate.Transaction transaction = openSession.beginTransaction();
+
+		try {
+			openSession.saveOrUpdate(course);
+			System.out.println("Course updated!");
+			
+			
+			openSession.saveOrUpdate(employee);
+			System.out.println("Employee updated!");
+			
+			transaction.commit(); 
+		} catch (Exception e) {
+			transaction.rollback();
+		}
+		
+		System.out.println(course.toString());
+		System.out.println(employee.toString());
+		return course;
+	}
+
+	@Override
+	public CourseEmployee addCourseEmployee(CourseEmployee courseEmployee) {
+		Session session = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		org.hibernate.Transaction transaction = session.beginTransaction();
+
+		NativeQuery<?> query = session.createNativeQuery("INSERT INTO certlibrary.course_employee "
+				+ "(course_id, employee_id, status, start_date, end_date, cert_link, is_deleted) "
+				+ "VALUES (:courseId, :employeeId, :status, :startDate, :endDate, :certLink, :isDeleted) ");
+		query.setParameter("courseId", courseEmployee.getCourseId())
+		     .setParameter("employeeId", courseEmployee.getEmployeeId())
+		     .setParameter("status", courseEmployee.getStatus())
+		     .setParameter("startDate", courseEmployee.getStartDate())
+		     .setParameter("endDate", courseEmployee.getEndDate())
+		     .setParameter("certLink", courseEmployee.getCertLink())
+		     .setParameter("isDeleted", courseEmployee.getIsDeleted())
+		     .executeUpdate();
+		
+		System.out.println("CourseEmployee updated!");
+		System.out.println(courseEmployee.toString());
+
+		transaction.commit();
+		return courseEmployee;
 	}
 
 

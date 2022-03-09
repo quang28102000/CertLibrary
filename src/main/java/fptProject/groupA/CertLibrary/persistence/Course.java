@@ -2,6 +2,7 @@ package fptProject.groupA.CertLibrary.persistence;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "course")
@@ -27,20 +29,23 @@ public class Course {
 	public static final String GET_ALL = "GET_ALL";
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "course_id", nullable = false, updatable = false)
 	private Integer id;
 
 	@Column(name = "course_tittle")
+	@JsonProperty("course_tittle")
 	private String tittle;
 
 	@Column(name = "platform")
+	@JsonProperty("platform")
 	private String platform;
 
 	@Column(name = "category")
+	@JsonProperty("category")
 	private String category;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 	@JoinTable(
 			name = "course_employee",
 			joinColumns = @JoinColumn(name="course_id"),
@@ -90,4 +95,9 @@ public class Course {
 		this.category = category;
 	}
 
-}
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", tittle=" + tittle + ", platform=" + platform + ", category=" + category + "]";
+	}
+	
+}	
