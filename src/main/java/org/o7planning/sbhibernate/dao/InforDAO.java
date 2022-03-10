@@ -8,10 +8,13 @@ public interface InforDAO {
 	
 	List<InforPageDto> getInforDto();
 	
-	void addNewCourse(String tittle, String platform,  String category);
-	
-	Integer getLastestCourse();
-	
-	void addCourseLength(String id, String time);
+	InforPageDto editInfor (InforPageDto inforPageDto);
 
+	void deleteInfor (Integer courseID, Integer employeeID);
+	
+
+//	void addNewCourse(String tittle, String platform,  String category);
+	
+//	Integer getLastestCourse();
+	
 }

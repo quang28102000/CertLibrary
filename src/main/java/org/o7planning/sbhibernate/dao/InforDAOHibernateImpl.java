@@ -39,48 +39,89 @@ public class InforDAOHibernateImpl implements InforDAO {
 	@Override
 	public List<InforPageDto> getInforDto() {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
-		NativeQuery<?> query = openSession.createNativeQuery(GET_INFOR_DTO);
+		NativeQuery<InforPageDto> query = openSession.createNativeQuery(GET_INFOR_DTO);
 		query.addScalar(InforPageDto.FULL_NAME, StandardBasicTypes.STRING)
 				.addScalar(InforPageDto.COURSE_ID, StandardBasicTypes.INTEGER)
 				.addScalar(InforPageDto.EMPLOYEE_ID, StandardBasicTypes.INTEGER)
 				.addScalar(InforPageDto.STATUS, StandardBasicTypes.INTEGER)
-				.addScalar(InforPageDto.START_DATE, StandardBasicTypes.STRING)
-				.addScalar(InforPageDto.END_DATE, StandardBasicTypes.STRING)
+				.addScalar(InforPageDto.START_DATE, StandardBasicTypes.DATE)
+				.addScalar(InforPageDto.END_DATE, StandardBasicTypes.DATE)
 				.addScalar(InforPageDto.CERT_LINK, StandardBasicTypes.STRING)
 				.addScalar(InforPageDto.COURSE_TITLE, StandardBasicTypes.STRING)
 				.addScalar(InforPageDto.CATEGORY, StandardBasicTypes.STRING)
 				.addScalar(InforPageDto.PLATFORM, StandardBasicTypes.STRING)
-				.addScalar(InforPageDto.COURSE_LENGTH, StandardBasicTypes.INTEGER);
-		return (List<InforPageDto>) query.getResultList();
+				.addScalar(InforPageDto.COURSE_LENGTH, StandardBasicTypes.INTEGER)
+				.setResultTransformer(Transformers.aliasToBean(InforPageDto.class));
+		
+		List<InforPageDto> list = query.list();
+	    return list;
+//		return (List<InforPageDto>) query.getResultList();
 	}
-
-
 
 	@Override
-	public void addNewCourse(String tittle, String platform, String category) {
+	public InforPageDto editInfor(InforPageDto inforPageDto) {
+		System.err.println(inforPageDto);
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		org.hibernate.Transaction txn = openSession.beginTransaction();
+		NativeQuery<?> query = openSession.createNativeQuery("Update course_employee\r\n"
+				+ "set course_employee.cert_link = :cert_link, course_employee.status = :status,\r\n"
+				+ "course_employee.start_date = :start_date, course_employee.end_date = :end_date\r\n"
+				+ "where course_employee.employee_id = :employee_id and course_employee.course_id = :course_id");
+		query.setParameter("course_id", inforPageDto.getCourse_ID())
+				.setParameter("employee_id", inforPageDto.getEmployee_ID())
+				.setParameter("status", inforPageDto.getStatus())
+				.setParameter("start_date", inforPageDto.getStart_Date())
+				.setParameter("end_date", inforPageDto.getEnd_Date())
+				.setParameter("cert_link", inforPageDto.getCert_Link()).executeUpdate();
+		txn.commit();
+		updateCourseLength(inforPageDto.getCourse_ID(), inforPageDto.getCourse_Length());
+		System.err.println(inforPageDto.getEmployee_ID());
+		return inforPageDto;
+	}
 
-		NativeQuery<?> query = openSession.createNativeQuery("insert into course(course_tittle, platform, category) "
-				+ "values (':course_tittle', ':platform', ':category')");
+	public void updateCourseLength(int id, float time) {
+		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		org.hibernate.Transaction txn = openSession.beginTransaction();
+		System.err.println(id);
+		System.err.println(time);
+		NativeQuery<?> query = openSession.createNativeQuery(
+				"UPDATE course_detail SET course_detail.course_length = :course_length WHERE course_detail.course_id = :course_id");
 
-		query.setParameter("course_tittle", tittle).setParameter("platform", platform).setParameter("category", category)
-				.setResultTransformer(Transformers.aliasToBean(UserProfileDto.class));
-
+		query.setParameter("course_length", time).setParameter("course_id", id).executeUpdate();
+		txn.commit();
 	}
 	
-	public Integer getLastestCourse() {
-		Session currentSession = entityManager.unwrap(Session.class);
-		String sql = "select course_id from certlibrary.course_detail order by course_id desc limit 1";
-		return currentSession.createQuery(sql, Integer.class).getFirstResult();
+	@Override
+	public void deleteInfor (Integer courseID, Integer employeeID) {
+		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		System.err.println(courseID + "_" + employeeID);
+		org.hibernate.Transaction txn = openSession.beginTransaction();
+		
+		NativeQuery<?> query = openSession.createNativeQuery(
+				"UPDATE certlibrary.course_employee SET course_employee.isDeleted = 1\r\n"
+				+ "WHERE course_employee.employee_id = :employee_id and course_employee.course_id = :course_id");
+
+		query.setParameter("employee_id", employeeID).setParameter("course_id", courseID).executeUpdate();
+		txn.commit();
 	}
 	
-	public void addCourseLength(String id, String time) {
-		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+//	@Override
+//	public void addNewCourse(String tittle, String platform, String category) {
+//		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+//
+//		NativeQuery<?> query = openSession.createNativeQuery("insert into course(course_tittle, platform, category) "
+//				+ "values (':course_tittle', ':platform', ':category')");
+//
+//		query.setParameter("course_tittle", tittle).setParameter("platform", platform)
+//				.setParameter("category", category)
+//				.setResultTransformer(Transformers.aliasToBean(UserProfileDto.class));
+//
+//	}
 
-		NativeQuery<?> query = openSession.createNativeQuery
-				("UPDATE course_detail SET course_detail.course_length = :length WHERE course_detail.course_id = :id;");
+//	public Integer getLastestCourse() {
+//		Session currentSession = entityManager.unwrap(Session.class);
+//		String sql = "select course_id from certlibrary.course_detail order by course_id desc limit 1";
+//		return currentSession.createQuery(sql, Integer.class).getFirstResult();
+//	}
 
-		query.setParameter("id", id).setParameter("length", time)
-				.setResultTransformer(Transformers.aliasToBean(UserProfileDto.class));
-	}
 }

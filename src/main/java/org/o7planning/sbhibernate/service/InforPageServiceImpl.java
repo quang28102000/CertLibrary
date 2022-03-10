@@ -22,6 +22,16 @@ public class InforPageServiceImpl implements InforPageService{
 		return dao.getInforDto();
 	}
 	
-	
+	@Override
+	@Transactional
+	public InforPageDto updateInfor(InforPageDto inforPageDto) {
+		return dao.editInfor(inforPageDto);
+	}
 
+	@Override
+	@Transactional
+	public Integer deleteInforDto(Integer courseID, Integer employeeID) {
+		 dao.deleteInfor(courseID, employeeID);
+		 return 1;
+	}
 }

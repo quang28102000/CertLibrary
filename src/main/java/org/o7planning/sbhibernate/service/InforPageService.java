@@ -8,4 +8,8 @@ public interface InforPageService {
 
 	List<InforPageDto> getInforDto();
 	
+	InforPageDto updateInfor(InforPageDto inforPageDto);
+	
+	Integer deleteInforDto(Integer courseID, Integer employeeID);
+	
 }

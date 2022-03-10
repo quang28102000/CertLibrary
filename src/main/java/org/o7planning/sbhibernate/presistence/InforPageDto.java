@@ -26,7 +26,7 @@ public class InforPageDto {
 	private String course_Tittle;
 	private String category;
 	private String platform;
-	private Integer course_Length;
+	private float course_Length;
 
 	public InforPageDto() {
 		// TODO Auto-generated constructor stub
@@ -34,7 +34,7 @@ public class InforPageDto {
 
 	public InforPageDto(String full_Name, Integer course_ID, Integer employee_ID, Integer status, Date start_Date,
 			Date end_Date, String cert_Link, String course_Tittle, String category, String platform,
-			Integer course_Length) {
+			float course_Length) {
 		super();
 		this.full_Name = full_Name;
 		this.course_ID = course_ID;
@@ -129,11 +129,11 @@ public class InforPageDto {
 		this.platform = platform;
 	}
 
-	public Integer getCourse_Length() {
+	public float getCourse_Length() {
 		return course_Length;
 	}
 
-	public void setCourse_Length(Integer course_Length) {
+	public void setCourse_Length(float course_Length) {
 		this.course_Length = course_Length;
 	}
 
