@@ -15,5 +15,7 @@ public interface CourseService {
 	List<CourseHomePageDto> getCoursesHomePageDto();
 	Course addCourseForEmployee(Course course, Employee employee);
 	CourseEmployee addCourseEmployee (CourseEmployee courseEmployee);
-
+	String deleteCourseEmployeeWithFlag(Integer courseId, Integer employeeId);
+	String deleteCourseEmployee(Integer courseId, Integer employeeId);
+	String updateCourseEmployee(CourseEmployee courseEmployee);
 }

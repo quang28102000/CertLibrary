@@ -6,16 +6,17 @@ import java.util.Optional;
 
 public class EmployeeDto {
 
-	public static final String ID = "id";
+	public static final String EMPLOYEE_ID = "employeeId";
 	public static final String FULL_NAME = "fullName";
 	public static final String EMAIL = "email";
 	public static final String STATUS = "status";
 	public static final String START_DATE = "startDate";
 	public static final String END_DATE = "endDate";
+	public static final String COURSE_ID = "courseId";
 	public static final String COURSE = "course";
 	public static final String PLATFORM = "platform";
 
-	private Integer id;
+	private Integer employeeId;
 	private String fullName;
 	private String email;
 	private String status;
@@ -30,9 +31,9 @@ public class EmployeeDto {
 	}
 
 	
-	public EmployeeDto(Integer id, String fullName, String email, String status, Date startDate, Date endDate,
+	public EmployeeDto(Integer employeeId, String fullName, String email, String status, Date startDate, Date endDate,
 			String course, String platform) {
-		this.id = id;
+		this.employeeId = employeeId;
 		this.fullName = fullName;
 		this.email = email;
 		this.status = status;
@@ -42,13 +43,20 @@ public class EmployeeDto {
 		this.platform = platform;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+
+	public Integer getEmployeeId() {
+		return employeeId;
 	}
+
+
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
+
 
 	public String getFullName() {
 		return fullName;
@@ -106,11 +114,12 @@ public class EmployeeDto {
 		this.endDate = endDate;
 	}
 
+
 	@Override
 	public String toString() {
-		return "EmployeeDto [id=" + id + ", fullName=" + fullName + ", email=" + email + ", status=" + status
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", course=" + course + ", platform=" + platform
-				+ "]";
+		return "EmployeeDto [employeeId=" + employeeId + ", fullName=" + fullName + ", email=" + email + ", status="
+				+ status + ", startDate=" + startDate + ", endDate=" + endDate + ", course=" + course + ", platform="
+				+ platform + "]";
 	}
 
 }

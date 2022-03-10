@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,7 +18,7 @@ public class CourseEmployee {
 
 	@JsonProperty("employeeId")
 	private Integer employeeId;
-
+	
 	private Integer status;
 
 	@JsonProperty("startDate")
@@ -27,9 +28,9 @@ public class CourseEmployee {
 
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	private Date endDate;
-
+	
 	private String certLink;
-
+	
 	private Integer isDeleted;
 
 	public CourseEmployee() {

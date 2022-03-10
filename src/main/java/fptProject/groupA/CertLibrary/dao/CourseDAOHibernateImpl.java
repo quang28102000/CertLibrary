@@ -139,11 +139,72 @@ public class CourseDAOHibernateImpl implements CourseDao {
 		     .setParameter("isDeleted", courseEmployee.getIsDeleted())
 		     .executeUpdate();
 		
-		System.out.println("CourseEmployee updated!");
-		System.out.println(courseEmployee.toString());
+		System.out.println("CourseEmployee added!");
 
 		transaction.commit();
 		return courseEmployee;
+	}
+
+	@Override
+	public String deleteCourseEmployeeWithFlag(Integer courseId, Integer employeeId) {
+		Session session = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		org.hibernate.Transaction transaction = session.beginTransaction();
+
+		NativeQuery<?> query = session.createNativeQuery("UPDATE course_employee AS c\r\n"
+				+ "SET c.is_deleted = :isDeleted WHERE c.course_id = :courseId AND c.employee_id = :employeeId");
+		query.setParameter("isDeleted", 1)
+		     .setParameter("courseId", courseId)
+		     .setParameter("employeeId", employeeId)
+		     .executeUpdate();
+		
+		System.out.println("Deleted CourseEmployee(CourseId: " + courseId + ", EmployeeId: " + employeeId + ")");
+		
+		transaction.commit();
+		
+		return "CourseId: " + courseId + " and EmployeeId: " + employeeId + " are deleted";
+	}
+
+	@Override
+	public String updateCourseEmployee(CourseEmployee courseEmployee) {
+		Session session = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		org.hibernate.Transaction transaction = session.beginTransaction();
+
+		NativeQuery<?> query = session.createNativeQuery("UPDATE course_employee AS c\r\n"
+				+ "SET c.status = :status, c.start_date = :startDate, \r\n"
+				+ "c.end_date = :endDate, c.cert_link = :certLink, "
+				+ "c.is_deleted = :isDeleted\r\n"
+				+ "WHERE c.course_id = :courseId AND c.employee_id = :employeeId");
+		query.setParameter("status", courseEmployee.getStatus())
+		     .setParameter("startDate", courseEmployee.getStartDate())
+		     .setParameter("endDate", courseEmployee.getEndDate())
+		     .setParameter("certLink", courseEmployee.getCertLink())
+		     .setParameter("isDeleted", courseEmployee.getIsDeleted())
+		     .setParameter("courseId", courseEmployee.getCourseId())
+		     .setParameter("employeeId", courseEmployee.getEmployeeId())
+		     .executeUpdate();
+		
+
+		transaction.commit();
+		
+		return "CourseId: " + courseEmployee.getCourseId() + " and EmployeeId: " + courseEmployee.getEmployeeId() + " are updated";
+	}
+
+	@Override
+	public String deleteCourseEmployee(Integer courseId, Integer employeeId) {
+		Session session = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		org.hibernate.Transaction transaction = session.beginTransaction();
+
+		NativeQuery<?> query = session.createNativeQuery("DELETE FROM course_employee AS c\r\n"
+				+ "WHERE c.course_id = :courseId AND c.employee_id = :employeeId");
+		query.setParameter("courseId", courseId)
+		     .setParameter("employeeId", employeeId)
+		     .executeUpdate();
+		
+		System.out.println("Deleted CourseEmployee(CourseId: " + courseId + ", EmployeeId: " + employeeId + ")");
+		
+		transaction.commit();
+		
+		return "CourseId: " + courseId + " and EmployeeId: " + employeeId + " are deleted";
 	}
 
 

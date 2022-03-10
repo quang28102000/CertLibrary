@@ -32,8 +32,9 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	+ "  WHERE e.employee_id = :employeeId";
 	
 	private static final String GET_EMPLOYEE_DTOS = 
-			"SELECT e.employee_id AS id, e.full_name AS fullName, e.email AS email, \r\n"
+			"SELECT e.employee_id AS employeeId, e.full_name AS fullName, e.email AS email, \r\n"
 			+ "ce.status AS status, CAST(ce.start_date AS DATE) AS startDate, CAST(ce.end_date AS DATE) AS endDate,\r\n"
+			+ "c.course_id AS courseId \r\n"
 			+ "c.course_tittle AS course, c.platform AS platform \r\n"
 			+ "FROM employee AS e \r\n"
 			+ "JOIN course_employee AS ce \r\n"
@@ -42,10 +43,11 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			+ " ON ce.course_id = c.course_id;";
 	
 	private static final String GET_SUBSCRIBED_EMPLOYESS_IN_LAST_7_DAYS_DTOS =
-			"SELECT e.employee_id AS " + EmployeeDto.ID + ", "
+			"SELECT e.employee_id AS " + EmployeeDto.EMPLOYEE_ID + ", "
 				+ "e.full_name AS " + EmployeeDto.FULL_NAME + ", "
 				+ "e.email AS " + EmployeeDto.EMAIL + ","
 				+ "ce.status AS " + EmployeeDto.STATUS + ", "
+				+ "c.course_id AS " + EmployeeDto.COURSE_ID + ", "
 				+ "c.course_tittle AS " + EmployeeDto.COURSE + ", "
 				+ "c.platform AS " + EmployeeDto.PLATFORM + " FROM course_employee AS ce\r\n"
 			+ "JOIN employee AS e\r\n"
@@ -86,12 +88,13 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	public List<EmployeeDto> getEmployees() {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
 		NativeQuery<?> query = openSession.createNativeQuery(GET_EMPLOYEE_DTOS);
-		query.addScalar(EmployeeDto.ID, StandardBasicTypes.INTEGER)
+		query.addScalar(EmployeeDto.EMPLOYEE_ID, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.STATUS, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeDto.START_DATE, StandardBasicTypes.DATE)
 			.addScalar(EmployeeDto.END_DATE, StandardBasicTypes.DATE)
+			.addScalar(EmployeeDto.COURSE_ID, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeDto.COURSE, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
 			.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	
@@ -104,10 +107,11 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	public List<EmployeeDto> findSubscribedEmployeesInLast7Days() {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
 		NativeQuery<?> query = openSession.createNativeQuery(GET_SUBSCRIBED_EMPLOYESS_IN_LAST_7_DAYS_DTOS);
-		query.addScalar(EmployeeDto.ID, StandardBasicTypes.INTEGER)
+		query.addScalar(EmployeeDto.EMPLOYEE_ID, StandardBasicTypes.INTEGER)
 		.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
 		.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
 		.addScalar(EmployeeDto.STATUS, StandardBasicTypes.INTEGER)
+		.addScalar(EmployeeDto.COURSE_ID, StandardBasicTypes.INTEGER)
 		.addScalar(EmployeeDto.COURSE, StandardBasicTypes.STRING)
 		.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
 		.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	

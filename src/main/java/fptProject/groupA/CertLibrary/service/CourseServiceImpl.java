@@ -53,4 +53,19 @@ public class CourseServiceImpl implements CourseService {
 		return courseDao.addCourseEmployee(courseEmployee);
 	}
 
+	@Override
+	public String deleteCourseEmployeeWithFlag(Integer courseId, Integer employeeId) {
+		return courseDao.deleteCourseEmployeeWithFlag(courseId, employeeId);
+	}
+
+	@Override
+	public String updateCourseEmployee(CourseEmployee courseEmployee) {
+		return courseDao.updateCourseEmployee(courseEmployee);
+	}
+
+	@Override
+	public String deleteCourseEmployee(Integer courseId, Integer employeeId) {
+		return courseDao.deleteCourseEmployee(courseId, employeeId);
+	}
+
 }
