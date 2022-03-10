@@ -1,0 +1,48 @@
+.uin{
+  background-color: #A9E3E3;
+  padding: 1px 2px 1px 3px;
+}
+h1{
+   text-align: center;
+}
+p{
+  font-weight: 500;
+}
+#btn{
+  text-align: center;
+  margin: 15px 15% 10px 25%;
+  justify-content: center;
+}
+.sk{
+  background-color: #B8E2EF;
+    padding: 1px;
+    text-align: center;
+    border: solid 0.5px;
+    border-radius: 7px;
+}
+#divider{
+  transform: rotate(90deg);
+}
+.numS{
+  background-color: #A9E3E3;
+  padding: 1px ;
+}
+
+.CD{
+  color: Green;
+}
+.CNY{
+  color: red;
+}
+
+/*POP UP*/
+.CertCover{
+  border: Solid 1px;
+  border-radius: 8px;
+  padding: 7px;
+  margin: 7px;
+}
+
+#s{
+  margin: 8% 0 8% 0;
+}

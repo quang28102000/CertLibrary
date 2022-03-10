@@ -1,0 +1,269 @@
+<div class="container-sm">
+  <div class="bar">
+      <select class="form-select" aria-label="Default select example">
+          <option value="All" selected>Danh mục</option>
+          <option *ngFor="let course of courses" value="{{course.category}}">{{course.category}}</option>
+      </select>
+      <select class="form-select" aria-label="Default select example">
+          <option value="All" selected>Nền tảng</option>
+          <option *ngFor="let course of courses" value="{{course.platform}}">{{course.platform}}</option>
+      </select>
+      <input type="text" id="searchTxt" [(ngModel)]="searchTxt">
+       <button id="searchbtn" class="btn"><i class="fa fa-search"></i></button>
+
+    </div>
+
+  <div class="button-toggle">
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check bt" name="btnradio" id="btnradio1" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio1">Tất cả</label>
+
+          <input type="radio" class="btn-check bt" name="btnradio" id="btnradio2" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio2">Đã học</label>
+
+          <input type="radio" class="btn-check bt" name="btnradio" id="btnradio3" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio3">Đang học</label>
+        </div>
+  </div>
+  <button class="btn btn-circle-plus"><i class="fa fa-plus"></i></button>
+</div>
+
+<div class="container cards">
+  <div class="grid" *ngFor="let item of courses | filter: searchTxt">
+    <div class="g-col-3">
+      <button class="card" style="width: 18rem;" data-bs-toggle="modal" href="#popup3" (click)="courseDetail(item)">
+        <img src="{{item.image}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h3 style="font-weight:500;">{{item.name}}</h3>
+          <p class="card-text">Platform:{{item.platform}}</p>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation example" id="paging">
+  <ul class="pagination">
+  <li class="page-item">
+    <a class="page-link" href="#" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+    </a>
+  </li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item">
+    <a class="page-link" href="#" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+    </a>
+  </li>
+  </ul>
+  </nav>
+
+<!-- POP UP -->
+
+<div class="modal fade bd-example-modal-lg" id="popup3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h1 class="popup-header">Chi tiết khoá học</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="container-fluid">
+          <img src="{{data?.image}}" alt="..." class="img">
+          <div class="container">
+              <div class="row">
+                  <h1 class="course-name">{{data?.name}}</h1>
+                <div class="col-md-5">
+                </div>
+              </div>
+        
+              <div class="row" id="line">
+                <div class="col-md-3">
+                  <h2>Kỹ năng:</h2>
+                </div>
+                <div class="col-md-5">
+                  <div class="row">
+                    <div class="col" *ngFor="let item of data?.skills">
+                      <p class="sk">{{item}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="row" id="line">
+                <div class="col-md-3">
+                  <h2>Nền tảng:</h2>
+                </div>
+                <div class="col-md-5">
+                  <div class="info">
+                    {{data?.platform}}
+                  </div>
+                </div>
+              </div>
+        
+              <div class="row" id="line">
+                <div class="col-md-3">
+                  <h2>Loại:</h2>
+                </div>
+                <div class="col-md-5">
+                  <div class="info">
+                    {{data?.category}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" id="line">
+                <div class="col-md-3">
+                  <h2>Thời lượng:</h2>
+                </div>
+                <div class="col-md-5">
+                  <div class="info">
+                    {{data?.courseLength}} hr
+                  </div>
+                </div>
+              </div>
+        
+              <div class="row">
+                <div class="col-md-7"></div>
+                <div class="col-md-3">
+                  <button class="bt delete">Xóa khóa học</button>
+                </div>
+                <div class="col-md-2">
+                  <button class="bt save">Lưu</button>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <br><hr><br>
+        <h1 class="popup-header">Danh Sách Sinh Viên</h1>
+        <table class="table table-hover table-striped">
+        <thead>
+            <th scope="col">STT</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Email</th>
+            <th scope="col">Khoá học</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Ngày bắt đầu</th>
+            <th scope="col">Ngày kết thúc</th>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of employees" (click)="rowClick(item)">
+            <td></td>
+            <td>{{item.fullName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.course}}</td>
+            <td>
+              {{item.status}}
+            </td>
+            <td>{{item.startDate}}</td>
+            <td>{{item.endDate}}</td>
+          </tr> -->
+
+          <!-- status: 1.Đang học, 2. Đã học, 3. Chưa thi, 4. Thi nhưng chưa có bằng -->
+          <tr>
+            <td></td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>
+              1
+            </td>
+            <td>20/02/2022</td>
+            <td>21/02/2022</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>
+              1
+            </td>
+            <td>20/02/2022</td>
+            <td>21/02/2022</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>
+              1
+            </td>
+            <td>20/02/2022</td>
+            <td>21/02/2022</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>
+              1
+            </td>
+            <td>20/02/2022</td>
+            <td>21/02/2022</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>
+              1
+            </td>
+            <td>20/02/2022</td>
+            <td>21/02/2022</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>
+              1
+            </td>
+            <td>20/02/2022</td>
+            <td>21/02/2022</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>
+              1
+            </td>
+            <td>20/02/2022</td>
+            <td>21/02/2022</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td>Khoa hoc cho nguoi moi bat dau</td>
+            <td>
+              1
+            </td>
+            <td>20/02/2022</td>
+            <td>21/02/2022</td>
+          </tr>
+
+          
+          
+         
+        </tbody>
+      </table>
+          
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>

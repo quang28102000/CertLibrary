@@ -1,0 +1,102 @@
+<mat-dialog-content class="mat-typography">
+    <div class="container-fluid">
+      <img
+        src="https://res.cloudinary.com/practicaldev/image/fetch/s--MlzXm8j1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/15utqnbl0s7x63q54crj.jpg"
+        alt="...">
+      <div class="container">
+        <div class="row">
+          <h1>{{courses?.tittle}}
+            Khoa Hoc cho nguoi moi bat dau
+          </h1>
+        </div>
+  
+        <div class="row" id="line">
+          <div class="col-md-2">
+            <h2>Kỹ năng:</h2>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-4" *ngFor="let s of courses?.skills">
+                <p class="sk">{{s}}</p>
+              </div>
+
+              <div class="col-md-2">
+                <p class="sk">Java</p>
+              </div>
+              <div class="col-md-2">
+                <p class="sk">Angular</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+  
+        <div class="row" id="line">
+          <div class="col-md-2">
+            <h2>Trạng thái:</h2>
+          </div>
+          <div class="col-md-2">
+            <div class="St">
+              {{courses?.status}}
+              2
+            </div>
+          </div>
+        </div>
+  
+        <div class="row" id="line">
+          <div class="col-md-2">
+            <h2>Nền tảng:</h2>
+          </div>
+          <div class="col-md-5">
+            <div class="info">
+              Udemy
+              {{courses?.platform}}
+            </div>
+          </div>
+        </div>
+  
+        <div class="row" id="line">
+          <div class="col-md-2">
+            <h2>Ngày bắt đầu:</h2>
+          </div>
+          <div class="col-md-5">
+            <div class="info">
+              22-02-2022
+              {{courses?.dateStart}}
+            </div>
+          </div>
+        </div>
+  
+        <div class="row" id="line">
+          <div class="col-md-2">
+            <h2>Ngày kết thúc:</h2>
+          </div>
+          <div class="col-md-5">
+            <div class="info">
+              23-02-2022
+              {{courses?.dateEnd}}
+            </div>
+          </div>
+        </div><br><br>
+  
+  
+      </div>
+    </div>
+  
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-4">
+          <button id="pointer" ><a href="{{courses?.linkCert}}">Đi đến chứng chỉ khóa học</a></button>
+        </div>
+        <div class="col-md-2">
+          <button class="close" mat-button mat-dialog-close>Close</button>
+        </div>
+      </div>
+    </div>
+  
+  
+  </mat-dialog-actions>
+  

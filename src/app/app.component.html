@@ -1,3 +1,32 @@
-<app-home></app-home>
-<!-- <p *ngFor="let item of infor" > {{item}} </p> -->
-<!-- <app-update></app-update> -->
+<header>
+  <div class="container-fluid">
+          <nav id="logo_ava">
+              <img src="https://i.imgur.com/pmsZ3vI.png" alt="logo" id="logo">
+              <img src="https://i.imgur.com/YsWzW7j.png" alt="Page logo" class="PageLogo">
+              <img src="https://i.imgur.com/tQPdBoc.png" alt="Avatar" class="ava">
+          </nav>
+      
+      <div class="container" class="nav">
+          <div id="navigation">
+              <button><a href="/home">Trang Chủ</a></button>
+              <button><a href="/course-list">Danh sách khoá học</a></button>
+              <button><a href="/employee-list">Danh sách nhân viên</a></button>
+              <button class="choose"><a href="/course-register">Quản lý khoá học</a></button>
+          </div>
+      </div>
+  </div>
+
+</header>
+
+<router-outlet></router-outlet>
+
+<footer>
+  <nav id="foot1">
+      <p>Tên nhóm: &nbsp;  Nhóm A</p>
+      <p>Email: &nbsp;  TeamA@gmail.com</p>
+  </nav>
+  <nav id="foot2">
+      <p>Số điện thoại: &nbsp;  0281637639</p>
+      <p>Địa chỉ: &nbsp; Khu đô thị FPT, TP Đà Nẵng</p>
+  </nav>
+</footer>

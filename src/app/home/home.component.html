@@ -1,75 +1,153 @@
-<p>home works!</p>
+<div>
+    <p id="labeltxt">Thống kê chung</p>
+    <p id="tag">Nhân Viên:</p>
+    <br><br><br><br>
+    <nav id="btn">
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+          (click)="SetPopUpData(1, 'Danh sách sinh viên đăng kí khoá học')">
+            Số người đã đăng kí khoá học
+            <p>{{statistics.get(1)!.length}}/{{employees?.length}}</p>
+        </button>
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+          (click)="SetPopUpData(2, 'Danh sách sinh viên chưa đăng kí khoá học')">
+          Số người chưa đăng kí khoá học
+          <p>{{statistics.get(2)!.length}}/{{employees?.length}}</p>
+      </button>
+      <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+          (click)="SetPopUpData(3, 'Danh sách sinh viên hoàn thành khoá học')">
+          Số người đã hoàn thành khoá học
+        <p>{{statistics.get(3)!.length}}/{{employees?.length}}</p>
+    </button>
+        
+    </nav>
 
-<!-- <button routerLink="http://localhost:4200/information/all">Go to Infomation</button> -->
-<!-- <div id="addCourse">
-    <form #addForm="ngForm" (ngSubmit)="onAddCourse(addForm)" >
-<input type="text" ngModel name="emId" id="emId" placeholder="Employee id" required>
-<input type="text" ngModel name="coId" id="coId" placeholder="Course id" required>
-<input type="text" ngModel name="status" id="status" placeholder="status" required>
-<input type="text" ngModel name="startDate" id="startDate" placeholder="Start date" required>
-<input type="text" ngModel name="endDate" id="endDate" placeholder="End date" >
-<input type="text" ngModel name="certLink" id="certLink" placeholder="Cert link" ></form>
+    <br>
+    <nav id="btn">
+        
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+            (click)="SetPopUpData(4, 'Danh sách sinh viên chưa hoàn thành khoá học')">
+            Số người chưa hoàn thành khoá học
+          <p>{{statistics.get(4)!.length}}/{{employees?.length}}</p>
+      </button>
+        <button class="show-popup-employee" data-bs-toggle="modal" href="#popup1" 
+          (click)="SetPopUpData(5, 'Danh sách sinh viên đăng kí khoá học trong 7 ngày gần nhất')">
+            Số người mới đăng ký trong 7 ngày gần nhất
+            <p>{{employeesInLast7Days?.length}}/{{employees?.length}}</p>
+        </button>
+    </nav>
 
-<button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
-
-</div> -->
-
-<div id="addCourse">
-    <h3>Add course_Employee</h3>
-    <form #addForm="ngForm" (ngSubmit)="onAddCourse(addForm)">
-        <div class="form-group">
-            <label for="name">Employee id</label>
-            <input type="text" ngModel name="employee_ID" class="form-control" id="employee_ID" placeholder="emId" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Course id</label>
-            <input type="email" ngModel name="course_ID" class="form-control" id="course_ID" placeholder="coId" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">status</label>
-            <input type="text" ngModel name="status" class="form-control" id="status" placeholder="status" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">Start date</label>
-            <input type="text" ngModel name="start_Date" class="form-control" id="start_Date" placeholder="startDate"
-                required>
-        </div>
-        <div class="form-group">
-            <label for="phone">End date</label>
-            <input type="text" ngModel name="end_Date" class="form-control" id="end_Date" placeholder="endDate">
-        </div>
-        <div class="form-group">
-            <label for="phone">certLink</label>
-            <input type="text" ngModel name="cert_Link" class="form-control" id="cert_Link" placeholder="cert_Link">
-        </div>
-        <div class="modal-footer">
-            <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-    </form>
+    <svg viewBox="-10 15 1330 450">
+        <path fill="none" stroke="#5390D9" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300"></path>
+    </svg>
+    
+    <br><br>
+    <nav>
+        <p id="tag">Khóa học:</p>
+        <br><br><br><br>
+        <nav id="btn">
+            <button class="show-popup-course" data-bs-toggle="modal" href="#popup2">
+                Tổng số khóa học
+                <p>{{courses?.length}}</p>
+            </button>
+        </nav>
+        <br>
+        <nav id="btn">
+            <button class="show-popup-course">Số khóa học đã hoàn thành
+                <p>.../...</p>
+            </button>
+            <button class="show-popup-course">Số khóa học chưa hoàn thành
+                <p>.../...</p>
+            </button>
+        </nav>
+    </nav>
 </div>
 
-<br><br>
+  <!-- PopUp Employee -->
+  
+  <div class="modal fade bd-example-modal-lg" id="popup1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <h1 class="tt">{{popup_title}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body">
+  
+            <table class="table table-hover table-striped">
+                <thead>
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Khoá học</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Nền Tảng</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of popup_data" (click)="rowClick(item.id, 0)">
+                    <td></td>
+                    <td>{{item?.fullName}}</td>
+                    <td>{{item?.email}}</td>
+                    <td>{{item?.course}}</td>
+                    <td *ngIf="item?.status == 1" >Đã đăng kí</td>
+                    <td *ngIf="item?.status == 2" >Chưa đăng kí</td>
+                    <td *ngIf="item?.status == 3" >Đã hoàn thành</td>
+                    <td *ngIf="item?.status == 4" >Chưa hoàn thành</td>
 
-<div id="addCourse1">
-    <h3>Add course</h3>
-    <form #addForm1="ngForm" (ngSubmit)="onAddCourse1(addForm1)">
-        <div class="form-group">
-            <label for="name">Course name</label>
-            <input type="text" ngModel name="name" class="form-control" id="name" placeholder="courseTittle" required>
-        </div>
-        <div class="form-group">
-            <label for="email">platform</label>
-            <input type="email" ngModel name="platform" class="form-control" id="platform" placeholder="platform" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">category</label>
-            <input type="text" ngModel name="category" class="form-control" id="category" placeholder="category" required>
+
+                    <td>{{item?.platform}}</td>
+                  </tr>
+                </tbody>
+            </table>
+            
+  
         </div>
         <div class="modal-footer">
-            <button type="button" id="add-course-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button [disabled]="addForm1.invalid" type="submit" class="btn btn-primary">Save changes</button>
+  
         </div>
-    </form>
-</div>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Popup Course -->
+
+<div class="modal fade bd-example-modal-lg" id="popup2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <h1 class="tt">Tổng số khoá học</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+
+            <table class="table table-hover table-striped">
+                <thead>
+                    <th scope="col">STT</th>
+                    <th scope="col">Khoá học</th>
+                    <th scope="col">Nền tảng</th>
+                    <th scope="col">Loại</th>
+                    <th scope="col">Thời lượng</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of courses">
+                    <td></td>
+                    <td>{{item?.name}}</td>
+                    <td>{{item?.platform}}</td>
+                    <td>{{item?.category}}</td>
+                    <td>{{item?.courseLength}}</td>
+                  </tr>
+                </tbody>
+            </table>
+            
+
+        </div>
+        <div class="modal-footer">
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

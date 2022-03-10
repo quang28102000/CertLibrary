@@ -1,0 +1,342 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-6">
+        <h1>Thông tin người dùng</h1><br><br>
+        <div class="row">
+          <div class="col-md-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/194/194938.png" class="rounded" alt="avarta" width="98%"><br>
+            <button type="button" class="btn btn-primary" id="btn">Chỉnh sửa</button>
+          </div>
+          <div class="col-md-8">
+            <p>Mã nhân viên:</p>
+            <div class="uin">
+              {{info?.id}}
+            </div>
+            <p>Tên nhân viên:</p>
+            <div class="uin">
+              {{info?.fullName}}
+            </div>
+            <p>Email:</p>
+            <div class="uin">
+              {{info?.email}}
+            </div>
+          </div>
+        </div>
+
+        <br><br>
+
+        <h3>Kỹ năng:</h3>
+        <div class="container">
+          <div class="row">
+            <div class="col" *ngFor="let item of info?.skills">
+              <p class="sk">{{item}}</p>
+            </div>
+          </div>
+          <!-- <div class="container">
+            <div class="row">
+            <div class="col">
+            <p class="sk">Sql</p>
+            </div>
+            <div class="col">
+            <p class="sk">Java</p>
+            </div>
+            <div class="col">
+            <p class="sk">Angular</p>
+            </div>
+            </div>
+            </div> -->
+
+
+          </div>
+          <a href="#">Hiển thị thêm</a><br><br>
+          <h3>Các khóa gần đây:</h3>
+          <p class="CD" *ngFor="let item of info?.courses; let i = index">
+            <a (click)="onOpen(i + 1)" >{{item}}</a>
+          </p>
+          <!--<a (click)="onOpen(1)" class="CNY">The Complete 2022 Web Development Bootcamp</a><br>
+          <a href="javascript :void(0)" class="CNY">Spring Boot Tutorial </a><br>
+          <a href="#" class="CD">Full Stack Web Development with Angular</a><br>
+          <a href="#" class="CD">Connecting Front-End to Back-End</a><br>-->
+          <a href="#">Hiển thị thêm</a>
+        </div>
+        <div class="col-md-1">
+          <svg viewBox="-780 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -700 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -810 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -830 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+          <svg viewBox=" -740 15 1330 450" id="divider">
+            <path fill="none" stroke="black" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300 Q 1300 330 1350 300"></path>
+          </svg>
+        </div>
+
+      <div class="col-md-5">
+
+        <h1>Số liệu thống kê</h1><br><br>
+
+        <div class="container">
+          <div class="row" id="s">
+            <div class="col-md-6">
+              <p>Tổng số khóa học:</p>
+            </div>
+            <div class="col-md-6">
+              <div class="numS">5</div>
+            </div>
+          </div>
+          <div class="row" id="s">
+            <div class="col-md-6">
+              <p>Số khóa học đã đăng ký:</p>
+            </div>
+            <div class="col-md-6">
+              <div class="numS">8</div>
+            </div>
+          </div>
+          <div class="row" id="s">
+            <div class="col-md-6">
+              <p>Số khóa đang học:</p>
+            </div>
+            <div class="col-md-6">
+              <div class="numS">7</div>
+            </div>
+
+          </div>
+          <div class="row" id="s">
+            <div class="col-md-6">
+              <p>Số khóa học đã hoàn thành:</p>
+            </div>
+            <div class="col-md-6">
+              <div class="numS">2</div>
+            </div>
+
+          </div>
+          <div class="row" id="s">
+            <div class="col-md-6">
+              <p>Tổng số chứng chỉ:</p>
+            </div>
+            <div class="col-md-6">
+              <div class="numS">2</div>
+            </div>
+
+          </div>
+          <a href="#" data-bs-toggle="modal" href="#exampleModalToggle">Hiện tất cả chứng chỉ</a>
+          <div class="row" id="s">
+            <div class="col-md-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+              <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+              <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+            </svg>
+            </div>
+            <div class="col-md-11">
+              <p>Xuất dữ liệu</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- Pop up -->
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h4 class="tt">Tất cả tín chỉ</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="input-group rounded">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <br><br>
+
+        <div class="CertCover">
+          <div class="container-fluid">
+            <div class=" row">
+              <div class="col-md-4">
+                Tên chứng chỉ:
+              </div>
+              <div class="col-md-8">
+                The Complete SQL Bootcamp 2022: Go from Zero to Hero
+              </div>
+            </div>
+            <div class=" row">
+              <div class="col-md-4">
+                Ngày hoàn thành:
+              </div>
+              <div class="col-md-8">
+                20/02/2021
+              </div>
+              <div class=" row">
+                <div class="col-md-4">
+                  Kỹ năng:
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                     <div class="col">
+                        SQL
+                     </div>
+                     <div class="col">
+                       data Analysis
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#">Đường dẫn đến chứng chỉ khóa học</a>
+          </div>
+        </div>
+
+        <div class="CertCover">
+          <div class="container-fluid">
+            <div class=" row">
+              <div class="col-md-4">
+                Tên chứng chỉ:
+              </div>
+              <div class="col-md-8">
+                The Complete SQL Bootcamp 2022: Go from Zero to Hero
+              </div>
+            </div>
+            <div class=" row">
+              <div class="col-md-4">
+                Ngày hoàn thành:
+              </div>
+              <div class="col-md-8">
+                20/02/2021
+              </div>
+              <div class=" row">
+                <div class="col-md-4">
+                  Kỹ năng:
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                     <div class="col">
+                        SQL
+                     </div>
+                     <div class="col">
+                       data Analysis
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#">Đường dẫn đến chứng chỉ khóa học</a>
+          </div>
+        </div>
+
+        <div class="CertCover">
+          <div class="container-fluid">
+            <div class=" row">
+              <div class="col-md-4">
+                Tên chứng chỉ:
+              </div>
+              <div class="col-md-8">
+                The Complete SQL Bootcamp 2022: Go from Zero to Hero   
+              </div> 
+            </div>
+            <div class=" row">
+              <div class="col-md-4">
+                Ngày hoàn thành:
+              </div>
+              <div class="col-md-8">
+                20/02/2021
+              </div>
+              <div class=" row">
+                <div class="col-md-4">
+                  Kỹ năng:
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                     <div class="col">
+                        SQL
+                     </div>
+                     <div class="col">
+                       data Analysis
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#">Đường dẫn đến chứng chỉ khóa học</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>

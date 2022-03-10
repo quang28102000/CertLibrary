@@ -1,0 +1,239 @@
+.form-select{
+  font-size: 14px;
+  width: 9%;
+}
+
+#searchTxt{
+  margin-left: 10%;
+  width: 200px;
+  height: 30px;
+  padding-right: 50px;
+  border-radius: 7px;
+}
+
+#searchbtn{
+  margin-left: -35px;
+  margin-top: -5px;
+  background-color: transparent;
+  border: none;
+}
+
+/* .btn{
+  background-color: pink;
+  border: none;
+} */
+
+#searchbtn:active{
+  border: none;
+}
+.container-sm{
+  margin-top: 30px;
+}
+
+.bar{
+  /* display: inline-flex; */
+  display: flex;
+  justify-content: center;
+}
+
+select{
+  margin-right: 2%;
+  border-radius: 7px;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+.button-toggle{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* .mat-button-toggle-group{
+  justify-content: space-between;
+} */
+
+/* mat-button-toggle-group{
+  width: 80%;
+}
+
+mat-button-toggle{
+  text-align: center;
+}
+
+.mat-button-toggle-label-content{
+  margin-right:10%;
+} */
+
+
+.cards{
+  margin-left: 13%;
+  margin-top:10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.card{
+  margin:30px;
+  flex: 25%;
+  justify-self: space-around;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+
+.btn-circle-plus{
+  font-size: 30px;
+  width: 60px;
+  background-color: #87BEFF;
+  border-radius: 30px;
+  color: white;
+  float: right;
+  margin-top: -50px;
+  margin-right: 30px;
+}
+
+.btn-circle-plus:hover{
+  background-color: #63a2f0;
+}
+
+.card:hover{
+  top: -10px;
+}
+
+.bt{
+  background-color: #87BEFF;
+}
+
+
+.img{
+  width:100%;
+  height:auto;
+  overflow: hidden;
+}
+
+/*  */
+.course-name{
+  font-weight: 900;
+  color: #265A99;
+  font-size: 30px;
+  letter-spacing: 2px;
+  padding: 10px 0 10px 0;
+  margin: 10px 0 10px 0;
+  line-height: 130%;
+  text-align: left;
+}
+h2{
+  font-size: 20px;;
+}
+h4{
+  font-size: 30px;
+}
+.sk {
+  background-color: #B8E2EF;
+  padding: 1px;
+  text-align: center;
+  border: solid 0.5px;
+  border-radius: 7px;
+}
+.St{
+  background: #F1FFFE;;
+  border-radius: 2px;
+  padding-left: 15px;
+  padding-top: 3px;
+  color: #16B608;
+  opacity: 0.8;
+  width: 125px;
+  height: 26px;
+  font-size: 17px;
+}
+.info {
+  background: #D2F7F5;
+  border-radius: 2px;
+  padding-left: 15px;
+  padding-top: 1px;
+  font-size: 17px;
+}
+#line{
+  margin: 20px 0 20px 0;
+}
+.bt {
+  height: 50px;
+  border-radius: 20px;
+  background-color: #2BA1C8;
+  border: #FFFF solid 0.5px;
+  color: #ffff;
+}
+.delete{
+  width: 100%;
+}
+.save{
+  width: 100%;
+}
+
+.popup-header{
+  margin-top: 15px;
+  font-size: 25px;
+  margin-left: 35%;
+  color: #265A99;
+}
+
+/* Table */
+table {
+  counter-reset: rowNumber;
+}
+
+table tr {
+  counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  /* margin-left: 0.5em; */
+}
+
+th {
+  text-align:center;
+}
+
+
+#showAll p {
+  position: sticky;
+  width: 136px;
+  height: 16px;
+  left: 1129px;
+  top: 1504px;
+  margin: 30px 70px 20px 10px;
+  font-family: Karma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 100%;
+  /* or 20px */
+
+  text-align: right;
+  letter-spacing: -0.32px;
+
+  color: #040a96;
+}
+#paging  {
+
+  display: flex;
+  justify-content: center;
+
+  font-family: Post No Bills Jaffna;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+
+
+}

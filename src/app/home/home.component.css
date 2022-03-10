@@ -1,0 +1,120 @@
+
+svg{
+  margin-top:-100px
+}
+
+#labeltxt {
+  position: relative;
+  width: 498px;
+  height: 82px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 35px;
+  margin-bottom: 25px;
+
+  /* top: 309px; */
+
+  font-family: Karma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 100%;
+  /* or 64px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.32px;
+
+  color: #265A99;
+
+  text-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
+}
+
+#tag {
+  position: static;
+  width: 229px;
+  height: 46px;
+  margin-left: 70px;
+  /* top: 486px; */
+
+  font-family: Karma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 100%;
+  /* identical to box height, or 46px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.32px;
+
+  color: #3B76BD;
+
+  text-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+#btn {
+  display: flex;
+
+  justify-content: space-evenly;
+  margin: 10px;
+  padding: 10px; 
+  filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
+
+}
+button{
+
+  font-size: 20px;
+}
+
+div nav button {
+  width: 416px;
+  height: 128px;
+  margin: 7px;
+  background: #CDDDF0;
+  border: 0.5px solid #807f7f;
+  box-sizing: border-box;
+  border-radius: 9px;
+}
+#paging {
+
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: Post No Bills Jaffna;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+
+  
+}
+
+table {
+  counter-reset: rowNumber;
+}
+
+table tr {
+  counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  /* margin-left: 0.5em; */
+}
+
+th{
+  text-align: center;
+}
+
+
+
+
+
+
