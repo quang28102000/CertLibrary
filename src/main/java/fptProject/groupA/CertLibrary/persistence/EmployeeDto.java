@@ -22,41 +22,42 @@ public class EmployeeDto {
 	private String status;
 	private Date startDate;
 	private Date endDate;
+	private Integer courseId;
 	private String course;
 	private String platform;
-
 
 	public EmployeeDto() {
 
 	}
 
-	
 	public EmployeeDto(Integer employeeId, String fullName, String email, String status, Date startDate, Date endDate,
-			String course, String platform) {
+			Integer courseId, String course, String platform) {
 		this.employeeId = employeeId;
 		this.fullName = fullName;
 		this.email = email;
 		this.status = status;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.courseId = courseId;
 		this.course = course;
 		this.platform = platform;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public Integer getCourseId() {
+		return courseId;
 	}
 
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
 
 	public Integer getEmployeeId() {
 		return employeeId;
 	}
 
-
 	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
-
 
 	public String getFullName() {
 		return fullName;
@@ -97,7 +98,7 @@ public class EmployeeDto {
 	public void setCourse(String course) {
 		this.course = course;
 	}
-	
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -114,12 +115,11 @@ public class EmployeeDto {
 		this.endDate = endDate;
 	}
 
-
 	@Override
 	public String toString() {
 		return "EmployeeDto [employeeId=" + employeeId + ", fullName=" + fullName + ", email=" + email + ", status="
-				+ status + ", startDate=" + startDate + ", endDate=" + endDate + ", course=" + course + ", platform="
-				+ platform + "]";
+				+ status + ", startDate=" + startDate + ", endDate=" + endDate + ", courseId=" + courseId + ", course="
+				+ course + ", platform=" + platform + "]";
 	}
 
 }

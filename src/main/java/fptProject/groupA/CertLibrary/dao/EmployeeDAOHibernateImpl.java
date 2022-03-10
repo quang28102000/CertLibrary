@@ -32,15 +32,15 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	+ "  WHERE e.employee_id = :employeeId";
 	
 	private static final String GET_EMPLOYEE_DTOS = 
-			"SELECT e.employee_id AS employeeId, e.full_name AS fullName, e.email AS email, \r\n"
-			+ "ce.status AS status, CAST(ce.start_date AS DATE) AS startDate, CAST(ce.end_date AS DATE) AS endDate,\r\n"
-			+ "c.course_id AS courseId \r\n"
-			+ "c.course_tittle AS course, c.platform AS platform \r\n"
+			"SELECT e.employee_id AS employeeId, \r\n"
+			+ "e.full_name AS fullName, e.email AS email, ce.status AS status, \r\n"
+			+ "CAST(ce.start_date AS DATE) AS startDate, CAST(ce.end_date AS DATE) AS endDate, \r\n"
+			+ "c.course_id AS courseId, c.course_tittle AS course, c.platform AS platform \r\n"
 			+ "FROM employee AS e \r\n"
 			+ "JOIN course_employee AS ce \r\n"
 			+ " ON e.employee_id = ce.employee_id\r\n"
 			+ "JOIN course AS c\r\n"
-			+ " ON ce.course_id = c.course_id;";
+			+ " ON ce.course_id = c.course_id";
 	
 	private static final String GET_SUBSCRIBED_EMPLOYESS_IN_LAST_7_DAYS_DTOS =
 			"SELECT e.employee_id AS " + EmployeeDto.EMPLOYEE_ID + ", "
@@ -63,6 +63,25 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 		this.entityManager = entityManager;
 	}
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<EmployeeDto> getEmployees() {
+		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		NativeQuery<?> query = openSession.createNativeQuery(GET_EMPLOYEE_DTOS);
+		query.addScalar(EmployeeDto.EMPLOYEE_ID, StandardBasicTypes.INTEGER)
+			.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
+			.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
+			.addScalar(EmployeeDto.STATUS, StandardBasicTypes.INTEGER)
+			.addScalar(EmployeeDto.START_DATE, StandardBasicTypes.DATE)
+			.addScalar(EmployeeDto.END_DATE, StandardBasicTypes.DATE)
+			.addScalar(EmployeeDto.COURSE_ID, StandardBasicTypes.INTEGER)
+			.addScalar(EmployeeDto.COURSE, StandardBasicTypes.STRING)
+			.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
+			.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	
+		return (List<EmployeeDto>)query.getResultList();
+	}
+
+	
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -80,25 +99,6 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			 .setResultTransformer(Transformers.aliasToBean(UserProfileDto.class));
 		
 		return (UserProfileDto) query.getSingleResult();
-	}
-
-
-	@SuppressWarnings({ "unchecked", "deprecation" })
-	@Override
-	public List<EmployeeDto> getEmployees() {
-		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
-		NativeQuery<?> query = openSession.createNativeQuery(GET_EMPLOYEE_DTOS);
-		query.addScalar(EmployeeDto.EMPLOYEE_ID, StandardBasicTypes.INTEGER)
-			.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
-			.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
-			.addScalar(EmployeeDto.STATUS, StandardBasicTypes.INTEGER)
-			.addScalar(EmployeeDto.START_DATE, StandardBasicTypes.DATE)
-			.addScalar(EmployeeDto.END_DATE, StandardBasicTypes.DATE)
-			.addScalar(EmployeeDto.COURSE_ID, StandardBasicTypes.INTEGER)
-			.addScalar(EmployeeDto.COURSE, StandardBasicTypes.STRING)
-			.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
-			.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	
-		return (List<EmployeeDto>)query.getResultList();
 	}
 
 
