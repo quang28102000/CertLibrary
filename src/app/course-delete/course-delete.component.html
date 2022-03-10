@@ -1,0 +1,154 @@
+<div class="container">
+  <div class="grid-container">
+      <button class="btn grid-item">
+        <a href="\course-register">Đăng kí khoá học</a>
+      </button>
+      <button class="btn grid-item"><a href="\course-info">Thông tin khoá học</a></button>
+  </div>
+  <br>
+  <button style="margin-left: 40%; background-color: #1EBBE0;" class="btn grid-item">
+    <a href="\course-delete" style="color: #fff;">Xoá khoá học</a>
+  </button>
+
+
+  <hr>
+  
+
+  <div class="row" id="up">
+    <div class="col">
+      <h1>Xoá khoá học </h1>
+    </div>
+    <div class="col-md-3" id="s">
+      <form class="d-flex">
+        <input class="form-control me-2" type="text" name="search" [(ngModel)]="searchText"
+          placeholder="Nhập nội dung cần tìm" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="col col-lg-2">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Tất cả
+        </label>
+        <button type="button" class="btn btn-primary">Xóa</button>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div *ngFor="let cd of cInfo  | filter:searchText">
+    <div class="container-fluid" id="cover">
+      <div class="row">
+        <div class="col-md-1" id="check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        </div>
+        <div class="col-md-10">
+          <nav id="information">
+            <div class="row">
+              <div class="col-md-2">
+                <p>Tên khoá học: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+              </div>
+              <div class="col-md-10">
+                <div class="Content">{{cd.course}}</div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <p>Tên nhân viên: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              </div>
+              <div class="col-md-4">
+                <div class="Content">{{cd.fullName}}</div>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-2">
+                <p>Trạng thái: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              </div>
+              <div class="col-md-1">
+                <div class="Content">{{cd.status}}</div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="col-md-1" id="bin">
+          <button id="editIcon" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-trash"
+              viewBox="0 0 16 16">
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+              <path fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Delete dialog -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xóa khóa học này không?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <button type="button" id="y" class="btn btn-success" data-bs-dismiss="modal"
+              (click)="deleteC(cd.id)">Có</button>
+            <button type="button" id="n" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <nav id="showAll">
+    <p>Hiển thị tất cả</p>
+  </nav>
+</div>
+<nav aria-label="Page navigation example" id="paging">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+
+<!--<section class="example-section">
+  <span class="example-list-section">
+    <mat-checkbox class="example-margin"
+                  [checked]="allComplete"
+                  [indeterminate]="someComplete()"
+                  (change)="setAll($event.checked)">
+      {{task.name}}
+    </mat-checkbox>
+  </span>
+  <span class="example-list-section">
+    <ul>
+      <li *ngFor="let c of cInfo">
+        <mat-checkbox [(ngModel)]="subtask.completed"
+                      [color]="subtask.color"
+                      (ngModelChange)="updateAllComplete()">
+          {{subtask.name}}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </span>
+</section>-->

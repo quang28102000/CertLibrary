@@ -10,3 +10,25 @@ export interface CourseRegisterDTO {
     certLink: string;
     totalTime: string;
 }
+
+export interface CourseRegisterDTO2 {
+    course:{
+        course_title: string,
+        platform: string,
+        category: string,
+        totalLength: string
+    },
+    employee:{
+        full_name: string,
+        email: string
+    },
+    courseEmployee:{
+        courseId: number,
+        employeeId: number,
+        status: string,
+        startDate: string,
+        endDate: string,
+        certLink: string,
+        isDeleted: number
+    }
+}

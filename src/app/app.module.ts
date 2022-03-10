@@ -31,7 +31,11 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { CourseInfoComponent } from './course-info/course-info.component';
 
 import { DialogCourseRecent } from './user-screen/user-screen.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
+import { DialogUpdateComponent } from './course-info/course-info.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { CourseDeleteComponent } from './course-delete/course-delete.component';
+import { ManagerComponent } from './manager/manager.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +45,10 @@ import { DialogCourseRecent } from './user-screen/user-screen.component';
     EmployeeListComponent,
     CourseRegisterComponent,
     CourseInfoComponent,
-    DialogCourseRecent
+    DialogCourseRecent,
+    DialogUpdateComponent,
+    CourseDeleteComponent,
+    ManagerComponent
     
   ],
   imports: [
@@ -63,7 +70,9 @@ import { DialogCourseRecent } from './user-screen/user-screen.component';
     MatSelectModule,
     MatOptionModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

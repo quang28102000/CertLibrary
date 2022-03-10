@@ -13,86 +13,44 @@
             <th scope="col">Ngày kết thúc</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of employees" (click)="rowClick(item)">
-            <td></td>
-            <td>{{item.fullName}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.course}}</td>
-            <td *ngIf="item.status == 1">Đã đăng kí</td>
-            <td *ngIf="item.status == 2">Chưa đăng kí</td>
-            <td *ngIf="item.status == 3">Đã hoàn thành</td>
-            <td *ngIf="item.status == 4">Chưa hoàn thành</td>
+          <tr *ngFor="let item of employees | paginate: {
+                                              itemsPerPage: 15,
+                                              currentPage: p,
+                                              totalItems: totalLength }" 
+                                            (click)="rowClick(item)">
 
-            <td>{{item.startDate}}</td>
-            <td>{{item.endDate}}</td>
+            <div *ngIf="item.status != 2; then thenBlock else elseBlock"></div>
+              
+            <ng-template #thenBlock>
+              <td></td>
+              <td>{{item.fullName}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.course}}</td>
+              <td *ngIf="item.status == 1">Đã đăng kí</td>
+              <td *ngIf="item.status == 2">Chưa đăng kí</td>
+              <td *ngIf="item.status == 3">Đã hoàn thành</td>
+              <td *ngIf="item.status == 4">Chưa hoàn thành</td>
+              <td>{{item.startDate}}</td>
+              <td>{{item.endDate}}</td>
+            </ng-template>
+              
+            <ng-template #elseBlock>
+              <td></td>
+              <td>{{item.fullName}}</td>
+              <td>{{item.email}}</td>
+              <td></td>
+              <td *ngIf="item.status == 1">Đã đăng kí</td>
+              <td *ngIf="item.status == 2">Chưa đăng kí</td>
+              <td *ngIf="item.status == 3">Đã hoàn thành</td>
+              <td *ngIf="item.status == 4">Chưa hoàn thành</td>
+  
+              <td></td>
+              <td></td>
+            </ng-template>
+            
           </tr>
           <!-- status: 1.Đang học, 2. Đã học, 3. Chưa thi, 4. Thi nhưng chưa có bằng -->
-
-          <!--<tr>
-            <td>1</td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>Hoan thanh</td>
-            <td>22-01-2022</td>
-            <td>22-01-2023</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>Hoan thanh</td>
-            <td>22-01-2022</td>
-            <td>22-01-2023</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>Hoan thanh</td>
-            <td>22-01-2022</td>
-            <td>22-01-2023</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>Hoan thanh</td>
-            <td>22-01-2022</td>
-            <td>22-01-2023</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>Hoan thanh</td>
-            <td>22-01-2022</td>
-            <td>22-01-2023</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>Hoan thanh</td>
-            <td>22-01-2022</td>
-            <td>22-01-2023</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>Hoan thanh</td>
-            <td>22-01-2022</td>
-            <td>22-01-2023</td>
-          </tr> -->
-          
-         
         </tbody>
       </table>
+      <pagination-controls style="display: flex; justify-content: center;"  (pageChange)="p = $event"> </pagination-controls>
 </div>

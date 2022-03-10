@@ -82,6 +82,7 @@ mat-button-toggle{
 .card{
   margin:30px;
   flex: 25%;
+  height: 290px;
   justify-self: space-around;
   position: relative;
   top: 0;
@@ -236,4 +237,9 @@ th {
   text-align: center;
 
 
+}
+
+.card-img-top{
+  height:160px;
+  overflow: hidden;
 }

@@ -8,6 +8,8 @@ import { EmployeeService } from '../Service/employee.service';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
+  public totalLength: any; // paging
+  p: number = 1; //paging
 
   constructor(private employeeService: EmployeeService,
     private router: Router) { }
@@ -15,6 +17,7 @@ export class EmployeeListComponent implements OnInit {
   public employees!: any[];
   ngOnInit(): void {
     this.GetEmployeeList();
+    this.totalLength = this.employees.length;
 
   }
 
@@ -28,7 +31,7 @@ export class EmployeeListComponent implements OnInit {
 
   rowClick(employee: any){
     console.log('row clicked', employee);
-    this.router.navigate(['user-screen', employee.id]);
+    this.router.navigate(['user-screen', employee.employeeId]);
   }
 
 }

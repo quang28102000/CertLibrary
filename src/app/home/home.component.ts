@@ -22,6 +22,10 @@ export interface DialogData {
 })
 export class HomeComponent implements OnInit {
 
+
+  public totalLengthEmp: any; // paging
+  p: number = 1; //paging
+
   public popup_title: any;
   public popup_data: any;
   public courses!: any[];
@@ -40,6 +44,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getUserHomePageStatistics();
     this.getCourses();
+    this.totalLengthEmp = this.popup_data.length;
     
   }
 

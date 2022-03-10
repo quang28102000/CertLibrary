@@ -1,12 +1,12 @@
 <div class="container-sm">
   <div class="bar">
-      <select class="form-select" aria-label="Default select example">
-          <option value="All" selected>Danh mục</option>
-          <option *ngFor="let course of courses" value="{{course.category}}">{{course.category}}</option>
+      <select class="form-select" aria-label="Default select example" [(ngModel)]="optionCategory">
+          <option value="" selected>Danh mục</option>
+          <option *ngFor="let category of filterCategory" value="{{category}}">{{category}}</option>
       </select>
-      <select class="form-select" aria-label="Default select example">
-          <option value="All" selected>Nền tảng</option>
-          <option *ngFor="let course of courses" value="{{course.platform}}">{{course.platform}}</option>
+      <select class="form-select" aria-label="Default select example" [(ngModel)]="optionPlatform">
+          <option value="" selected>Nền tảng</option>
+          <option *ngFor="let platform of filterPlatform" value="{{platform}}">{{platform}}</option>
       </select>
       <input type="text" id="searchTxt" [(ngModel)]="searchTxt">
        <button id="searchbtn" class="btn"><i class="fa fa-search"></i></button>
@@ -29,7 +29,14 @@
 </div>
 
 <div class="container cards">
-  <div class="grid" *ngFor="let item of courses | filter: searchTxt">
+  <div class="grid" *ngFor="let item of courses | filter: searchTxt
+                                                | filter: optionCategory
+                                                | filter: optionPlatform
+                                                | paginate: {
+                                                  itemsPerPage: 6,
+                                                  currentPage: p,
+                                                  totalItems: courses.length}
+                                                ">
     <div class="g-col-3">
       <button class="card" style="width: 18rem;" data-bs-toggle="modal" href="#popup3" (click)="courseDetail(item)">
         <img src="{{item.image}}" class="card-img-top" alt="...">
@@ -41,24 +48,26 @@
     </div>
   </div>
 </div>
+<pagination-controls style="display: flex;
+  justify-content: center;"  (pageChange)="p = $event"> </pagination-controls>
 
-<nav aria-label="Page navigation example" id="paging">
+<!-- <nav aria-label="Page navigation example" id="paging">
   <ul class="pagination">
-  <li class="page-item">
-    <a class="page-link" href="#" aria-label="Previous">
-      <span aria-hidden="true">&laquo;</span>
-    </a>
-  </li>
-  <li class="page-item"><a class="page-link" href="#">1</a></li>
-  <li class="page-item"><a class="page-link" href="#">2</a></li>
-  <li class="page-item"><a class="page-link" href="#">3</a></li>
-  <li class="page-item">
-    <a class="page-link" href="#" aria-label="Next">
-      <span aria-hidden="true">&raquo;</span>
-    </a>
-  </li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
   </ul>
-  </nav>
+</nav> -->
 
 <!-- POP UP -->
 
@@ -127,7 +136,10 @@
               </div>
         
               <div class="row">
-                <div class="col-md-7"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-3">
+                  <button class="bt delete" data-bs-toggle="modal" href="#popupDS" (click)="showListStudent(data)">Danh sách sinh viên</button>
+                </div>
                 <div class="col-md-3">
                   <button class="bt delete">Xóa khóa học</button>
                 </div>
@@ -137,9 +149,29 @@
               </div>
           </div>
         </div>
+      </div>
+      <div class="modal-footer">
 
-        <br><hr><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- POP UP -->
+
+<div class="modal fade bd-example-modal-lg" id="popupDS" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" >
         <h1 class="popup-header">Danh Sách Sinh Viên</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
         <table class="table table-hover table-striped">
         <thead>
             <th scope="col">STT</th>
@@ -151,107 +183,21 @@
             <th scope="col">Ngày kết thúc</th>
         </thead>
         <tbody>
-          <!-- <tr *ngFor="let item of employees" (click)="rowClick(item)">
+          <tr *ngFor="let item of listStudent" (click)="rowClick(item)">
             <td></td>
             <td>{{item.fullName}}</td>
             <td>{{item.email}}</td>
             <td>{{item.course}}</td>
-            <td>
-              {{item.status}}
-            </td>
+            <td *ngIf="item.status == 1">Đã đăng kí</td>
+            <td *ngIf="item.status == 2">Chưa đăng kí</td>
+            <td *ngIf="item.status == 3">Đã hoàn thành</td>
+            <td *ngIf="item.status == 4">Chưa hoàn thành</td>
             <td>{{item.startDate}}</td>
             <td>{{item.endDate}}</td>
-          </tr> -->
+          </tr>
 
           <!-- status: 1.Đang học, 2. Đã học, 3. Chưa thi, 4. Thi nhưng chưa có bằng -->
-          <tr>
-            <td></td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>
-              1
-            </td>
-            <td>20/02/2022</td>
-            <td>21/02/2022</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>
-              1
-            </td>
-            <td>20/02/2022</td>
-            <td>21/02/2022</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>
-              1
-            </td>
-            <td>20/02/2022</td>
-            <td>21/02/2022</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>
-              1
-            </td>
-            <td>20/02/2022</td>
-            <td>21/02/2022</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>
-              1
-            </td>
-            <td>20/02/2022</td>
-            <td>21/02/2022</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>
-              1
-            </td>
-            <td>20/02/2022</td>
-            <td>21/02/2022</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>
-              1
-            </td>
-            <td>20/02/2022</td>
-            <td>21/02/2022</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Nguyen Van A</td>
-            <td>nguyenvana@gmail.com</td>
-            <td>Khoa hoc cho nguoi moi bat dau</td>
-            <td>
-              1
-            </td>
-            <td>20/02/2022</td>
-            <td>21/02/2022</td>
-          </tr>
+          
 
           
           
