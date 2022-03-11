@@ -35,12 +35,18 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			"SELECT e.employee_id AS employeeId, \r\n"
 			+ "e.full_name AS fullName, e.email AS email, ce.status AS status, \r\n"
 			+ "CAST(ce.start_date AS DATE) AS startDate, CAST(ce.end_date AS DATE) AS endDate, \r\n"
-			+ "c.course_id AS courseId, c.course_tittle AS course, c.platform AS platform \r\n"
+			+ "c.course_id AS courseId, ce.cert_link AS certLink,\r\n"
+			+ "c.course_tittle AS course, \r\n"
+			+ "cd.course_length AS courseLength,\r\n"
+			+ "c.platform AS platform,\r\n"
+			+ "c.category AS category\r\n"
 			+ "FROM employee AS e \r\n"
 			+ "JOIN course_employee AS ce \r\n"
 			+ " ON e.employee_id = ce.employee_id\r\n"
 			+ "JOIN course AS c\r\n"
-			+ " ON ce.course_id = c.course_id";
+			+ " ON ce.course_id = c.course_id\r\n"
+			+ "JOIN course_detail AS cd\r\n"
+			+ " ON c.course_id = cd.course_id";
 	
 	private static final String GET_SUBSCRIBED_EMPLOYESS_IN_LAST_7_DAYS_DTOS =
 			"SELECT e.employee_id AS " + EmployeeDto.EMPLOYEE_ID + ", "
@@ -75,8 +81,11 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			.addScalar(EmployeeDto.START_DATE, StandardBasicTypes.DATE)
 			.addScalar(EmployeeDto.END_DATE, StandardBasicTypes.DATE)
 			.addScalar(EmployeeDto.COURSE_ID, StandardBasicTypes.INTEGER)
+			.addScalar(EmployeeDto.CERT_LINK, StandardBasicTypes.STRING)
 			.addScalar(EmployeeDto.COURSE, StandardBasicTypes.STRING)
+			.addScalar(EmployeeDto.COURSE_LENGTH, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeDto.PLATFORM, StandardBasicTypes.STRING)
+			.addScalar(EmployeeDto.CATEGORY, StandardBasicTypes.STRING)
 			.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));	
 		return (List<EmployeeDto>)query.getResultList();
 	}

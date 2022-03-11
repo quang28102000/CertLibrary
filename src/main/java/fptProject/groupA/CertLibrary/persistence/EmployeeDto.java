@@ -15,6 +15,9 @@ public class EmployeeDto {
 	public static final String COURSE_ID = "courseId";
 	public static final String COURSE = "course";
 	public static final String PLATFORM = "platform";
+	public static final String CERT_LINK = "certLink";
+	public static final String COURSE_LENGTH = "courseLength";
+	public static final String CATEGORY = "category";
 
 	private Integer employeeId;
 	private String fullName;
@@ -25,13 +28,16 @@ public class EmployeeDto {
 	private Integer courseId;
 	private String course;
 	private String platform;
+	private String certLink;
+	private Integer courseLength;
+	private String category;
 
 	public EmployeeDto() {
 
 	}
 
 	public EmployeeDto(Integer employeeId, String fullName, String email, String status, Date startDate, Date endDate,
-			Integer courseId, String course, String platform) {
+			Integer courseId, String course, String platform, String certLink, Integer courseLength, String category) {
 		this.employeeId = employeeId;
 		this.fullName = fullName;
 		this.email = email;
@@ -41,6 +47,33 @@ public class EmployeeDto {
 		this.courseId = courseId;
 		this.course = course;
 		this.platform = platform;
+		this.certLink = certLink;
+		this.courseLength = courseLength;
+		this.category = category;
+	}
+
+	public String getCertLink() {
+		return certLink;
+	}
+
+	public void setCertLink(String certLink) {
+		this.certLink = certLink;
+	}
+
+	public Integer getCourseLength() {
+		return courseLength;
+	}
+
+	public void setCourseLength(Integer courseLength) {
+		this.courseLength = courseLength;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public Integer getCourseId() {
@@ -119,7 +152,8 @@ public class EmployeeDto {
 	public String toString() {
 		return "EmployeeDto [employeeId=" + employeeId + ", fullName=" + fullName + ", email=" + email + ", status="
 				+ status + ", startDate=" + startDate + ", endDate=" + endDate + ", courseId=" + courseId + ", course="
-				+ course + ", platform=" + platform + "]";
+				+ course + ", platform=" + platform + ", certLink=" + certLink + ", courseLength=" + courseLength
+				+ ", category=" + category + "]";
 	}
 
 }

@@ -89,7 +89,7 @@ public class HomePageController {
 	}
 	
 
-	@PostMapping("/add")
+	@PostMapping("/addCourseRegister")
 	public ResponseEntity<Course> addCourseRegisterForEmployee
 					(@RequestBody String jsonText) throws JsonMappingException, JsonProcessingException {
 //		CourseEmployee courseEmployee = new CourseEmployee(new Id(9, 1), 4,
