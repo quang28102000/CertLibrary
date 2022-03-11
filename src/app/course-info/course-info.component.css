@@ -108,7 +108,7 @@
   
 }
 
-.btn{
+.btn2{
   height: 70px;
   background-color: #B5DFE9;
   color: #265A99;
@@ -119,9 +119,8 @@
   text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.25);
 }
 
-.btn:hover{
+.btn2:hover{
   background-color: #1EBBE0 !important;
-  /* color: #fff; */
 }
 
 a{

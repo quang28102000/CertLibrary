@@ -20,11 +20,14 @@ export class CourseDeleteComponent implements OnInit {
   cInfo : any;
   getCourseInformation(){
     this.courseService.getCourseInfo().subscribe(
-      (ci) => this.cInfo = ci
+      (ci) => {
+        console.log("ci", ci);
+        this.cInfo = ci}
     )
   }
 
   deleteC(id: number) {
+    console.log('id-delete', id);
     this.courseService.deleteCourse(id).subscribe({
       next:(res)=>{
         alert("Xoá thành công !!!");

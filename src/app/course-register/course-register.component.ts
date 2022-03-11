@@ -89,9 +89,14 @@ export class CourseRegisterComponent implements OnInit {
 
 
   Add(){
-    var startDate = new Date(this.start).toLocaleDateString();
-    var endDate = new Date(this.end).toLocaleDateString();
+    var startDate = new Date(this.start).toISOString().slice(0, 10);
+    var endDate = new Date(this.end).toISOString().slice(0, 10);
+    
 
+    startDate = startDate + " 00:00:00"; 
+    endDate = endDate + " 00:00:00"; 
+
+    console.log("startDate", startDate);
     // var course_name = this.course_info.split(' ` ')[1];
     // var course_id = Number(this.course_info.split(' ` ')[0]);
 
@@ -102,10 +107,10 @@ export class CourseRegisterComponent implements OnInit {
 
     const addNew2: CourseRegisterDTO2 = {
       course:{
-        course_title: this.courseSelected.name,
+        course_tittle: this.courseSelected.name,
         platform: this.platform,
         category: this.categorySelected,
-        totalLength: this.totalTime
+        // totalLength: this.totalTime
       },
       employee:{
         full_name: this.emp.fullName,

@@ -13,10 +13,10 @@ export interface CourseRegisterDTO {
 
 export interface CourseRegisterDTO2 {
     course:{
-        course_title: string,
+        course_tittle: string,
         platform: string,
         category: string,
-        totalLength: string
+        // totalLength: string
     },
     employee:{
         full_name: string,
