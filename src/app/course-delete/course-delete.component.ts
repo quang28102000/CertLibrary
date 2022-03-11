@@ -1,5 +1,7 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
+import { CourseDelete } from '../model/course-delete';
 
 @Component({
   selector: 'app-course-delete',
@@ -9,6 +11,7 @@ import { CourseService } from '../course.service';
 export class CourseDeleteComponent implements OnInit {
 
   searchText: any;
+  deleteItem: any;
   constructor(
     private courseService : CourseService
   ) { }
@@ -26,9 +29,13 @@ export class CourseDeleteComponent implements OnInit {
     )
   }
 
-  deleteC(id: number) {
-    console.log('id-delete', id);
-    this.courseService.deleteCourse(id).subscribe({
+  deleteC() {
+    console.log('id-delete', this.deleteItem);
+    var deleteItemDto: CourseDelete = {
+      courseId: this.deleteItem.courseId,
+      employeeId: this.deleteItem.employeeId
+    }
+    this.courseService.deleteCourse(deleteItemDto).subscribe({
       next:(res)=>{
         alert("Xoá thành công !!!");
       },
@@ -36,6 +43,12 @@ export class CourseDeleteComponent implements OnInit {
         alert("Xoá thất bại !!!");
       }
     })
+  }
+
+  ClickBtnDelete(item: any){
+    console.log('clicked', item);
+    this.deleteItem = item;
+
   }
 
 

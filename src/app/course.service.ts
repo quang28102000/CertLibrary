@@ -4,6 +4,7 @@ import { catchError, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Course } from './course';
 import { CourseRegisterDTO, CourseRegisterDTO2 } from './model/course-register';
+import { CourseDelete } from './model/course-delete';
 
 @Injectable({
   providedIn: 'root'
@@ -79,8 +80,9 @@ public UpdateCourse(data:any, id: number){
   return this.http.put<any>(`${this.apiServiceUrl}/course/getEmployees` + id, data);
 }
 
-public deleteCourse(id: number) {
-  return this.http.delete<any>(`${this.apiServiceUrl}/course/delete` + id);
+public deleteCourse(item: any): Observable<any> {
+  const url = `${this.apiServiceUrl}/course/delete`;
+  return this.http.delete<any>(url, item);
 }
 
 

@@ -71,7 +71,7 @@
           </nav>
         </div>
         <div class="col-md-1" id="bin">
-          <button id="editIcon" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button id="editIcon" (click)="ClickBtnDelete(cd)" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-trash"
               viewBox="0 0 16 16">
               <path
@@ -97,7 +97,7 @@
           </div>
           <div class="modal-body">
             <button type="button" id="y" class="btn btn-success" data-bs-dismiss="modal"
-              (click)="deleteC(cd.id)">Có</button>
+              (click)="deleteC()">Có</button>
             <button type="button" id="n" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
           </div>
         </div>
