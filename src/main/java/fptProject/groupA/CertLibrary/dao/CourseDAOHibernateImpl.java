@@ -140,7 +140,7 @@ public class CourseDAOHibernateImpl implements CourseDao {
 		     .executeUpdate();
 		
 		System.out.println("CourseEmployee added!");
-
+		System.out.println(courseEmployee.getStartDate() + " - " + courseEmployee.getEndDate());
 		transaction.commit();
 		return courseEmployee;
 	}

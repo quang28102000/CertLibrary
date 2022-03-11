@@ -23,11 +23,12 @@ public class CourseEmployee {
 
 	@JsonProperty("startDate")
 //	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern = "YYYY-MM-DD")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date startDate;
 
+	@JsonProperty("endDate")
 	@JsonIgnoreProperties(ignoreUnknown = true)
-	@JsonFormat(pattern = "YYYY-MM-DD")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date endDate;
 	
 	private String certLink;
