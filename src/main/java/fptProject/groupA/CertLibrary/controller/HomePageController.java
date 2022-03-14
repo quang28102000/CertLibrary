@@ -90,7 +90,7 @@ public class HomePageController {
 	
 
 	@PostMapping("/addCourseRegister")
-	public ResponseEntity<Course> addCourseRegisterForEmployee
+	public ResponseEntity<CourseEmployee> addCourseRegisterForEmployee
 					(@RequestBody String jsonText) throws JsonMappingException, JsonProcessingException {
 //		CourseEmployee courseEmployee = new CourseEmployee(new Id(9, 1), 4,
 //				LocalDateTime.parse("2022-03-01 00:00:00", DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss")),
@@ -103,25 +103,25 @@ public class HomePageController {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode node = mapper.readTree(jsonText);
 //		
-		Integer courseId = node.get("courseEmployee").get("courseId").intValue();
-		Integer employeeId = node.get("courseEmployee").get("employeeId").intValue();
+//		Integer courseId = node.get("courseEmployee").get("courseId").intValue();
+//		Integer employeeId = node.get("courseEmployee").get("employeeId").intValue();
 //		Id courseEmployeeId = node.get("courseEmployee").to;
 		
-		Course theCourse = mapper.convertValue(node.get("course"), Course.class);
-		Employee theEmployee = mapper.convertValue(node.get("employee"), Employee.class);
+//		Course theCourse = mapper.convertValue(node.get("course"), Course.class);
+//		Employee theEmployee = mapper.convertValue(node.get("employee"), Employee.class);
 		CourseEmployee theCourseEmployee = mapper.convertValue(node.get("courseEmployee"), CourseEmployee.class);
 //		format("YYYY-MM-DD hh:mm:ss")
 //		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		theCourse.setId(courseId);
-		theEmployee.setId(employeeId);
-		theCourseEmployee.setCourseId(courseId);
-		theCourseEmployee.setEmployeeId(employeeId);
+//		theCourse.setId(courseId);
+//		theEmployee.setId(employeeId);
+//		theCourseEmployee.setCourseId(courseId);
+//		theCourseEmployee.setEmployeeId(employeeId);
 //		theCourseEmployee.setStartDate("2022-03-08 08:08:11");
-		courseService.addCourseForEmployee(theCourse, theEmployee);
+//		courseService.addCourseForEmployee(theCourse, theEmployee);
 		courseService.addCourseEmployee(theCourseEmployee);
-		System.out.println(node.get("startDate").toString());
-		return new ResponseEntity<Course>(theCourse, HttpStatus.CREATED);
+//		System.out.println(node.get("startDate").toString());
+		return new ResponseEntity<CourseEmployee>(theCourseEmployee, HttpStatus.CREATED);
 	};
 	
 	@DeleteMapping("/delete")
