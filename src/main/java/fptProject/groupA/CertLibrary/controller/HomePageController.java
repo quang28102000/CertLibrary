@@ -120,6 +120,7 @@ public class HomePageController {
 //		theCourseEmployee.setStartDate("2022-03-08 08:08:11");
 		courseService.addCourseForEmployee(theCourse, theEmployee);
 		courseService.addCourseEmployee(theCourseEmployee);
+		System.out.println(node.get("startDate").toString());
 		return new ResponseEntity<Course>(theCourse, HttpStatus.CREATED);
 	};
 	
@@ -171,15 +172,20 @@ public class HomePageController {
 	public ResponseEntity<String> deleteMultipleCourseEmployee(@RequestBody String jsonText) throws JsonMappingException, JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode node = mapper.readTree(jsonText);
-		Integer[] courseId = StreamSupport.stream(node.get("course_id").spliterator(), false).toArray(Integer[]::new);
-		Integer[] employeeId = StreamSupport.stream(node.get("employee_id").spliterator(), false).toArray(Integer[]::new);
+		
+		Integer[] courseId = StreamSupport.stream(node.get("course_id").spliterator(), false)
+								.map(jsonObj -> mapper.convertValue(jsonObj, Integer.class))
+								.toArray(Integer[]::new);
+		Integer[] employeeId = StreamSupport.stream(node.get("employee_id").spliterator(), true)
+								.map(jsonObj -> mapper.convertValue(jsonObj, Integer.class)).toArray(Integer[]::new);
+		
 //		Integer[] courseId = mapper.convertValue(node.get("course_id"), Integer[].class);
 //		Integer[] employeeId = mapper.convertValue(node.get("employee_id"), Integer[].class);
 		System.out.println(courseId.toString());
 		System.out.println(employeeId.toString());
 		
 		for(int i = 0; i < courseId.length; i++) {
-			courseService.deleteCourseEmployee(courseId[i], employeeId[i]);
+			courseService.deleteCourseEmployeeWithFlag(courseId[i], employeeId[i]);
 		}
 		return new ResponseEntity<String>("multipleDelete succeeded!", HttpStatus.OK);
 	};
