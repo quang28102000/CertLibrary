@@ -162,7 +162,8 @@ public class HomePageController {
 			courseService.addCourseEmployee(new CourseEmployee(newCourseId, newEmployeeId, node.get("status").asInt(),
 					mapper.convertValue(node.get("start_date"), Date.class), 
 					mapper.convertValue(node.get("end_date"), Date.class), 
-					node.get("certLink").asText(), node.get("isDeleted").asInt()));
+					node.get("cert_link").asText(), 
+					node.get("is_deleted").asInt()));
 		}
 		
 		return new ResponseEntity<String>(noti, HttpStatus.OK);
