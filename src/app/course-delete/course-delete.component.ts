@@ -1,7 +1,9 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { isNgTemplate } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { CourseService } from '../course.service';
-import { CourseDelete } from '../model/course-delete';
+import { CourseDelete, CourseDelete2, CourseDeleteDto } from '../model/course-delete';
 
 @Component({
   selector: 'app-course-delete',
@@ -10,8 +12,18 @@ import { CourseDelete } from '../model/course-delete';
 })
 export class CourseDeleteComponent implements OnInit {
 
+  deleteItems: any[] =[];
+
+
+  dataSource!: MatTableDataSource < any > ;  
+  selection = new SelectionModel < any > (true, []);  
   searchText: any;
   deleteItem: any;
+
+  msg: string = ''; // Angular 13
+  clss: string = ''; // Angular 13
+
+  cInfo : CourseDeleteDto[] = [];
   constructor(
     private courseService : CourseService
   ) { }
@@ -20,7 +32,6 @@ export class CourseDeleteComponent implements OnInit {
     this.getCourseInformation();
   }
 
-  cInfo : any;
   getCourseInformation(){
     this.courseService.getCourseInfo().subscribe(
       (ci) => {
@@ -30,26 +41,65 @@ export class CourseDeleteComponent implements OnInit {
   }
 
   deleteC() {
-    console.log('id-delete', this.deleteItem);
+    console.log('id-selected', this.deleteItem);
     var deleteItemDto: CourseDelete = {
-      courseId: this.deleteItem.courseId,
-      employeeId: this.deleteItem.employeeId
+      course_id: this.deleteItem.courseId,
+      employee_id: this.deleteItem.employeeId
     }
-    this.courseService.deleteCourse(deleteItemDto).subscribe({
-      next:(res)=>{
-        alert("Xoá thành công !!!");
-      },
-      error: () =>{
-        alert("Xoá thất bại !!!");
-      }
+    console.log('item-convert', deleteItemDto);
+    this.courseService.deleteCourse(deleteItemDto).subscribe((data)=>{
+      console.log('item-send', data);
     })
   }
 
   ClickBtnDelete(item: any){
-    console.log('clicked', item);
     this.deleteItem = item;
-
   }
+
+  MultipleDelete(){
+    //lấy ra danh sách item đã chọn
+    const selectedItems = this.cInfo.filter(cInfo => cInfo.checked);
+		console.log ('selectedItem',selectedItems);
+
+    //tạo object
+    var listItemArr: CourseDelete2 = {
+      course_id: [],
+      employee_id: []
+    };
+		
+		if(selectedItems && selectedItems.length > 0) {
+      // convert list item đã chọn sang object courseDelete: employeeId[], courseId[]
+      selectedItems.forEach(element => {
+        listItemArr.course_id.push(element.courseId);
+        listItemArr.employee_id.push(element.employeeId);
+      });
+      console.log('list I', listItemArr);
+      //gọi service để xoá
+      this.courseService.deleteMultipleCourse(listItemArr).subscribe((data)=>{
+        console.log('send-data', data);
+      })
+
+
+
+			// this.productService.deleteProducts(selectedProducts) // Angular 9
+        //                 this.productService.deleteProducts(selectedProducts as number[]) // Angular 13
+				// .subscribe(res => {
+				// 	this.clss = 'grn';
+				// 	this.msg = 'Products successfully deleted';
+				// 	}, err => {
+        //                 this.clss = 'rd';
+				// 		this.msg = 'Something went wrong during deleting products';
+        //             }
+        //         );
+		} else {
+
+
+			this.clss = 'rd';
+			this.msg = 'You must select at least one product';
+		}
+  }
+
+
 
 
 

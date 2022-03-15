@@ -32,3 +32,15 @@ export interface CourseRegisterDTO2 {
         isDeleted: number
     }
 }
+
+export interface CourseRegisterDTO3 {
+    courseEmployee:{
+    courseId: number,
+    employeeId: number,
+    status: string,
+    startDate: string,
+    endDate: string,
+    certLink: string,
+    isDeleted: number
+    }
+}

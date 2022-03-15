@@ -3,15 +3,45 @@
   <div mat-dialog-content>
 
     <form [formGroup]="courseForm">
-      <mat-form-field appearance="fill">
+      <!-- <mat-form-field appearance="fill">
         <mat-label>Tên nhân viên: </mat-label>
         <input formControlName="fullName" matInput>
-      </mat-form-field>
-
+      </mat-form-field> -->
       <mat-form-field appearance="fill">
+       <mat-label>Tên nhân viên:</mat-label>
+       <mat-select formControlName="employee">
+         <mat-option *ngFor="let item of employees" [value]="item.employeeId">{{item.fullName}}</mat-option>
+       </mat-select>
+     </mat-form-field>
+
+     <mat-form-field appearance="fill">
+       <mat-label>Tên khoá học:</mat-label>
+       <mat-select formControlName="course">
+         <mat-option *ngFor="let item of courses" [value]="item.id">{{item.name}}</mat-option>
+       </mat-select>
+     </mat-form-field>
+
+
+
+
+      <!--<mat-form-field appearance="fill">
+       <mat-label>Tên nhân viên:</mat-label>
+       <mat-select>
+         <mat-option  *ngFor="let item of editData" value="{{item.fullName}}"></mat-option>
+       </mat-select>
+     </mat-form-field>
+
+     <mat-form-field appearance="fill">
+       <mat-label>Tên khoá học:</mat-label>
+       <mat-select>
+         <mat-option formControlName="course" *ngFor="let item of editData" value="{{item.course}}"></mat-option>
+       </mat-select>
+     </mat-form-field>-->
+
+      <!-- <mat-form-field appearance="fill">
         <mat-label>Tên khoá học:</mat-label>
         <input formControlName="course" matInput>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field appearance="fill">
         <mat-label>Chứng chỉ:</mat-label>

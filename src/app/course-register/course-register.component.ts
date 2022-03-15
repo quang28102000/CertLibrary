@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { EmployeeService } from '../Service/employee.service';
-import { CourseRegisterDTO, CourseRegisterDTO2 } from '../model/course-register';
+import { CourseRegisterDTO, CourseRegisterDTO2, CourseRegisterDTO3 } from '../model/course-register';
 import { map, Observable, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Employee } from '../model/Employee';
@@ -105,17 +105,29 @@ export class CourseRegisterComponent implements OnInit {
     //   course_id = this.courses.pop().id + 1;
     // }
 
-    const addNew2: CourseRegisterDTO2 = {
-      course:{
-        course_tittle: this.courseSelected.name,
-        platform: this.platform,
-        category: this.categorySelected,
-        // totalLength: this.totalTime
-      },
-      employee:{
-        full_name: this.emp.fullName,
-        email: this.emp.email,
-      },
+    // const addNew2: CourseRegisterDTO2 = {
+    //   course:{
+    //     course_tittle: this.courseSelected.name,
+    //     platform: this.platform,
+    //     category: this.categorySelected,
+    //     // totalLength: this.totalTime
+    //   },
+    //   employee:{
+    //     full_name: this.emp.fullName,
+    //     email: this.emp.email,
+    //   },
+    //   courseEmployee:{
+    //     courseId: this.courseSelected.id,
+    //     employeeId: Number(this.emp.employeeId),
+    //     status: this.status,
+    //     startDate: startDate,
+    //     endDate: endDate,
+    //     certLink: this.certLink,
+    //     isDeleted: 0,
+    //   }
+    // };
+
+    const addNew3: CourseRegisterDTO3 = {
       courseEmployee:{
         courseId: this.courseSelected.id,
         employeeId: Number(this.emp.employeeId),
@@ -127,8 +139,8 @@ export class CourseRegisterComponent implements OnInit {
       }
     };
 
-    console.log('add',addNew2);
-    this.courseService.addCourseRegister(addNew2).subscribe((data)=>{
+    console.log('add',addNew3);
+    this.courseService.addCourseRegister(addNew3).subscribe((data)=>{
       console.log("send-data: ", data);
     })
             

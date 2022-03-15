@@ -36,6 +36,8 @@ import { DialogUpdateComponent } from './course-info/course-info.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { CourseDeleteComponent } from './course-delete/course-delete.component';
 import { ManagerComponent } from './manager/manager.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +74,8 @@ import { ManagerComponent } from './manager/manager.component';
     MatAutocompleteModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
