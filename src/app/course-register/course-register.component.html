@@ -11,7 +11,7 @@
 
     <hr>
     <div class="form">
-        <h1>Mẫu đăng kí khoá học</h1>
+        <h1 class="title">Mẫu đăng kí khoá học</h1>
         <div class="fields">
             <!-- <div class="field">
                 <label>* Chọn Nhân Viên</label><br>
@@ -121,6 +121,7 @@
             </div>
 
 
+            <!-- <button class="btn-success" data-bs-toggle="modal" href="#notification">Submit</button> -->
             <button class="btn-success" (click)="Add()">Submit</button>
         </div>
     </div>
@@ -133,7 +134,7 @@
 <div class="modal fade " id="selectEmployee" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
-        <div class="modal-header" >
+        <div class="modal-header">
           <h1 class="popup-header">Chọn nhân viên</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -168,3 +169,26 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Notification -->
+<div class="modal fade " id="notification" #notification aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <!-- <div class="modal-header" >
+        <h1 class="popup-header">Lỗi</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> -->
+
+      <div class="modal-body">
+        <mat-icon class="btn-warn">warning</mat-icon>
+        <h1 class="errorHeader">Thêm nhân viên lỗi!</h1>
+        <p >{{emp?.fullName}} đã đăng kí khoá học {{courseSelected?.name}}</p>
+        <p >Vui lòng chọn khoá khác</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-danger" data-bs-dismiss="modal" aria-label="Close">Thoát</button>
+      </div>
+    </div>
+  </div>
+</div>

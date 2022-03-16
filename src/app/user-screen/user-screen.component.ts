@@ -16,6 +16,9 @@ export class UserScreenComponent implements OnInit {
   public id!:any;
   public info:any;
   router: any;
+  searchText : any;
+  public eId = this.id;
+
   public employees: any;
   public statictics: number[]= [];
 
@@ -59,23 +62,35 @@ export class UserScreenComponent implements OnInit {
       this.statictics[0] = totalCourse.length;
       this.statictics[1] = studyCourse.length;
       this.statictics[2] = completeCourse.length;
-
-
-
-
-      
     });
+  }
 
-
-
+  cert:any;
+  skills:any;
+  getCert(): void {
+    this.userScreenService.getCertificate().subscribe(
+      (c) => this.cert = c
+    )
+    this.getSkill()
   }
 
 
 
-  onOpen(Id: number) {
+  getSkill(){
+    this.userScreenService.getSkills().subscribe(
+      (s) => this.skills = s
+
+    );console.log("s", this.skills)
+  }
+
+
+
+  onOpen(i : string) {
     this.dialogRef.open(DialogCourseRecent, {
       data: {
-        id : Id
+        id : this.id,
+        cn : i
+
       }
     });
 
@@ -91,23 +106,33 @@ export class UserScreenComponent implements OnInit {
 export class DialogCourseRecent implements OnInit{
 
   public CRid: any;
+  public cName : any;
 
 
   constructor(private userScreenService: UserScreenService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.CRid = data.id
+      this.cName = data.cn
   }
 
   courses: any;
-  getCourseRecent(cId: number): void {
-    this.userScreenService.getCourseR(cId).subscribe(
+  getCourseRecent(): void {
+    this.userScreenService.getCourseR().subscribe(
       (updateCourseR) => this.courses = updateCourseR
     )
   }
 
+  skills : any;
+  getSkill(){
+    this.userScreenService.getSkills().subscribe(
+      (s) => this.skills = s
+
+    );console.log("s", this.skills)
+  }
+
   ngOnInit(): void {
-    this.getCourseRecent(this.CRid);
+    this.getCourseRecent();
+    this.getSkill();
   }
 
 }
-

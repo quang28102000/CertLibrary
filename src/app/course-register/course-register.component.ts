@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CourseService } from '../course.service';
 import { EmployeeService } from '../Service/employee.service';
 import { CourseRegisterDTO, CourseRegisterDTO2, CourseRegisterDTO3 } from '../model/course-register';
 import { map, Observable, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Employee } from '../model/Employee';
+import * as $AB from 'jquery';
+import * as bootstrap from "bootstrap";
 
 
 @Component({
@@ -22,19 +24,14 @@ export class CourseRegisterComponent implements OnInit {
 
   public emp!: any;
   //
-  public employee_name: any;
-  public employee_info!: string;
   public platform!: any;
   public status!: any;
   public start!: any;
   public totalTime!: any;
-  public course_info!: string;
   public end!: any;
   public certLink!: any;
 
   public categorySelected!: any;
-  public courseCategory: String[] = [];
-  public coursePlatform: String[] = [];
 
   public courseSelected: any;
 
@@ -69,11 +66,6 @@ export class CourseRegisterComponent implements OnInit {
       console.log('filter platform', this.filterPlatform);
 
     })
-
-    // this.courseCategory = this.courseService.getCourseCategory();
-    // this.coursePlatform = this.courseService.coursePlatform;
-
-    // console.log(this.courseCategory);
   }
 
   selectEmployee(item: any){
@@ -91,41 +83,9 @@ export class CourseRegisterComponent implements OnInit {
   Add(){
     var startDate = new Date(this.start).toISOString().slice(0, 10);
     var endDate = new Date(this.end).toISOString().slice(0, 10);
-    
 
     startDate = startDate + " 00:00:00"; 
     endDate = endDate + " 00:00:00"; 
-
-    console.log("startDate", startDate);
-    // var course_name = this.course_info.split(' ` ')[1];
-    // var course_id = Number(this.course_info.split(' ` ')[0]);
-
-    // if(Number.isNaN(course_id)){
-    //   console.log('courseid',course_id)
-    //   course_id = this.courses.pop().id + 1;
-    // }
-
-    // const addNew2: CourseRegisterDTO2 = {
-    //   course:{
-    //     course_tittle: this.courseSelected.name,
-    //     platform: this.platform,
-    //     category: this.categorySelected,
-    //     // totalLength: this.totalTime
-    //   },
-    //   employee:{
-    //     full_name: this.emp.fullName,
-    //     email: this.emp.email,
-    //   },
-    //   courseEmployee:{
-    //     courseId: this.courseSelected.id,
-    //     employeeId: Number(this.emp.employeeId),
-    //     status: this.status,
-    //     startDate: startDate,
-    //     endDate: endDate,
-    //     certLink: this.certLink,
-    //     isDeleted: 0,
-    //   }
-    // };
 
     const addNew3: CourseRegisterDTO3 = {
       courseEmployee:{
@@ -138,11 +98,27 @@ export class CourseRegisterComponent implements OnInit {
         isDeleted: 0,
       }
     };
-
     console.log('add',addNew3);
-    this.courseService.addCourseRegister(addNew3).subscribe((data)=>{
-      console.log("send-data: ", data);
-    })
+
+    var flat = 0;
+    this.employees.forEach(element => {
+      if(element.employeeId == addNew3.courseEmployee.employeeId &&
+        element.courseId == addNew3.courseEmployee.courseId){
+          flat = 1;
+        $('#notification').modal('show');
+      }
+    });
+
+    if(flat=0){
+      this.courseService.addCourseRegister(addNew3).subscribe((data)=>{
+          console.log("send-data: ", data);
+        },
+        error=>{
+          console.log("error: ", error);
+        }
+      )
+    }
+    
             
   }
 

@@ -1,5 +1,6 @@
 export interface Employee{
-    employeeId: Number;
+    employeeId: number;
+    courseId?:number;
     fullName: String;
     email: String;
     status: String;

@@ -28,7 +28,7 @@
         <h3>Kỹ năng:</h3>
         <div class="container">
           <div class="row">
-            <div class="col" *ngFor="let item of info?.skills">
+            <div class="col-md-2" *ngFor="let item of info?.skills">
               <p class="sk">{{item}}</p>
             </div>
           </div>
@@ -50,8 +50,8 @@
           </div>
           <a href="#">Hiển thị thêm</a><br><br>
           <h3>Các khóa gần đây:</h3>
-          <p class="CD" *ngFor="let item of info?.courses; let i = index">
-            <a (click)="onOpen(i + 1)" >{{item}}</a>
+          <p class="CD" *ngFor="let item of info?.courses">
+            <a (click)="onOpen(item)" >{{item}}</a>
           </p>
           <!--<a (click)="onOpen(1)" class="CNY">The Complete 2022 Web Development Bootcamp</a><br>
           <a href="javascript :void(0)" class="CNY">Spring Boot Tutorial </a><br>
@@ -139,8 +139,9 @@
 
       <div class="col-md-5">
 
+        
         <h1>Số liệu thống kê</h1><br><br>
-
+          
         <div class="container">
           <div class="row" id="s">
             <div class="col-md-6">
@@ -183,9 +184,7 @@
             <div class="col-md-6">
               <div class="numS">2</div>
             </div>
-
-          </div>
-          <a href="#" data-bs-toggle="modal" href="#exampleModalToggle">Hiện tất cả chứng chỉ</a>
+          <a href="#" data-bs-toggle="modal" (click)="getCert()" href="#exampleModalToggle">Hiện tất cả chứng chỉ</a>
           <div class="row" id="s">
             <div class="col-md-1">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
@@ -215,21 +214,22 @@
       <div class="modal-body">
 
         <div class="input-group rounded">
-          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-          <span class="input-group-text border-0" id="search-addon">
-            <i class="fas fa-search"></i>
-          </span>
+          <form class="d-flex">
+            <input class="form-control me-2" type="text" name="search" [(ngModel)]="searchText"
+              placeholder="Nhập nội dung cần tìm" aria-label="Search">
+          </form>
         </div>
         <br><br>
 
-        <div class="CertCover">
-          <div class="container-fluid">
+        <div *ngFor="let c of cert | filter:searchText" >
+          <div *ngIf="c?.employeeId == id && c?.certLink != null && c?.endDate != null" class="CertCover">
+            <div class="container-fluid">
             <div class=" row">
               <div class="col-md-4">
                 Tên chứng chỉ:
               </div>
               <div class="col-md-8">
-                The Complete SQL Bootcamp 2022: Go from Zero to Hero
+                {{c?.course}}
               </div>
             </div>
             <div class=" row">
@@ -237,101 +237,31 @@
                 Ngày hoàn thành:
               </div>
               <div class="col-md-8">
-                20/02/2021
+                {{c?.endDate}}
               </div>
               <div class=" row">
                 <div class="col-md-4">
                   Kỹ năng:
                 </div>
-                <div class="col-md-8">
-                  <div class="row">
-                     <div class="col">
-                        SQL
-                     </div>
-                     <div class="col">
-                       data Analysis
-                     </div>
+                <div class="col-md-8 row_skils">
+                  <div *ngFor="let sk of skills">
+                    <div *ngIf="c?.courseId == sk?.id">
+                      <div class="row" >
+
+                        <div class="col-md-4 sk itemSkill" *ngFor="let s of sk?.skills">{{s}}</div>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
-            <a href="#">Đường dẫn đến chứng chỉ khóa học</a>
+            Link:   <a href="{{c?.certLink}}">{{c?.certLink}}</a>
           </div>
+          </div>
+
         </div>
 
-        <div class="CertCover">
-          <div class="container-fluid">
-            <div class=" row">
-              <div class="col-md-4">
-                Tên chứng chỉ:
-              </div>
-              <div class="col-md-8">
-                The Complete SQL Bootcamp 2022: Go from Zero to Hero
-              </div>
-            </div>
-            <div class=" row">
-              <div class="col-md-4">
-                Ngày hoàn thành:
-              </div>
-              <div class="col-md-8">
-                20/02/2021
-              </div>
-              <div class=" row">
-                <div class="col-md-4">
-                  Kỹ năng:
-                </div>
-                <div class="col-md-8">
-                  <div class="row">
-                     <div class="col">
-                        SQL
-                     </div>
-                     <div class="col">
-                       data Analysis
-                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a href="#">Đường dẫn đến chứng chỉ khóa học</a>
-          </div>
-        </div>
 
-        <div class="CertCover">
-          <div class="container-fluid">
-            <div class=" row">
-              <div class="col-md-4">
-                Tên chứng chỉ:
-              </div>
-              <div class="col-md-8">
-                The Complete SQL Bootcamp 2022: Go from Zero to Hero   
-              </div> 
-            </div>
-            <div class=" row">
-              <div class="col-md-4">
-                Ngày hoàn thành:
-              </div>
-              <div class="col-md-8">
-                20/02/2021
-              </div>
-              <div class=" row">
-                <div class="col-md-4">
-                  Kỹ năng:
-                </div>
-                <div class="col-md-8">
-                  <div class="row">
-                     <div class="col">
-                        SQL
-                     </div>
-                     <div class="col">
-                       data Analysis
-                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a href="#">Đường dẫn đến chứng chỉ khóa học</a>
-          </div>
-        </div>
 
       </div>
       <div class="modal-footer">
@@ -340,3 +270,4 @@
     </div>
   </div>
 </div>
+

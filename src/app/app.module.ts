@@ -38,6 +38,7 @@ import { CourseDeleteComponent } from './course-delete/course-delete.component';
 import { ManagerComponent } from './manager/manager.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
+import {MatIconModule} from '@angular/material/icon'
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ReactiveFormsModule,
     NgxPaginationModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

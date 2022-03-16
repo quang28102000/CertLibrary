@@ -1,15 +1,4 @@
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting:before,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_asc:before,
-table.dataTable thead .sorting_asc_disabled:after,
-table.dataTable thead .sorting_asc_disabled:before,
-table.dataTable thead .sorting_desc:after,
-table.dataTable thead .sorting_desc:before,
-table.dataTable thead .sorting_desc_disabled:after,
-table.dataTable thead .sorting_desc_disabled:before {
-bottom: .5em;
-}
+
 
 .table{
     margin-top: 5%;
@@ -31,9 +20,10 @@ h1{
 
 th{
     background-color: #7DA0CA;
+    padding-top: 15px;
 }
 
-table {
+/* table {
     counter-reset: rowNumber;
 }
 
@@ -44,5 +34,78 @@ table tr {
 table tr td:first-child::before {
     content: counter(rowNumber);
     min-width: 1em;
-    /* margin-left: 0.5em; */
+} */
+
+
+
+/* .table>:not(caption)>*>*{
+    position: relative;
+    top: 5px;
+    left: -8px;
+} */
+
+/* tbody {
+    position: relative;
+    top: -3px;
+    left: 8px;
+} */
+
+table.table th {
+    padding: 0.2rem 16px 1rem;
 }
+tr{
+    vertical-align: middle;
+}
+
+table {
+    width: 100%;
+  }
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td, th {
+    width: 25%;
+}
+
+
+.mat-column-index{
+    width: 10%;
+}
+
+.mat-column-fullName{
+    width: 15%;
+}
+.mat-column-email{
+    width: 15%;
+}
+.mat-column-course{
+    width: 30%;
+}
+.mat-column-status{
+    width: 10%;
+}
+.mat-column-startDate{
+    width: 10%;
+}
+.mat-column-endDate{
+    width: 10%;
+}
+
+
+.mat-header-cell {
+    color: #0c2e58;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.mat-row .mat-cell {
+    cursor: pointer;
+  }
+  
+  .mat-row:hover .mat-cell {
+    background-color: #d7e3f1;
+  }
+  

@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/table';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { CourseService } from '../course.service';
@@ -10,6 +10,9 @@ import { CourseDto } from '../model/course-dto';
 import { Employee } from '../model/Employee';
 import { Course } from '../course';
 import { HomeService } from '../Service/home.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface DialogData {
   data: any[];
@@ -22,6 +25,26 @@ export interface DialogData {
 })
 export class HomeComponent implements OnInit {
 
+  displayColumns: string[] = ['index', 'fullName', 'email','course', 'status', 'platform'];
+  displayColumns2: string[] = ['index', 'fullName', 'email'];
+  displayColumns3: string[] = ['index', 'name', 'platform', 'category', 'courseLength'];
+
+
+
+  dataSource!: MatTableDataSource<any>;
+  dataSource2!: MatTableDataSource<any>;
+
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  @ViewChild(MatPaginator) paginator2!: MatPaginator;
+  @ViewChild(MatSort) sort2!: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource2.paginator = this.paginator2;
+    this.dataSource2.sort = this.sort2;
+  }
 
   public totalLengthEmp: any; // paging
   p: number = 1; //paging
@@ -50,8 +73,14 @@ export class HomeComponent implements OnInit {
 
   getCourses(){
     this.courseService.getList().subscribe(res => {
+      for (let index = 0; index < res.length; index++) {
+        res[index].index = index+1;        
+      }
       this.courses = res;
       console.log("course-list", res);
+      this.dataSource2 = new MatTableDataSource(res);
+      // this.dataSource2.paginator = this.paginator;
+      // this.dataSource2.sort = this.sort;    
     })
   }
 
@@ -62,13 +91,20 @@ export class HomeComponent implements OnInit {
     }else{
       this.popup_data = this.statistics.get(num);
     }
+    // set stt
+    for (let index = 0; index < this.popup_data.length; index++) {
+      this.popup_data[index].index = index+1;        
+    }
+    this.dataSource = new MatTableDataSource(this.popup_data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 
-  rowClick(id: any, button: any){
+  rowClick(item: any, button: any){
     const app = document.getElementsByClassName("btn-close")[button] as HTMLElement;
     app?.click();
-    this.router.navigate(['user-screen', id]);
+    this.router.navigate(['user-screen', item.employeeId]);
   }
 
 
