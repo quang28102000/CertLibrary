@@ -293,7 +293,8 @@
       </div>
     </div>
     
-    <div class="col-sm-3" data-bs-toggle="modal" href="#popup03">
+    <div class="col-sm-3" data-bs-toggle="modal" href="#popup01"
+    (click)="SetPopUpData(-1, 'Danh sách khoá học')">
       <div class="stat-card">
         <div class="stat-card__content">
           <p class="text-uppercase mb-1 text-muted">Tổng số khoá học</p>
@@ -357,18 +358,40 @@
               <td mat-cell *matCellDef="let row">{{row.status}}</td>
             </ng-container>
     
+
+
+
+
+            <!-- Tên khoá học Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên khoá học</th>
+              <td mat-cell *matCellDef="let row">{{row.name}}</td>
+            </ng-container>
+    
             <!-- Platform Column -->
             <ng-container matColumnDef="platform">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Nền tảng</th>
               <td mat-cell *matCellDef="let row">{{row.platform}}</td>
             </ng-container>
     
+            <!-- category Column -->
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Loại</th>
+              <td mat-cell *matCellDef="let row">{{row.category}}</td>
+            </ng-container>
+
+            <!-- CourseLength Column -->
+            <ng-container matColumnDef="courseLength">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Thời lượng</th>
+              <td mat-cell *matCellDef="let row">{{row.courseLength}}</td>
+            </ng-container>
     
-            <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr
                 mat-row
                 (click)="rowClick(row, 0)"
-                *matRowDef="let row; columns: displayColumns;"
+                *matRowDef="let row; columns: displayedColumns;"
             ></tr>
           </table>
     

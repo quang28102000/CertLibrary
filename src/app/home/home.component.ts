@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   displayColumns3: string[] = ['index', 'name', 'platform', 'category', 'courseLength'];
 
 
+  displayedColumns: string[] = [];
+
 
   dataSource!: MatTableDataSource<any>;
   dataSource2!: MatTableDataSource<any>;
@@ -88,8 +90,14 @@ export class HomeComponent implements OnInit {
     this.popup_title = title
     if(num==5){
       this.popup_data = this.employeesInLast7Days
-    }else{
+      this.displayedColumns = this.displayColumns
+    }else if(num==-1){
+      this.popup_data = this.courses;
+      this.displayedColumns = this.displayColumns3;
+    }
+    else{
       this.popup_data = this.statistics.get(num);
+      this.displayedColumns = this.displayColumns
     }
     // set stt
     for (let index = 0; index < this.popup_data.length; index++) {

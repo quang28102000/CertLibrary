@@ -1,9 +1,12 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { CourseService } from '../course.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Course } from '../course';
 import { EmployeeService } from '../Service/employee.service';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-course-list',
@@ -11,6 +14,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
+
+  displayedColumns: string[] = ['index', 'fullName', 'email','course', 'status', 'startDate', 'endDate'];
+  dataSource!: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
 
   p: number = 1; //paging
@@ -68,41 +77,27 @@ export class CourseListComponent implements OnInit {
 
   }
 
-  // GetCourseCategory(){
-  //   console.log('course', this.courses);
-  //   this.courses.forEach(element => {
-  //     this.filterCategory.push(element.category);
-  //   });
-  //   console.log('ok');
-  //   console.log('filter', this.filterCategory);
-  // }
-
-  // showCategory(category: string) {
-  //   const dkAll = this.filterCategory === 'All';
-  //   const dkCate = this.filterCategory === 'this.courses.selector.component.categories';
-  //   return dkAll || dkCate;
-  // }
-
-  // showPlatform(platform: string) {
-  //   const dkAll = this.filterCategory === 'All';
-  //   const dkPlat = this.filterPlatform === 'this.platform';
-  //   return dkAll || dkPlat;
-  // }
-
   courseDetail(c:any){
     this.data = c;
   }
 
   showListStudent(data: any){
     console.log('courseClick', data);
-
     console.log('emps', this.employees);
+    this.listStudent = [];
     this.employees.forEach(element => {
       if(element.courseId==data.id){
         this.listStudent.push(element);
       }
     });
     console.log('listStu', this.listStudent);
+    //set stt
+    for (let index = 0; index < this.listStudent.length; index++) {
+      this.listStudent[index].index = index+1;        
+    }
+    this.dataSource = new MatTableDataSource(this.listStudent);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   rowClick(employee: any){

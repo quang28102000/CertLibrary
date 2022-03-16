@@ -185,25 +185,6 @@ h4{
   color: #265A99;
 }
 
-/* Table */
-table {
-  counter-reset: rowNumber;
-}
-
-table tr {
-  counter-increment: rowNumber;
-}
-
-table tr td:first-child::before {
-  content: counter(rowNumber);
-  min-width: 1em;
-  /* margin-left: 0.5em; */
-}
-
-th {
-  text-align:center;
-}
-
 
 #showAll p {
   position: sticky;
@@ -242,4 +223,80 @@ th {
 .card-img-top{
   height:160px;
   overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+table.table th {
+  padding: 0.2rem 16px 1rem;
+}
+tr{
+  vertical-align: middle;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+
+.mat-column-index{
+  width: 10%;
+}
+
+.mat-column-fullName{
+  width: 15%;
+}
+.mat-column-email{
+  width: 15%;
+}
+.mat-column-course{
+  width: 30%;
+}
+.mat-column-status{
+  width: 10%;
+}
+.mat-column-startDate{
+  width: 10%;
+}
+.mat-column-endDate{
+  width: 10%;
+}
+
+
+.mat-header-cell {
+  color: #0c2e58;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.mat-row .mat-cell {
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: #d7e3f1;
+}
+
+th{
+  background-color: #7DA0CA;
+  padding-top: 15px;
+}
+
+.modal-xl {
+  max-width: 1200px;
 }
