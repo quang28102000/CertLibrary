@@ -11,8 +11,11 @@ import { CourseDelete, CourseDelete2, CourseDeleteDto } from '../model/course-de
   styleUrls: ['./course-delete.component.css']
 })
 export class CourseDeleteComponent implements OnInit {
+  p: number = 1; //paging
 
   deleteItems: any[] =[];
+
+  checkAllValue: any;
 
 
   dataSource!: MatTableDataSource < any > ;  
@@ -30,6 +33,20 @@ export class CourseDeleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourseInformation();
+  }
+
+
+  checkAll(){
+    console.log(this.checkAllValue);
+    if(this.checkAllValue == true){
+      this.cInfo.forEach(element => {
+        element.checked = true;
+      });
+    }else if(this.checkAllValue == false){
+      this.cInfo.forEach(element => {
+        element.checked = false;
+      });
+    }
   }
 
   getCourseInformation(){
@@ -50,6 +67,7 @@ export class CourseDeleteComponent implements OnInit {
     this.courseService.deleteCourse(deleteItemDto).subscribe((data)=>{
       console.log('item-send', data);
     })
+    $('#notification2').modal('show');
   }
 
   ClickBtnDelete(item: any){
@@ -77,7 +95,10 @@ export class CourseDeleteComponent implements OnInit {
       //gọi service để xoá
       this.courseService.deleteMultipleCourse(listItemArr).subscribe((data)=>{
         console.log('send-data', data);
-      })
+      });
+      $('#notification2').modal('show');
+
+
 
 
 

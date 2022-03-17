@@ -32,7 +32,12 @@
 <br><br><br>
 
 
-<div *ngFor="let c of cInfo | filter:searchText" class="courses">
+<div *ngFor="let c of cInfo | filter:searchText
+                            | paginate: {
+                              itemsPerPage: 5,
+                              currentPage: p,
+                              totalItems: cInfo.length};" 
+                            class="courses">
   <div class="container-fluid" id="cover">
     <div class="row">
       <div class="col-md-11">
@@ -71,8 +76,11 @@
             <div class="col-md-2">
               <p>Trạng thái: </p>&nbsp;
             </div>
-            <div class="col-md-3">
-              <div class="Content" >{{c.status}}</div>
+            <div class="col-md-3"[ngSwitch]="c.status">
+              <label class="Content" *ngSwitchCase="1">Đã đăng kí</label>
+              <label class="Content" *ngSwitchCase="2">Chưa đăng kí</label>
+              <label class="Content" *ngSwitchCase="3">Đã hoàn thành</label>
+              <label class="Content" *ngSwitchCase="4">Chưa hoàn thành</label>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-1">
@@ -147,47 +155,38 @@
 
     </div>
   </div>
+</div>
 
-  <!-- Delete dialog -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xóa khóa học này không?</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <button type="button" id="y" class="btn btn-success" data-bs-dismiss="modal"
-            (click)="deleteC()">Có</button>
-          <button type="button" id="n" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
-        </div>
+<pagination-controls style="display: flex;
+  justify-content: center;" (pageChange)="p = $event; pageChange()"> </pagination-controls>
+
+<!-- Delete dialog -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xóa khóa học này không?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <button type="button" id="y" class="btn btn-success" data-bs-dismiss="modal"
+          (click)="deleteC()">Có</button>
+        <button type="button" id="n" class="btn btn-danger" data-bs-dismiss="modal">Không</button>
       </div>
     </div>
   </div>
 </div>
 
 
+<!-- Notification Success-->
+<div class="modal fade " id="notification2" #notification2 aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
 
-
-
-<nav id="showAll">
-  <p>Hiển thị tất cả</p>
-</nav>
-
-<nav aria-label="Page navigation example" id="paging">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+      <div class="modal-body">
+        <mat-icon class="btn_success">done</mat-icon>
+        <h1 class="successHeader">Thành công!</h1>
+      </div>
+    </div>
+  </div>
+</div>

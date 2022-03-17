@@ -26,7 +26,7 @@
     </div>
     <div class="col col-lg-2">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="checkAllValue" id="flexCheckDefault" (change)="checkAll()" >
         <label class="form-check-label" for="flexCheckDefault">
           Tất cả
         </label>
@@ -61,7 +61,12 @@
 
 
     <tbody>
-      <tr  *ngFor="let cd of cInfo  | filter:searchText;  let i=index">
+      <tr  *ngFor="let cd of cInfo  | filter:searchText
+                                    | paginate: {
+                                      itemsPerPage: 5,
+                                      currentPage: p,
+                                      totalItems: cInfo.length};  
+                                      let i=index">
         <td class="col-sm"><input type="checkbox" value="{{cd.id}}" [(ngModel)]="cInfo[i].checked"></td>
         <td>
             <!-- <div class="row"> -->
@@ -87,9 +92,13 @@
                     <div class="col-md-2">
                       <p>Trạng thái: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     </div>
-                    <div class="col-md-1">
-                      <div class="Content">{{cd.status}}</div>
+                    <div class="col-md-2"[ngSwitch]="cd.status">
+                      <label class="Content" *ngSwitchCase="1">Đã đăng kí</label>
+                      <label class="Content" *ngSwitchCase="2">Chưa đăng kí</label>
+                      <label class="Content" *ngSwitchCase="3">Đã hoàn thành</label>
+                      <label class="Content" *ngSwitchCase="4">Chưa hoàn thành</label>
                     </div>
+
                   </div>
                 </nav>
               </div>
@@ -110,6 +119,7 @@
         </td>
       </tr>
 
+      
 
 
 
@@ -117,6 +127,10 @@
 		</tbody>
 	</table>
 </div>
+
+<pagination-controls style="display: flex;
+  justify-content: center;"  (pageChange)="p = $event"> </pagination-controls>
+
 
 
   
@@ -140,49 +154,14 @@
     </div>
 
 
-
-  <nav id="showAll">
-    <p>Hiển thị tất cả</p>
-  </nav>
+<!-- Notification Success-->
+<div class="modal fade " id="notification2" #notification2 aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <mat-icon class="btn_success">done</mat-icon>
+        <h1 class="successHeader">Xoá thành công!</h1>
+      </div>
+    </div>
+  </div>
 </div>
-<nav aria-label="Page navigation example" id="paging">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-
-
-
-<!--<section class="example-section">
-  <span class="example-list-section">
-    <mat-checkbox class="example-margin"
-                  [checked]="allComplete"
-                  [indeterminate]="someComplete()"
-                  (change)="setAll($event.checked)">
-      {{task.name}}
-    </mat-checkbox>
-  </span>
-  <span class="example-list-section">
-    <ul>
-      <li *ngFor="let c of cInfo">
-        <mat-checkbox [(ngModel)]="subtask.completed"
-                      [color]="subtask.color"
-                      (ngModelChange)="updateAllComplete()">
-          {{subtask.name}}
-        </mat-checkbox>
-      </li>
-    </ul>
-  </span>
-</section>-->

@@ -14,6 +14,7 @@ import { CourseDelete } from '../model/course-delete';
 })
 export class CourseInfoComponent implements OnInit {
 
+  p: number = 1; //paging
   searchText: any;
   deleteItem: any;
 
@@ -23,6 +24,7 @@ export class CourseInfoComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    window.scrollTo(0,0);
     this.getCourseInformation();
   }
 
@@ -56,9 +58,13 @@ export class CourseInfoComponent implements OnInit {
     this.courseService.deleteCourse(deleteItemDto).subscribe((data)=>{
       console.log('item-send', data);
     })
+    $('#notification2').modal('show');
   }
 
 
+  pageChange(){
+    window.scrollTo(0,500);
+  }
 
 }
 

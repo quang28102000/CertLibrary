@@ -41,7 +41,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
 import { CourseAddComponent } from './course-add/course-add.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-
 @NgModule({
   declarations: [
     AppComponent,
