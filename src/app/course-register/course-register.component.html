@@ -171,7 +171,7 @@
   </div>
 
 
-  <!-- Notification -->
+  <!-- Notification Fail-->
 <div class="modal fade " id="notification" #notification aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content">
@@ -192,3 +192,21 @@
     </div>
   </div>
 </div>
+
+  <!-- Notification Success-->
+  <div class="modal fade " id="notification2" #notification2 aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <!-- <div class="modal-header" >
+          <h1 class="popup-header">Lỗi</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div> -->
+  
+        <div class="modal-body">
+          <mat-icon class="btn_success">done</mat-icon>
+          <h1 class="successHeader">Thêm nhân viên thành công!</h1>
+          <p >{{emp?.fullName}} đã đăng kí khoá học {{courseSelected?.name}} thành công</p>
+        </div>
+      </div>
+    </div>
+  </div>

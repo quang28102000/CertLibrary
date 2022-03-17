@@ -5,6 +5,7 @@ import {MatDialog , MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { courseUpdate } from '../model/courseUpdate';
 import { Employee } from '../model/Employee';
+import { CourseDelete } from '../model/course-delete';
 
 @Component({
   selector: 'app-course-info',
@@ -14,6 +15,7 @@ import { Employee } from '../model/Employee';
 export class CourseInfoComponent implements OnInit {
 
   searchText: any;
+  deleteItem: any;
 
   constructor(
     private courseService : CourseService,
@@ -39,14 +41,20 @@ export class CourseInfoComponent implements OnInit {
       this.getCourseInformation();
     });
   }
-  deleteC(eid: number) {
-    this.courseService.deleteCourse(eid).subscribe({
-      next:(res)=>{
-        alert("Xoá thành công !!!");
-      },
-      error: () =>{
-        alert("Xoá thất bại !!!");
-      }
+
+  ClickBtnDelete(item: any){
+    this.deleteItem = item;
+  }
+
+  deleteC() {
+    console.log('id-selected', this.deleteItem);
+    var deleteItemDto: CourseDelete = {
+      course_id: this.deleteItem.courseId,
+      employee_id: this.deleteItem.employeeId
+    }
+    console.log('item-convert', deleteItemDto);
+    this.courseService.deleteCourse(deleteItemDto).subscribe((data)=>{
+      console.log('item-send', data);
     })
   }
 

@@ -25,6 +25,7 @@ export class CourseListComponent implements OnInit {
   p: number = 1; //paging
 
   public employees!: any[];
+  public platformList: any;
 
   filterCategory: String[] = [];
   filterPlatform: String[] = [];
@@ -105,6 +106,22 @@ export class CourseListComponent implements OnInit {
     app?.click();
     console.log('row clicked', employee);
     this.router.navigate(['user-screen', employee.employeeId]);
+  }
+
+  filterCountry(event:any) {
+    this.platformList = this.filterPlatform;
+    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
+    let filtered : any[] = [];
+    let query = event.query;
+
+    for(let i = 0; i < this.filterPlatform.length; i++) {
+        let country = this.filterPlatform[i];
+        if (country.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+            filtered.push(country);
+        }
+    }
+
+    this.platformList = filtered;
   }
 
 

@@ -99,3 +99,22 @@ label{
 .errorHeader{
     color: red;
 }
+
+.btn_success{
+    color: #59bd3bc9;
+    font-size: 50px;
+    height: 80px;
+    width: 80px;
+    border-radius: 60px;
+    background: rgba(0, 255, 85, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    margin-left: 34%;
+    margin-bottom: 30px;
+}
+
+.successHeader{
+    color: rgb(1, 161, 9);
+}

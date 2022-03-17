@@ -87,18 +87,45 @@ export class HomeComponent implements OnInit {
   }
 
   SetPopUpData(num: any, title: string){
-    this.popup_title = title
-    if(num==5){
-      this.popup_data = this.employeesInLast7Days
-      this.displayedColumns = this.displayColumns
-    }else if(num==-1){
-      this.popup_data = this.courses;
-      this.displayedColumns = this.displayColumns3;
+    this.popup_title = title;
+
+    this.displayedColumns = this.displayColumns;
+    switch (num) {
+      case -1:
+        this.popup_data = this.courses;
+        this.displayedColumns = this.displayColumns3;
+        break;
+      case 2:
+        this.popup_data = this.statistics.get(num);
+        this.displayedColumns = this.displayColumns2;
+        break;
+      case 5:
+        this.popup_data = this.employeesInLast7Days
+        break;
+    
+      default:
+        this.popup_data = this.statistics.get(num);
+        this.displayedColumns = this.displayColumns
+        break;
     }
-    else{
-      this.popup_data = this.statistics.get(num);
-      this.displayedColumns = this.displayColumns
-    }
+
+
+
+    // if(num==5){
+    //   this.popup_data = this.employeesInLast7Days
+    //   this.displayedColumns = this.displayColumns
+    // // }else if(num==2){
+    // //   this.popup_data = this.statistics.get(num);
+    // //   this.displayedColumns = this.displayColumns2;
+    // }
+    // else if(num==-1){
+    //   this.popup_data = this.courses;
+    //   this.displayedColumns = this.displayColumns3;
+    // }
+    // else{
+    //   this.popup_data = this.statistics.get(num);
+    //   this.displayedColumns = this.displayColumns
+    // }
     // set stt
     for (let index = 0; index < this.popup_data.length; index++) {
       this.popup_data[index].index = index+1;        

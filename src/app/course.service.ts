@@ -32,6 +32,7 @@ export class CourseService {
   }
   
   public addCourseRegister(courseRegister: CourseRegisterDTO3): Observable<CourseRegisterDTO3>{
+    console.log('receive', courseRegister);
     const url = `${this.apiServiceUrl}/course/addCourseRegister`;
     return this.http.post<any>(url, courseRegister);
   }

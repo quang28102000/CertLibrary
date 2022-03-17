@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { Employee } from '../model/Employee';
 import * as $AB from 'jquery';
 import * as bootstrap from "bootstrap";
+import * as moment from 'moment';
 
 
 @Component({
@@ -81,11 +82,10 @@ export class CourseRegisterComponent implements OnInit {
 
 
   Add(){
-    var startDate = new Date(this.start).toISOString().slice(0, 10);
-    var endDate = new Date(this.end).toISOString().slice(0, 10);
+    console.log((moment(this.start)).format('YYYY-MM-DD HH:mm:ss'));
+    var startDate = (moment(this.start)).format('YYYY-MM-DD HH:mm:ss')
+    var endDate = (moment(this.end)).format('YYYY-MM-DD HH:mm:ss')
 
-    startDate = startDate + " 00:00:00"; 
-    endDate = endDate + " 00:00:00"; 
 
     const addNew3: CourseRegisterDTO3 = {
       courseEmployee:{
@@ -109,12 +109,10 @@ export class CourseRegisterComponent implements OnInit {
       }
     });
 
-    if(flat=0){
+    if(flat==0){
       this.courseService.addCourseRegister(addNew3).subscribe((data)=>{
           console.log("send-data: ", data);
-        },
-        error=>{
-          console.log("error: ", error);
+          $('#notification2').modal('show');
         }
       )
     }
