@@ -41,24 +41,6 @@
 
   <div class="container-fluid" id="cover">
   <table class="datatable table-borderless">
-		<!-- <thead>
-			<tr>
-				<th><input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
-				<th>ID</th>
-				<th>Code</th>
-				<th>Name</th>
-				<th>Price</th>
-			</tr>
-		</thead> -->
-		<!-- <tbody>
-			<tr *ngFor="let p of products; let i=index; let odd = odd" [ngClass]="odd ? 'odd_col' : 'even_col'">
-				<td><input type="checkbox" value="{{p.id}}" [(ngModel)]="products[i].checked"></td>
-				<td>{{ p.id }}</td>
-				<td>{{ p.name }}</td>
-				<td>{{ p.code }}</td>
-				<td>{{ p.price }}</td>
-			</tr> -->
-
 
     <tbody>
       <tr  *ngFor="let cd of cInfo  | filter:searchText
@@ -67,42 +49,40 @@
                                       currentPage: p,
                                       totalItems: cInfo.length};  
                                       let i=index">
-        <td class="col-sm"><input type="checkbox" value="{{cd.id}}" [(ngModel)]="cInfo[i].checked"></td>
+        <td class="col-sm"><input type="checkbox" value="{{cd.id}}" (change)="checkAnItem($event, cd)" [(ngModel)]="cd.checked"></td>
         <td>
-            <!-- <div class="row"> -->
-              <div class="">
-                <nav id="information">
-                  <div class="row">
-                    <div class="col-md-2">
-                      <p>Tên khoá học: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-                    </div>
-                    <div class="col-md-10">
-                      <div class="Content">{{cd.course}}</div>
-                    </div>
-      
+            <div class="">
+              <nav id="information">
+                <div class="row">
+                  <div class="col-md-2">
+                    <p>Tên khoá học: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
                   </div>
-                  <div class="row">
-                    <div class="col-md-2">
-                      <p>Tên nhân viên: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    </div>
-                    <div class="col-md-4">
-                      <div class="Content">{{cd.fullName}}</div>
-                    </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-2">
-                      <p>Trạng thái: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    </div>
-                    <div class="col-md-2"[ngSwitch]="cd.status">
-                      <label class="Content" *ngSwitchCase="1">Đã đăng kí</label>
-                      <label class="Content" *ngSwitchCase="2">Chưa đăng kí</label>
-                      <label class="Content" *ngSwitchCase="3">Đã hoàn thành</label>
-                      <label class="Content" *ngSwitchCase="4">Chưa hoàn thành</label>
-                    </div>
+                  <div class="col-md-10">
+                    <div class="Content">{{cd.course}}</div>
+                  </div>
+    
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <p>Tên nhân viên: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div class="col-md-4">
+                    <div class="Content">{{cd.fullName}}</div>
+                  </div>
+                  <div class="col-md-1"></div>
+                  <div class="col-md-2">
+                    <p>Trạng thái: </p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div class="col-md-2"[ngSwitch]="cd.status">
+                    <label class="Content" *ngSwitchCase="1">Đã đăng kí</label>
+                    <label class="Content" *ngSwitchCase="2">Chưa đăng kí</label>
+                    <label class="Content" *ngSwitchCase="3">Đã hoàn thành</label>
+                    <label class="Content" *ngSwitchCase="4">Chưa hoàn thành</label>
+                  </div>
 
-                  </div>
-                </nav>
-              </div>
-            <!-- </div> -->
+                </div>
+              </nav>
+            </div>
         </td>
         <td>
           <div class="col-md-1" id="bin">

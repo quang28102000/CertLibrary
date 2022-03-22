@@ -17,7 +17,6 @@ export class CourseDeleteComponent implements OnInit {
 
   checkAllValue: any;
 
-
   dataSource!: MatTableDataSource < any > ;  
   selection = new SelectionModel < any > (true, []);  
   searchText: any;
@@ -33,6 +32,17 @@ export class CourseDeleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourseInformation();
+  }
+
+  checkAnItem(event: any, course: CourseDeleteDto){
+    console.log('event',event.target?.checked);
+    console.log('course',course);
+    this.cInfo.forEach(element => {
+      if(element==course){
+        console.log('e', element);
+        element.checked=event.target?.checked;
+      }
+    });
   }
 
 
@@ -54,19 +64,24 @@ export class CourseDeleteComponent implements OnInit {
       (ci) => {
         console.log("ci", ci);
         this.cInfo = ci}
-    )
+    ) 
   }
 
   deleteC() {
     console.log('id-selected', this.deleteItem);
+    //đổi item thành object CourseDelete
     var deleteItemDto: CourseDelete = {
       course_id: this.deleteItem.courseId,
       employee_id: this.deleteItem.employeeId
     }
     console.log('item-convert', deleteItemDto);
+    //gọi Service để xoá
     this.courseService.deleteCourse(deleteItemDto).subscribe((data)=>{
       console.log('item-send', data);
     })
+    //filter loại item ra khỏi list sau khi đã xoá
+    this.cInfo = this.cInfo.filter(item => item != this.deleteItem);
+    //hiện thông báo
     $('#notification2').modal('show');
   }
 
@@ -96,32 +111,14 @@ export class CourseDeleteComponent implements OnInit {
       this.courseService.deleteMultipleCourse(listItemArr).subscribe((data)=>{
         console.log('send-data', data);
       });
+      //realtime delete, xoá item ra khỏi list
+      selectedItems.forEach(element => {
+        this.cInfo = this.cInfo.filter(item => item != element);
+      });
       $('#notification2').modal('show');
-
-
-
-
-
-			// this.productService.deleteProducts(selectedProducts) // Angular 9
-        //                 this.productService.deleteProducts(selectedProducts as number[]) // Angular 13
-				// .subscribe(res => {
-				// 	this.clss = 'grn';
-				// 	this.msg = 'Products successfully deleted';
-				// 	}, err => {
-        //                 this.clss = 'rd';
-				// 		this.msg = 'Something went wrong during deleting products';
-        //             }
-        //         );
 		} else {
-
-
 			this.clss = 'rd';
 			this.msg = 'You must select at least one product';
 		}
   }
-
-
-
-
-
 }
