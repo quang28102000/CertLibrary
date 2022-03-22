@@ -2,11 +2,13 @@ package fptProject.groupA.CertLibrary.service;
 
 import java.util.List;
 
+import fptProject.groupA.CertLibrary.persistence.EmployeeCourseDto;
 import fptProject.groupA.CertLibrary.persistence.EmployeeDto;
 import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 
 public interface EmployeeService {
-	List<EmployeeDto> getEmployees();
+	List<EmployeeCourseDto> getEmployees();
+	List<EmployeeDto> getEmployeesInfo();
 	UserProfileDto findEmployeeProfile(Integer id);
-	List<EmployeeDto> findSubscribedEmployeesInLast7Days();
+	List<EmployeeCourseDto> findSubscribedEmployeesInLast7Days();
 }

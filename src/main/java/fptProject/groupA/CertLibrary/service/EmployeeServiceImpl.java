@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fptProject.groupA.CertLibrary.dao.EmployeeDao;
+import fptProject.groupA.CertLibrary.persistence.EmployeeCourseDto;
 import fptProject.groupA.CertLibrary.persistence.EmployeeDto;
 import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 
@@ -24,13 +25,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<EmployeeDto> getEmployees() {
+	public List<EmployeeCourseDto> getEmployees() {
 		return employeeDao.getEmployees();
 	}
 
 	@Override
-	public List<EmployeeDto> findSubscribedEmployeesInLast7Days() {
+	public List<EmployeeCourseDto> findSubscribedEmployeesInLast7Days() {
 		return employeeDao.findSubscribedEmployeesInLast7Days();
+	}
+
+	@Override
+	public List<EmployeeDto> getEmployeesInfo() {
+		return employeeDao.getEmployeesInfo();
 	}
 
 }

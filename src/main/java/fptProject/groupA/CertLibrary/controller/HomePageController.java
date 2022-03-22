@@ -29,6 +29,7 @@ import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 import fptProject.groupA.CertLibrary.persistence.Employee;
+import fptProject.groupA.CertLibrary.persistence.EmployeeCourseDto;
 import fptProject.groupA.CertLibrary.persistence.EmployeeDto;
 import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 import fptProject.groupA.CertLibrary.service.CourseService;
@@ -52,10 +53,17 @@ public class HomePageController {
 
 		return new ResponseEntity<>(courses, HttpStatus.OK);
 	};
+	
+	@GetMapping("/getEmployeesInfo")
+	public ResponseEntity<List<EmployeeDto>> getAllEmployeesInfo() {
+		List<EmployeeDto> employees = employeeService.getEmployeesInfo();
+		employees.forEach(e -> System.out.println(e));
+		return new ResponseEntity<>(employees, HttpStatus.OK);
+	};
 
 	@GetMapping("/getEmployees")
-	public ResponseEntity<List<EmployeeDto>> getEmployees() {
-		List<EmployeeDto> getEmployees = employeeService.getEmployees();
+	public ResponseEntity<List<EmployeeCourseDto>> getEmployees() {
+		List<EmployeeCourseDto> getEmployees = employeeService.getEmployees();
 		return new ResponseEntity<>(getEmployees, HttpStatus.OK);
 	};
 
@@ -83,9 +91,9 @@ public class HomePageController {
 
 	
 	@GetMapping("/getEmployeesInLast7Days")
-	public ResponseEntity<List<EmployeeDto>> getEmployeesInLast7Days() {
-		List<EmployeeDto> employees = employeeService.findSubscribedEmployeesInLast7Days();
-		return new ResponseEntity<List<EmployeeDto>>(employees, HttpStatus.OK);
+	public ResponseEntity<List<EmployeeCourseDto>> getEmployeesInLast7Days() {
+		List<EmployeeCourseDto> employees = employeeService.findSubscribedEmployeesInLast7Days();
+		return new ResponseEntity<List<EmployeeCourseDto>>(employees, HttpStatus.OK);
 	}
 	
 
