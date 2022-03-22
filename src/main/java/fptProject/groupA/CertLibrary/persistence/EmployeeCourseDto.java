@@ -18,7 +18,6 @@ public class EmployeeCourseDto {
 	public static final String CERT_LINK = "certLink";
 	public static final String COURSE_LENGTH = "courseLength";
 	public static final String CATEGORY = "category";
-	public static final String IS_DELETED = "isDeleted";
 
 	private Integer employeeId;
 	private String fullName;
@@ -32,7 +31,6 @@ public class EmployeeCourseDto {
 	private String certLink;
 	private Integer courseLength;
 	private String category;
-	private Integer isDeleted;
 
 	public EmployeeCourseDto() {
 
@@ -40,7 +38,7 @@ public class EmployeeCourseDto {
 
 	public EmployeeCourseDto(Integer employeeId, String fullName, String email, String status, Date startDate,
 			Date endDate, Integer courseId, String course, String platform, String certLink, Integer courseLength,
-			String category, Integer isDeleted) {
+			String category) {
 		this.employeeId = employeeId;
 		this.fullName = fullName;
 		this.email = email;
@@ -53,15 +51,6 @@ public class EmployeeCourseDto {
 		this.certLink = certLink;
 		this.courseLength = courseLength;
 		this.category = category;
-		this.isDeleted = isDeleted;
-	}
-
-	public Integer getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(Integer isDeleted) {
-		this.isDeleted = isDeleted;
 	}
 
 	public String getCertLink() {
@@ -165,7 +154,7 @@ public class EmployeeCourseDto {
 		return "EmployeeCourseDto [employeeId=" + employeeId + ", fullName=" + fullName + ", email=" + email
 				+ ", status=" + status + ", startDate=" + startDate + ", endDate=" + endDate + ", courseId=" + courseId
 				+ ", course=" + course + ", platform=" + platform + ", certLink=" + certLink + ", courseLength="
-				+ courseLength + ", category=" + category + ", isDeleted=" + isDeleted + "]";
+				+ courseLength + ", category=" + category + "]";
 	}
 
 }

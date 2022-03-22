@@ -50,14 +50,14 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			+ "c.course_tittle AS course, \r\n"
 			+ "cd.course_length AS courseLength,\r\n"
 			+ "c.platform AS platform,\r\n"
-			+ "c.category AS category, ce.is_deleted AS isDeleted \r\n"
+			+ "c.category AS category \r\n"
 			+ "FROM employee AS e \r\n"
 			+ "JOIN course_employee AS ce \r\n"
 			+ " ON e.employee_id = ce.employee_id\r\n"
 			+ "JOIN course AS c\r\n"
 			+ " ON ce.course_id = c.course_id\r\n"
 			+ "JOIN course_detail AS cd\r\n"
-			+ " ON c.course_id = cd.course_id";
+			+ " ON c.course_id = cd.course_id WHERE ce.is_deleted = 0";
 	
 	private static final String GET_SUBSCRIBED_EMPLOYESS_IN_LAST_7_DAYS_DTOS =
 			"SELECT e.employee_id AS " + EmployeeCourseDto.EMPLOYEE_ID + ", "
@@ -87,7 +87,6 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 		NativeQuery<?> query = openSession.createNativeQuery(GET_EMPLOYEE_DTOS);
 		query.addScalar(EmployeeCourseDto.EMPLOYEE_ID, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeCourseDto.FULL_NAME, StandardBasicTypes.STRING)
-			.addScalar(EmployeeCourseDto.EMAIL, StandardBasicTypes.STRING)
 			.addScalar(EmployeeCourseDto.STATUS, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeCourseDto.START_DATE, StandardBasicTypes.DATE)
 			.addScalar(EmployeeCourseDto.END_DATE, StandardBasicTypes.DATE)
@@ -97,7 +96,6 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			.addScalar(EmployeeCourseDto.COURSE_LENGTH, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeCourseDto.PLATFORM, StandardBasicTypes.STRING)
 			.addScalar(EmployeeCourseDto.CATEGORY, StandardBasicTypes.STRING)
-			.addScalar(EmployeeCourseDto.IS_DELETED, StandardBasicTypes.INTEGER)
 			.setResultTransformer(Transformers.aliasToBean(EmployeeCourseDto.class));	
 		return (List<EmployeeCourseDto>)query.getResultList();
 	}
