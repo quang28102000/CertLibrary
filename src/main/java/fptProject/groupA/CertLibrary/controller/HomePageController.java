@@ -132,6 +132,47 @@ public class HomePageController {
 		return new ResponseEntity<CourseEmployee>(theCourseEmployee, HttpStatus.CREATED);
 	};
 	
+	@PostMapping("/addCourse")
+	public ResponseEntity<Course> addCourse
+					(@RequestBody String jsonText) throws JsonMappingException, JsonProcessingException {	
+		
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode node = mapper.readTree(jsonText);
+		
+		// Course
+		Integer courseId = node.get("course_id").asInt();
+		String tittle = node.get("tittle").asText();
+		String platform = node.get("platform").asText();
+		String category = node.get("category").asText();
+		
+		// CourseDetail
+		Integer courseLength = node.get("courseLength").asInt();
+		String image = node.get("image").toString();
+		
+		Course theCourse = new Course(courseId, tittle, platform, category);
+		
+		// skills
+		String[] skillsName = StreamSupport.stream(node.get("skills").get("skill_name").spliterator(), false)
+											.map(jsonObj -> mapper.convertValue(jsonObj, String.class))
+											.toArray(String[]::new);
+		Integer[] skillsId = StreamSupport.stream(node.get("skills").get("skill_id").spliterator(), false)
+											.map(jsonObj -> mapper.convertValue(jsonObj, Integer.class))
+											.toArray(Integer[]::new);
+		Integer skillFlag = node.get("skill_flag").asInt();
+		
+		String notiCourse = courseService.addCourse(theCourse);
+		String notiCourseDetail = courseService.addCourseDetail(theCourse, courseLength, image);
+		String notiSkill  = courseService.addSkillOfACourse(skillsId, skillsName, skillFlag);
+		String notiCourseSkill = courseService.addCourseSkill(theCourse, skillsId);
+		
+		System.out.println(notiCourse);
+		System.out.println(notiCourseDetail);
+		System.out.println(notiSkill);
+		System.out.println(notiCourseSkill);
+		
+		return new ResponseEntity<Course>(theCourse, HttpStatus.CREATED);
+	};
+	
 	@DeleteMapping("/delete")
 	public ResponseEntity<String> deleteCourseEmployee(@RequestBody String jsonText) throws JsonMappingException, JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();

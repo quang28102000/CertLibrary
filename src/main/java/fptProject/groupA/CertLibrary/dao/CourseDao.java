@@ -19,8 +19,16 @@ public interface CourseDao {
 
 	Course addCourseForEmployee(Course course, Employee employee);
 
+	String addCourse(Course theCourse);
+
+	String addCourseDetail(Course theCourse, Integer courseLength, String image);
+
+	String addSkillOfACourse(Integer[] skillsId, String[] skillsName, Integer courseFlag);	
+	
 	CourseEmployee addCourseEmployee(CourseEmployee courseEmployee);
 
+	String addCourseSkill(Course theCourse, Integer[] skillsId);
+	
 	String deleteCourseEmployeeWithFlag(Integer courseId, Integer employeeId);
 	
 	String deleteCourseEmployee(Integer courseId, Integer employeeId);

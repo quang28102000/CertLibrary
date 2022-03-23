@@ -55,6 +55,13 @@ public class Course {
 	private List<Employee> employees;
 	
 
+	public Course(Integer id, String tittle, String platform, String category) {
+		this.id = id;
+		this.tittle = tittle;
+		this.platform = platform;
+		this.category = category;
+	}
+
 	public List<Employee> getEmployees() {
 		return employees;
 	}
