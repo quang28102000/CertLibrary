@@ -22,7 +22,8 @@ import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	
 	private static final String GET_EMPLOYEE_INFO_DTOS = 
-			"SELECT e.full_name AS " + EmployeeDto.FULL_NAME 
+			"SELECT e.employee_id AS id, " 
+			+ "e.full_name AS " + EmployeeDto.FULL_NAME 
 			+ ", e.email AS " + EmployeeDto.EMAIL 
 			+ ", e.profile_image AS " + EmployeeDto.PROFILE_IMAGE + ", \r\n"
 			+ "GROUP_CONCAT(es.skill_name SEPARATOR ';') " + EmployeeDto.SKILLS + " \r\n"
@@ -142,11 +143,12 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	public List<EmployeeDto> getEmployeesInfo() {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
 		NativeQuery<?> query = openSession.createNativeQuery(GET_EMPLOYEE_INFO_DTOS);
-		query.addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
-			.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
-			.addScalar(EmployeeDto.PROFILE_IMAGE, StandardBasicTypes.STRING)
-			.addScalar(EmployeeDto.SKILLS, StandardBasicTypes.STRING)
-			.setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));
+		query.addScalar(EmployeeDto.ID, StandardBasicTypes.INTEGER)
+			 .addScalar(EmployeeDto.FULL_NAME, StandardBasicTypes.STRING)
+			 .addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
+			 .addScalar(EmployeeDto.PROFILE_IMAGE, StandardBasicTypes.STRING)
+			 .addScalar(EmployeeDto.SKILLS, StandardBasicTypes.STRING)
+			 .setResultTransformer(Transformers.aliasToBean(EmployeeDto.class));
 		return (List<EmployeeDto>) query.getResultList();
 	}
 

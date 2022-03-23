@@ -5,11 +5,13 @@ import java.util.regex.Pattern;
 
 public class EmployeeDto {
 	
+	public static final String ID = "id";
 	public static final String FULL_NAME = "fullName";
 	public static final String EMAIL = "email";
 	public static final String PROFILE_IMAGE = "profileImage";
 	public static final String SKILLS = "skills";
 	
+	private Integer id;
 	private String fullName;
 	private String email;
 	private String profileImage;
@@ -19,11 +21,20 @@ public class EmployeeDto {
 		
 	}
 
-	public EmployeeDto(String fullName, String email, String profileImage, String[] skills) {
+	public EmployeeDto(Integer id, String fullName, String email, String profileImage, String[] skills) {
+		this.id = id;
 		this.fullName = fullName;
 		this.email = email;
 		this.profileImage = profileImage;
 		this.skills = skills;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFullName() {
@@ -60,8 +71,7 @@ public class EmployeeDto {
 
 	@Override
 	public String toString() {
-		return "EmployeeDto [fullName=" + fullName + ", email=" + email + ", profileImage=" + profileImage + ", skills="
-				+ Arrays.toString(skills) + "]";
+		return "EmployeeDto [id=" + id + ", fullName=" + fullName + ", email=" + email + ", profileImage="
+				+ profileImage + ", skills=" + Arrays.toString(skills) + "]";
 	}
-	
 }
