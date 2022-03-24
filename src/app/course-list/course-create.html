@@ -154,10 +154,13 @@
 
       <div class="content">
         <h2 class="quest">Hãy bấm xác nhận để hoàn thành thêm khóa mới, hoặc bấm reset để điền lại</h2>
+        
         <div class="confirm">
           <button class="reset" mat-button (click)="stepper.reset()">Reset</button>
           <button class="complete" (click)="onCreate()">Xác nhận</button>
         </div>
+        <div id="alert-success" style="color: green;">Thành công</div>
+        <br>
         <div class="arrows">
           <button mat-button matStepperPrevious>
             <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg"

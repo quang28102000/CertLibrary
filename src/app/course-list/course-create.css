@@ -165,3 +165,9 @@
     margin-right: 10px;
     margin-bottom: 10px;
   }
+  #alert-success{
+    color:green;
+    text-align: center;
+    font-size: 30px;
+    display: none;
+  }

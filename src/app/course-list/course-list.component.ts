@@ -248,6 +248,8 @@ export class CourseCreateComponent implements OnInit {
         console.log("send-data: ", data);
       }
     )
+    var alert = document.getElementById('alert-success') as HTMLElement;
+    alert.setAttribute("style", "display: block");
   }
 
   public newSkills = {
@@ -262,7 +264,7 @@ export class CourseCreateComponent implements OnInit {
 
     console.log("newskill", this.newSkills.skill_id, this.newSkills.skill_name);
 
-    this.secondFormGroup.controls['newName'].setValue('')
+    this.secondFormGroup.controls['newName'].setValue('');
   }
   deleteSkill(id: number){
     for(let i=0; i< this.sk.skill_id.length; i++){
