@@ -94,7 +94,6 @@ public class HomePageController {
 		return new ResponseEntity<List<CourseDto>>(courses, HttpStatus.OK);
 	}
 	
-	// OK
 	@GetMapping("/coursesHomePageDto")
 	public ResponseEntity<List<CourseHomePageDto>> getCoursesHomePageDto() {
 		List<CourseHomePageDto> courses = courseService.getCoursesHomePageDto();
