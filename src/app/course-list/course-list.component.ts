@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CourseService } from '../course.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Course } from '../course';
@@ -10,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { courseCreate } from '../model/courseC';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-course-list',
@@ -163,7 +164,7 @@ export class CourseCreateComponent implements OnInit {
       skill_name:  [] as any,
       skill_id: [] as any    
     };
-
+    @ViewChildren('checkbox') private myCheckboxes! : QueryList<any>;
 
 
   constructor(
@@ -202,9 +203,15 @@ export class CourseCreateComponent implements OnInit {
     )
   }
 
-  checkSkills(s: any){
-    this.sk.skill_id.push(s.id);
-    this.sk.skill_name.push(s.name);
+  checkSkills(s: any, event: MatCheckboxChange){
+    if(event.checked == true){
+      this.sk.skill_id.push(s.id);
+      this.sk.skill_name.push(s.name);
+    }
+    else{
+      this.sk.skill_id = this.sk.skill_id.filter((obj: any) => obj !== s.id); 
+      this.sk.skill_name = this.sk.skill_name.filter((obj: any) => obj !== s.name);
+    }
     console.log('s', this.sk);
   }
 
@@ -257,4 +264,29 @@ export class CourseCreateComponent implements OnInit {
 
     this.secondFormGroup.controls['newName'].setValue('')
   }
+  deleteSkill(id: number){
+    for(let i=0; i< this.sk.skill_id.length; i++){
+      if(i == id){
+        var id_value = this.sk.skill_id.splice(i, 1);
+        this.sk.skill_name.splice(i, 1);
+        
+        let myCheckboxes = this.myCheckboxes.toArray();
+        myCheckboxes[this.skilldb.findIndex(x => x.id == id_value)].checked = false;
+      }
+    }
+    //const index = this.sk.skill_id.findIndex(si => si === id);
+
+  }
+
+  deleteSkill2(id: number){
+    for(let i=0; i< this.newSkills.skill_id.length; i++){
+      if(i == id){
+        this.newSkills.skill_id.splice(i, 1);
+        this.newSkills.skill_name.splice(i, 1);
+      }
+    }
+    //const index = this.sk.skill_id.findIndex(si => si === id);
+
+  }
+
 }

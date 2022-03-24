@@ -5,7 +5,7 @@
 
 header {
   position: static;
-  height: 201px;
+  height: 185px;
   left: 0px;
   top: 0px;
 
@@ -18,6 +18,8 @@ header {
   height: 70px;
   left: 22px;
   top: 26px;
+  background-color: white;
+  opacity: 0.9;
 }
 .PageLogo{
   position: absolute;

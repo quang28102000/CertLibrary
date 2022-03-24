@@ -58,7 +58,7 @@
               <div class="skillCheckBox">
                 <div class="example-margin" *ngFor="let s of skilldb">
                   <div class="col">
-                    <mat-checkbox (change)="checkSkills(s)">{{s.name}}</mat-checkbox>
+                    <mat-checkbox #checkbox (change)="checkSkills(s, $event)">{{s.name}}</mat-checkbox>
                   </div><br>
                 </div>
               </div>
@@ -81,11 +81,13 @@
 
 
 
+          
+
           <mat-card>
             <mat-card-title>Các kỹ năng của khóa học</mat-card-title>
-            <mat-card-actions>
-              <div class="skillCover" *ngFor="let skill of sk.skill_name">
-                <button mat-button class="deleteB"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
+            <mat-card-actions class="container | row">
+              <div class="skillCover | col-md-3" *ngFor="let skill of sk.skill_name ; let i = index">
+                <button mat-button (click)="deleteSkill(i)" class="deleteB"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
                     fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                     <path
                       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
@@ -93,9 +95,8 @@
                 </button>
                 {{skill}}
               </div>
-
-              <div class="skillCover" *ngFor="let skill of newSkills.skill_name">
-                <button mat-button class="deleteB"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
+              <div class="skillCover | col-md-3" *ngFor="let skill of newSkills.skill_name ; let i = index">
+                <button mat-button (click)="deleteSkill2(i)" class="deleteB"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
                     fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                     <path
                       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
