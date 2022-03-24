@@ -55,14 +55,14 @@ public class HomePageController {
 		return new ResponseEntity<>(courses, HttpStatus.OK);
 	};
 	
+	// OK
 	@GetMapping("/courseSkills")
 	public ResponseEntity<List<Skill>> getCourseSkills() {
 		List<Skill> courses = courseService.getCourseSkills();
-		// Trường hợp 1: Cập nhật khóa học mới cho một nhân viên thông qua việc 
-		// update thông tim trong courseEmployee
 		return new ResponseEntity<>(courses, HttpStatus.OK);
 	};
 	
+	// OK
 	@GetMapping("/getEmployeesInfo")
 	public ResponseEntity<List<EmployeeDto>> getAllEmployeesInfo() {
 		List<EmployeeDto> employees = employeeService.getEmployeesInfo();
@@ -70,6 +70,7 @@ public class HomePageController {
 		return new ResponseEntity<>(employees, HttpStatus.OK);
 	};
 
+	// OK
 	@GetMapping("/getEmployees")
 	public ResponseEntity<List<EmployeeCourseDto>> getEmployees() {
 		List<EmployeeCourseDto> getEmployees = employeeService.getEmployees();

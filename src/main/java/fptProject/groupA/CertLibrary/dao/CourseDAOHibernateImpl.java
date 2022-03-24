@@ -25,9 +25,15 @@ import fptProject.groupA.CertLibrary.persistence.Skill;
 public class CourseDAOHibernateImpl implements CourseDao {
 
 	private static final String GET_COURSE_DTO = "SELECT cd.course_id AS id, c.course_tittle AS name, cd.image AS image, \r\n"
-			+ "c.platform AS platform, c.category AS category, cd.course_length AS courseLength, GROUP_CONCAT(cs.skill_name SEPARATOR ';') skills\r\n"
-			+ "FROM course_detail AS cd\r\n" + "JOIN course AS c\r\n" + "ON c.course_id = cd.course_id\r\n"
-			+ "JOIN course_skills AS cs\r\n" + "ON cd.course_id = cs.course_id\r\n" + "GROUP BY cd.course_id;";
+			+ "c.platform AS platform, c.category AS category, cd.course_length AS courseLength, GROUP_CONCAT(s.skill_name SEPARATOR ';') skills\r\n"
+			+ "FROM course_detail AS cd\r\n"
+			+ "JOIN course AS c\r\n"
+			+ "ON c.course_id = cd.course_id\r\n"
+			+ "JOIN course_skills AS cs\r\n"
+			+ " ON cd.course_id = cs.course_id\r\n"
+			+ "JOIN skills AS s\r\n"
+			+ "ON cs.skill_id = s.skill_id\r\n"
+			+ "GROUP BY c.course_id;";
 
 	private static final String GET_COURSES_HOME_PAGE_DTO = "SELECT e.employee_id AS id, e.full_name AS fullName, c.course_tittle AS tittle, \r\n"
 			+ "c.platform AS platform, c.category AS category, cd.course_length AS courseLength \r\n"
