@@ -7,9 +7,11 @@ import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 import fptProject.groupA.CertLibrary.persistence.Employee;
+import fptProject.groupA.CertLibrary.persistence.Skill;
 
 public interface CourseService {
 	List<Course> getAll();
+	List<Skill> getCourseSkills();
 	Integer numberOfCourses();
 	List<CourseDto> getCoursesDto();
 	List<CourseHomePageDto> getCoursesHomePageDto();

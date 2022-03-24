@@ -13,6 +13,7 @@ import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 import fptProject.groupA.CertLibrary.persistence.Employee;
+import fptProject.groupA.CertLibrary.persistence.Skill;
 
 @Service
 @Transactional
@@ -86,6 +87,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public String addCourseSkill(Course theCourse, Integer[] skillsId) {
 		return courseDao.addCourseSkill(theCourse, skillsId);
+	}
+
+	@Override
+	public List<Skill> getCourseSkills() {
+		return courseDao.getCourseSkills();
 	}
 
 }

@@ -18,6 +18,7 @@ import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 import fptProject.groupA.CertLibrary.persistence.Employee;
+import fptProject.groupA.CertLibrary.persistence.Skill;
 
 @Repository
 @Transactional
@@ -48,7 +49,15 @@ public class CourseDAOHibernateImpl implements CourseDao {
 		Session currentSession = entityManager.unwrap(Session.class);
 		return currentSession.createNamedQuery(Course.GET_ALL, Course.class).getResultList();
 	}
+	
+	@Override
+	public List<Skill> getCourseSkills() {
+		Session currentSession = entityManager.unwrap(Session.class);
 
+		return currentSession.createNamedQuery(Skill.GET_ALL_SKILLS, Skill.class).getResultList();
+	}
+	
+	
 //	Tổng số khóa học
 	@Override
 	public Integer numberOfCourses() {
@@ -266,4 +275,6 @@ public class CourseDAOHibernateImpl implements CourseDao {
 		transaction.commit();
 		return "CourseSkills[skillId: " + skillsId.toString() + " and CourseId" + theCourse.getId() + " is added";	
 		}
+
+
 }

@@ -31,6 +31,7 @@ import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
 import fptProject.groupA.CertLibrary.persistence.Employee;
 import fptProject.groupA.CertLibrary.persistence.EmployeeCourseDto;
 import fptProject.groupA.CertLibrary.persistence.EmployeeDto;
+import fptProject.groupA.CertLibrary.persistence.Skill;
 import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 import fptProject.groupA.CertLibrary.service.CourseService;
 import fptProject.groupA.CertLibrary.service.EmployeeService;
@@ -51,6 +52,14 @@ public class HomePageController {
 		// Trường hợp 1: Cập nhật khóa học mới cho một nhân viên thông qua việc 
 		// update thông tim trong courseEmployee
 
+		return new ResponseEntity<>(courses, HttpStatus.OK);
+	};
+	
+	@GetMapping("/courseSkills")
+	public ResponseEntity<List<Skill>> getCourseSkills() {
+		List<Skill> courses = courseService.getCourseSkills();
+		// Trường hợp 1: Cập nhật khóa học mới cho một nhân viên thông qua việc 
+		// update thông tim trong courseEmployee
 		return new ResponseEntity<>(courses, HttpStatus.OK);
 	};
 	
