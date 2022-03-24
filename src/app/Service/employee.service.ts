@@ -15,4 +15,7 @@ export class EmployeeService {
   public getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiServiceUrl}/course/getEmployees`);
   }
+  public getAll2(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiServiceUrl}/course/getEmployeesInfo`);
+  }
 }

@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { courseCreate } from '../model/courseC';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-course-list',
@@ -123,6 +126,135 @@ export class CourseListComponent implements OnInit {
 
     this.platformList = filtered;
   }
+  createC() {
+    const dialogRef = this.dialog.open(CourseCreateComponent, {
+      width: '53%'
+    }
+      );
+  }
 
 
+}
+
+
+
+@Component({
+  selector: 'app-course-create',
+  templateUrl: './course-create.html',
+  styleUrls: ['./course-create.css'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {showError: true},
+    },
+  ]
+})
+
+
+export class CourseCreateComponent implements OnInit {
+
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
+  skilldb!: any[];
+  
+  public courses: any;
+  sk =
+    {
+      skill_name:  [] as any,
+      skill_id: [] as any    
+    };
+
+
+
+  constructor(
+    private _formBuilder: FormBuilder,
+    public courseService: CourseService
+    ) {
+  }
+
+
+
+
+  ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      tittle: ['', Validators.required],
+      platform: ['', Validators.required],
+      category: ['', Validators.required],
+      image: ['', Validators.required],
+      courseLength: ['', Validators.required],
+
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      newName: [''],
+    });
+    this.getS();
+
+    this.courseService.getList().subscribe(res => {
+      this.courses = res;
+      console.log("course-list b3", res);
+    });
+  }
+
+
+  getS(){
+    this.courseService.getSkills().subscribe(
+      (s) => this.skilldb = s
+    )
+  }
+
+  checkSkills(s: any){
+    this.sk.skill_id.push(s.id);
+    this.sk.skill_name.push(s.name);
+    console.log('s', this.sk);
+  }
+
+
+  onCreate(){
+    var flat = this.sk.skill_id.length;
+    this.newSkills.skill_id.forEach((element: number) => {
+        this.sk.skill_id.push(element);
+    });
+    this.newSkills.skill_name.forEach((element: any) => {
+      this.sk.skill_name.push(element);
+    });
+
+    console.log('flat', flat);
+    console.log('skills', this.sk);
+
+
+
+
+    const addC: courseCreate = {
+          course_id: Math.max(...this.courses.map((o: { id: any; }) => o.id), 0)+1,
+          tittle: this.firstFormGroup.controls['tittle'].value,
+          platform: this.firstFormGroup.controls['platform'].value,
+          category: this.firstFormGroup.controls['category'].value,
+          image: this.firstFormGroup.controls['image'].value,
+          courseLength: this.firstFormGroup.controls['courseLength'].value,
+          skills: this.sk,
+          skill_flag: flat,
+    };
+    console.log('add',addC);
+
+    this.courseService.courseCreate(addC).subscribe(data=>
+      {
+        console.log("send-data: ", data);
+      }
+    )
+  }
+
+  public newSkills = {
+    skill_name: [] as any,
+    skill_id: [] as any
+  };
+  public skillIdCount = 1;
+  addSkill() {
+    this.newSkills.skill_id.push(Math.max(...this.skilldb.map(o => o.id), 0)+this.skillIdCount);
+    this.skillIdCount++;
+    this.newSkills.skill_name.push(this.secondFormGroup.controls['newName'].value);
+
+    console.log("newskill", this.newSkills.skill_id, this.newSkills.skill_name);
+
+    this.secondFormGroup.controls['newName'].setValue('')
+  }
 }

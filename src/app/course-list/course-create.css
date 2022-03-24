@@ -1,0 +1,157 @@
+.mat-dialog-title{
+    text-align: center;
+    color: #2360d3;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 10px;
+  }
+  
+  .content{
+    padding: 30px 30px 10px 30px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+    width: 580px;
+    margin-left: 50px;
+  }
+  
+  .other{
+    width: 250px;
+  }
+  
+  .arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .arrows button{
+    background: none;
+    border: none;
+  }
+  
+  
+  
+  div svg {
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    overflow: visible;
+    fill:#9ebbf1;
+  }
+  
+  div svg polygon,
+  div svg path {
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+  div svg:hover polygon, div svg:hover path {
+    transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+    fill: #2360d3;
+  }
+  div svg:hover .arrow {
+    animation: arrow-anim 2.5s cubic-bezier(0.2, 1, 0.3, 1) infinite;
+  }
+  div svg:hover .arrow-fixed {
+    animation: arrow-fixed-anim 2.5s cubic-bezier(0.2, 1, 0.3, 1) infinite;
+  }
+  
+  @keyframes arrow-anim {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    5% {
+      transform: translateX(-0.1rem);
+    }
+    100% {
+      transform: translateX(1rem);
+      opacity: 0;
+    }
+  }
+  @keyframes arrow-fixed-anim {
+    5% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  mat-card-actions{
+    display: flex;
+  }
+  
+  .skillCover{
+    font-size: 18px;
+    border: 0.5px solid #2360d3;
+    border-radius: 15px ;
+    padding: 5px 12px 5px 10px;
+    width:fit-content;
+    margin-right: 10px;
+  }
+  
+  .deleteB{
+    background: none;
+    border: none;
+    margin: -30px -20px -15px -20px;
+  }
+  
+  .skillCheckBox{
+    display:flex;
+    margin-bottom: 20px;
+  }
+  
+  .example-margin{
+    margin-left: 50px;
+  }
+  
+  .mat-card{
+    margin: 30px 5px 20px 5px;
+    padding: 15px 30px 30px 40px;
+  }
+  
+  .mat-card-title{
+    padding: 10px 10px 10px 0;
+    font-size: 30px;
+    color:#0e3885;
+  }
+  
+  .quest{
+    color: #0e3885;
+    font-size: 20px;
+    font-weight: 450;
+  }
+  
+  .confirm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 30px 20px 30px;
+  }
+  
+  .confirm button{
+    width: 130px;
+    height: 50px;
+    margin: 30px;
+    color: white;
+    border: 0.5px solid white;
+    border-radius: 5px;
+  }
+  
+  .reset{
+    background-color: #7695ce;
+  }
+  
+  .complete{
+    background-color: #1eb475;
+  }
+  
+  .skillCheckBox{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }

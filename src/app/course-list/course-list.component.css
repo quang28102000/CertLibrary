@@ -300,3 +300,20 @@ th{
 .modal-xl {
   max-width: 1200px;
 }
+
+
+
+/*  */
+.plus{
+  margin-left: 1300px;
+  margin-top: 10px;
+  border: none;
+  background: none;
+
+}
+#plusC:hover{
+  fill: #3780d8;
+  border: solid 0.75px #ffff;
+  border-radius: 50px;
+}
+/*  */

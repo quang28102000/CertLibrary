@@ -33,22 +33,33 @@ export class EmployeeListComponent implements OnInit {
   }
 
   public employees!: any[];
+  public employees2!: any[];
+
   ngOnInit(): void {
-    this.GetEmployeeList();
+    // this.GetEmployeeList();
+    this.GetEmployeeList2();
     this.totalLength = this.employees.length;
   }
 
-  GetEmployeeList(){
-    this.employeeService.getAll().subscribe(res => {
-      //set stt
-      for (let index = 0; index < res.length; index++) {
-        res[index].index = index+1;        
-      }
-      this.employees = res;
-      this.dataSource = new MatTableDataSource(res);
-      console.log(res);
-    })
+  // GetEmployeeList(){
+  //   this.employeeService.getAll().subscribe(res => {
+  //     //set stt
+  //     for (let index = 0; index < res.length; index++) {
+  //       res[index].index = index+1;        
+  //     }
+  //     this.employees = res;
+  //     this.dataSource = new MatTableDataSource(res);
+  //     console.log(res);
+  //   })
+  // }
 
+  GetEmployeeList2(){
+    this.employeeService.getAll2().subscribe(res => {
+      this.employees2 = res;
+      console.log('employee', res);
+      console.log('00');
+
+    })
   }
 
   rowClick(employee: any){

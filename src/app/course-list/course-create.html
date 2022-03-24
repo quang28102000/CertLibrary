@@ -1,0 +1,186 @@
+<h1 mat-dialog-title>Thêm khóa học mới</h1>
+<mat-dialog-content>
+  <mat-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Vui lòng điền đầy đủ thông tin.">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Điền vào thông tin khóa học</ng-template>
+
+        <div class="content">
+          <mat-form-field appearance="fill">
+            <mat-label>Tên khóa học: </mat-label>
+            <input matInput placeholder="điền vào tên khóa học" formControlName="tittle" required>
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Nền tảng: </mat-label>
+            <input matInput placeholder="điền vào nền tảng khóa học" formControlName="platform" required>
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Loại khóa học: </mat-label>
+            <input matInput placeholder="điền vào loại khóa học" formControlName="category" required>
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Hình ảnh: </mat-label>
+            <input matInput placeholder="điền vào đường dẫn hình ảnh khóa học" formControlName="image" required>
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Thời lượng khóa học: </mat-label>
+            <input matInput placeholder="điền vào thời lượng khóa học" formControlName="courseLength" required>
+          </mat-form-field><br>
+          <div class="arrows">
+            <button mat-button matStepperNext>
+              <svg width="18px" height="17px" viewBox="-1 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g>
+                  <polygon class="arrow"
+                    points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596">
+                  </polygon>
+                  <polygon class="arrow-fixed"
+                    points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596">
+                  </polygon>
+                  <path
+                    d="M-4.58892184e-16,0.56157424 L-4.58892184e-16,16.1929159 L9.708,8.33860465 L-1.64313008e-15,0.56157424 L-4.58892184e-16,0.56157424 Z M1.33333333,3.30246869 L7.62533333,8.34246869 L1.33333333,13.4327013 L1.33333333,3.30246869 L1.33333333,3.30246869 Z">
+                  </path>
+                </g>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Vui lòng chọn kỹ năng.">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Điền vào kỹ năng của khóa học</ng-template>
+
+        <div class="content">
+          <div class="container">
+            <div class="row">
+              <div class="skillCheckBox">
+                <div class="example-margin" *ngFor="let s of skilldb">
+                  <div class="col">
+                    <mat-checkbox (change)="checkSkills(s)">{{s.name}}</mat-checkbox>
+                  </div><br>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <mat-form-field appearance="fill" class="other">
+            <mat-label>Kỹ năng khác: </mat-label>
+            <input matInput placeholder="điền kỹ năng không có ở trên" formControlName="newName" name="newName">
+          </mat-form-field>
+          <button type="button" class="btn btn-link" (click)="addSkill()" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-check2-square" viewBox="0 0 16 16">
+              <path
+                d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
+              <path
+                d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
+            </svg>
+          </button>
+
+
+
+          <mat-card>
+            <mat-card-title>Các kỹ năng của khóa học</mat-card-title>
+            <mat-card-actions>
+              <div class="skillCover" *ngFor="let skill of sk.skill_name">
+                <button mat-button class="deleteB"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
+                    fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path
+                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                  </svg>
+                </button>
+                {{skill}}
+              </div>
+
+              <div class="skillCover" *ngFor="let skill of newSkills.skill_name">
+                <button mat-button class="deleteB"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
+                    fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path
+                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                  </svg>
+                </button>
+                {{skill}}
+              </div>
+
+            </mat-card-actions>
+          </mat-card>
+
+
+          <div class="arrows">
+            <button mat-button matStepperPrevious>
+              <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="prev" transform="translate(8.500000, 8.500000) scale(-1, 1) translate(-8.500000, -8.500000)">
+                  <polygon class="arrow"
+                    points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596">
+                  </polygon>
+                  <polygon class="arrow-fixed"
+                    points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596">
+                  </polygon>
+                  <path
+                    d="M-1.48029737e-15,0.56157424 L-1.48029737e-15,16.1929159 L9.708,8.33860465 L-2.66453526e-15,0.56157424 L-1.48029737e-15,0.56157424 Z M1.33333333,3.30246869 L7.62533333,8.34246869 L1.33333333,13.4327013 L1.33333333,3.30246869 L1.33333333,3.30246869 Z">
+                  </path>
+                </g>
+              </svg>
+            </button>
+            <button mat-button matStepperNext>
+              <svg width="18px" height="17px" viewBox="-1 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g>
+                  <polygon class="arrow"
+                    points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596">
+                  </polygon>
+                  <polygon class="arrow-fixed"
+                    points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596">
+                  </polygon>
+                  <path
+                    d="M-4.58892184e-16,0.56157424 L-4.58892184e-16,16.1929159 L9.708,8.33860465 L-1.64313008e-15,0.56157424 L-4.58892184e-16,0.56157424 Z M1.33333333,3.30246869 L7.62533333,8.34246869 L1.33333333,13.4327013 L1.33333333,3.30246869 L1.33333333,3.30246869 Z">
+                  </path>
+                </g>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Hoàn thành</ng-template>
+
+
+      <div class="content">
+        <h2 class="quest">Hãy bấm xác nhận để hoàn thành thêm khóa mới, hoặc bấm reset để điền lại</h2>
+        <div class="confirm">
+          <button class="reset" mat-button (click)="stepper.reset()">Reset</button>
+          <button class="complete" (click)="onCreate()">Xác nhận</button>
+        </div>
+        <div class="arrows">
+          <button mat-button matStepperPrevious>
+            <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="prev" transform="translate(8.500000, 8.500000) scale(-1, 1) translate(-8.500000, -8.500000)">
+                <polygon class="arrow"
+                  points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596">
+                </polygon>
+                <polygon class="arrow-fixed"
+                  points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596">
+                </polygon>
+                <path
+                  d="M-1.48029737e-15,0.56157424 L-1.48029737e-15,16.1929159 L9.708,8.33860465 L-2.66453526e-15,0.56157424 L-1.48029737e-15,0.56157424 Z M1.33333333,3.30246869 L7.62533333,8.34246869 L1.33333333,13.4327013 L1.33333333,3.30246869 L1.33333333,3.30246869 Z">
+                </path>
+              </g>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

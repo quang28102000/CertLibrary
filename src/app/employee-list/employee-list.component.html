@@ -1,66 +1,22 @@
-<!-- status: 1.Đang học, 2. Đã học, 3. Chưa thi, 4. Thi nhưng chưa có bằng -->
+
+
+
+
+<!-- <div class="">
+  <div *ngFor="let item of employees2">
+    <img src="{{item.profileImage}}" alt="">
+  </div>
+</div> -->
+
 <div class="container">
-    <h1>
-        Danh Sách Nhân Viên
-    </h1>
-    <div class="">
-      <table mat-table [dataSource]="dataSource" matSort>
-        <!-- ID Column -->
-        <ng-container matColumnDef="index">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>STT</th>
-          <td mat-cell *matCellDef="let row">{{row.index}}</td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="fullName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên</th>
-          <td mat-cell *matCellDef="let row">{{row.fullName}}</td>
-        </ng-container>
-
-        <!-- Email Column -->
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-          <td mat-cell *matCellDef="let row">{{row.email}}</td>
-        </ng-container>
-
-        <!-- Course Column -->
-        <ng-container matColumnDef="course">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Khoá học</th>
-          <td mat-cell *matCellDef="let row">{{row.course}}</td>
-        </ng-container>
-
-        <!-- Status Column -->
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Trạng thái</th>
-          <td mat-cell *matCellDef="let row" [ngSwitch]="row.status">
-            <label *ngSwitchCase="1">Đã đăng kí</label>
-            <label *ngSwitchCase="2">Chưa đăng kí</label>
-            <label *ngSwitchCase="3">Đã hoàn thành</label>
-            <label *ngSwitchCase="4">Chưa hoàn thành</label>
-          </td>
-        </ng-container>
-
-        <!-- Start Date Column -->
-        <ng-container matColumnDef="startDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày bắt đầu</th>
-          <td mat-cell *matCellDef="let row">{{row.startDate}}</td>
-        </ng-container>
-
-        <!-- End Date Column -->
-        <ng-container matColumnDef="endDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày kết thúc</th>
-          <td mat-cell *matCellDef="let row">{{row.endDate}}</td>
-        </ng-container>
-
-
-        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-        <tr
-            mat-row
-            (click)="rowClick(row)"
-            *matRowDef="let row; columns: displayColumns;"
-        ></tr>
-      </table>
-
-      <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-    </div>   
+  <div class="item" *ngFor="let item of employees2" (click)="rowClick(item)">
+    <div class="image-cropper">
+      <img class="profileImage" src="{{item.profileImage}}" alt="">
+    </div>
+    <h2 class="fullName">{{item.fullName}}</h2>
+    <p>{{item.email}}</p>
+    <div class="skills">
+      <div class="skill" *ngFor="let skill of item.skills">{{skill}}</div>
+    </div>
+  </div>
 </div>

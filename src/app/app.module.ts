@@ -41,6 +41,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
 import { CourseAddComponent } from './course-add/course-add.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+
+import { CourseCreateComponent } from './course-list/course-list.component'
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +58,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     DialogUpdateComponent,
     CourseDeleteComponent,
     ManagerComponent,
-    CourseAddComponent
+    CourseAddComponent,
+    CourseCreateComponent
     
   ],
   imports: [
@@ -81,7 +86,9 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     MatRadioModule,
     MatCheckboxModule,
     MatIconModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    MatStepperModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
