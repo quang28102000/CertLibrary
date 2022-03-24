@@ -86,16 +86,18 @@ public class HomePageController {
 		return new ResponseEntity<UserProfileDto>(userProfile, HttpStatus.OK);
 	}
 
+	// OK
 	@GetMapping("/coursesDto")
 	public ResponseEntity<List<CourseDto>> getCoursesDto() {
 		List<CourseDto> courses = courseService.getCoursesDto();
+		courses.forEach(c -> System.out.println(c));
 		return new ResponseEntity<List<CourseDto>>(courses, HttpStatus.OK);
 	}
-
+	
+	// OK
 	@GetMapping("/coursesHomePageDto")
 	public ResponseEntity<List<CourseHomePageDto>> getCoursesHomePageDto() {
 		List<CourseHomePageDto> courses = courseService.getCoursesHomePageDto();
-		courses.forEach(c -> System.out.println(c));
 		return new ResponseEntity<List<CourseHomePageDto>>(courses, HttpStatus.OK);
 	}
 
