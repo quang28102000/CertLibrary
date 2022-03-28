@@ -85,7 +85,7 @@
   
       color: #040a96;
     }
-    #paging  {
+    /* #paging  {
   
       display: flex;
       justify-content: center;
@@ -97,7 +97,11 @@
       line-height: 27px;
       text-align: center;
   
-  
+    } */
+
+    .ngx-pagination {
+      display: flex;
+      justify-content: center;
     }
   
   

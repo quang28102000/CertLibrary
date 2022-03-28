@@ -29,8 +29,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {ReactiveFormsModule} from '@angular/forms';
 import { CourseInfoComponent } from './course-info/course-info.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { DialogCourseRecent } from './user-screen/user-screen.component';
+import { SearchAutoCompleteComponent } from './search-auto-complete/search-auto-complete.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +42,8 @@ import { DialogCourseRecent } from './user-screen/user-screen.component';
     EmployeeListComponent,
     CourseRegisterComponent,
     CourseInfoComponent,
-    DialogCourseRecent
-    
+    DialogCourseRecent,
+    SearchAutoCompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +64,10 @@ import { DialogCourseRecent } from './user-screen/user-screen.component';
     MatSelectModule,
     MatOptionModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, SearchAutoCompleteComponent]
 })
 export class AppModule { }

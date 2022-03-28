@@ -1,6 +1,6 @@
 import { DatePipe } from "@angular/common";
 
-export interface Information {
+export interface InformationCopy {
   full_Name: string;
   course_ID: number;
   employee_ID: number;
@@ -8,7 +8,7 @@ export interface Information {
   start_Date: String;
   end_Date: String;
   cert_Link: String;
-  course_Tittle: String;
+  course_Tittle: string;
   category: String;
   platform: String;
   course_Length: String;

@@ -20,6 +20,10 @@ export class CourseService {
   public getList():Observable<any[]>{
     return this.http.get<any[]>(`${this.apiServiceUrl}/course/coursesDto`);
   }
+
+  public getInformationTittle():Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiServiceUrl}/course`);
+  }
   
   public addCourseRegister(courseRegister: CourseRegisterDTO): Observable<CourseRegisterDTO>{
     const url = `${this.apiServiceUrl}/course/addCourseRegister`;

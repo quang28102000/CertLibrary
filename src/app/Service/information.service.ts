@@ -1,3 +1,4 @@
+import { InformationCopy } from './../model/information-copy';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -22,7 +23,17 @@ export class InformationService {
     return this.http.put<Information>(`${this.apiServiceUrl}/information/update`, Infor);
   }
 
-  public deleteInformation(InforID: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServiceUrl}/information/delete/${InforID}`);
+  // public deleteInformation1(Infor: Information): Observable<Information> {
+  //   return this.http.delete<Information>(`${this.apiServiceUrl}/information/deleteobj`, Infor);
+  // }
+
+  public deleteInformation(Infor: Information): Observable<Information> {
+    return this.http.put<Information>(`${this.apiServiceUrl}/information/deleteobj`, Infor);
   }
+
+  // public getInformationTittle(): Observable<InformationCopy[]> {
+  //   return this.http.get<InformationCopy[]>(
+  //     `${this.apiServiceUrl}/information/allName`
+  //   );
+  // }
 }

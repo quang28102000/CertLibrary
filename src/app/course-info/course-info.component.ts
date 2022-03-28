@@ -14,6 +14,10 @@ export class CourseInfoComponent implements OnInit {
   public infor!: Information[];
   public editInfor!: Information;
   public deleteInfor!: Information;
+
+  //paging
+  p: number = 1;
+  count: number = 4;
   constructor(
     private InformationService: InformationService,
     private courseService : CourseService,
@@ -34,6 +38,7 @@ export class CourseInfoComponent implements OnInit {
       }
     );
   }
+  
   public onUpdateInfor(Infor: Information): void {
     this.InformationService.updateInformation(Infor).subscribe(
       (response: Information) => {
@@ -46,9 +51,21 @@ export class CourseInfoComponent implements OnInit {
     );
   }
 
-  public onDeleteInfor(informationId: number): void {
-    this.InformationService.deleteInformation(informationId).subscribe(
-      (response: void) => {
+  // public onDeleteInfor(informationId: number): void {
+  //   this.InformationService.deleteInformation(informationId).subscribe(
+  //     (response: void) => {
+  //       console.log(response);
+  //       this.getInformationDto();
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   );
+  // }
+
+  public onDeleteInfor(Infor: Information): void {
+    this.InformationService.deleteInformation(Infor).subscribe(
+      (response: Information) => {
         console.log(response);
         this.getInformationDto();
       },
@@ -57,6 +74,7 @@ export class CourseInfoComponent implements OnInit {
       }
     );
   }
+
   public onOpenModal(Infor: Information, mode: string): void {
     
     const container = document.getElementById('main-container');
