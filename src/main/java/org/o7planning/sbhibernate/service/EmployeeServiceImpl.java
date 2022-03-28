@@ -10,8 +10,6 @@ import org.o7planning.sbhibernate.presistence.UserProfileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -28,5 +26,4 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<EmployeeDto> getEmployees() {
 		return employeeDao.getEmployees();
 	}
-
 }

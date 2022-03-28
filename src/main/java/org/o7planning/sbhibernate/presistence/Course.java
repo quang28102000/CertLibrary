@@ -7,7 +7,10 @@ import java.util.List;
 import javax.persistence.*;
 import javax.persistence.Table;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "course")
@@ -41,7 +44,6 @@ public class Course {
 	@JsonIgnore
 	private List<Employee> employees;
 	
-
 	public List<Employee> getEmployees() {
 		return employees;
 	}
@@ -81,5 +83,4 @@ public class Course {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
 }

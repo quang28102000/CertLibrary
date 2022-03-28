@@ -1,6 +1,5 @@
 package org.o7planning.sbhibernate.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,9 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.StandardBasicTypes;
-import org.o7planning.sbhibernate.presistence.CourseDto;
 import org.o7planning.sbhibernate.presistence.InforPageDto;
-import org.o7planning.sbhibernate.presistence.UserProfileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +22,8 @@ public class InforDAOHibernateImpl implements InforDAO {
 			+ "inner join certlibrary.course_detail d on d.course_id = b.course_id "
 			+ "where a.isDeleted = 0  order by a.employee_id asc;";
 
-	private final String ADD_NEW_COURSE = "insert into course(course_tittle, platform, category) "
-			+ "values (':course_tittle', ':platform', ':category')";
+//	private final String ADD_NEW_COURSE = "insert into course(course_tittle, platform, category) "
+//			+ "values (':course_tittle', ':platform', ':category')";
 
 	private EntityManager entityManager;
 
@@ -47,15 +44,34 @@ public class InforDAOHibernateImpl implements InforDAO {
 				.addScalar(InforPageDto.START_DATE, StandardBasicTypes.DATE)
 				.addScalar(InforPageDto.END_DATE, StandardBasicTypes.DATE)
 				.addScalar(InforPageDto.CERT_LINK, StandardBasicTypes.STRING)
-				.addScalar(InforPageDto.COURSE_TITLE, StandardBasicTypes.STRING)
+				.addScalar(InforPageDto.COURSE_TITTLE, StandardBasicTypes.STRING)
 				.addScalar(InforPageDto.CATEGORY, StandardBasicTypes.STRING)
 				.addScalar(InforPageDto.PLATFORM, StandardBasicTypes.STRING)
 				.addScalar(InforPageDto.COURSE_LENGTH, StandardBasicTypes.INTEGER)
 				.setResultTransformer(Transformers.aliasToBean(InforPageDto.class));
-		
+
 		List<InforPageDto> list = query.list();
-	    return list;
+		return list;
 //		return (List<InforPageDto>) query.getResultList();
+	}
+
+	@Override
+	public List<InforPageDto> getInforName() {
+		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		NativeQuery<InforPageDto> query = openSession.createNativeQuery(GET_INFOR_DTO);
+		query.addScalar(InforPageDto.FULL_NAME, StandardBasicTypes.STRING)
+				.addScalar(InforPageDto.COURSE_ID, StandardBasicTypes.INTEGER)
+				.addScalar(InforPageDto.EMPLOYEE_ID, StandardBasicTypes.INTEGER)
+				.addScalar(InforPageDto.STATUS, StandardBasicTypes.INTEGER)
+				.addScalar(InforPageDto.START_DATE, StandardBasicTypes.DATE)
+				.addScalar(InforPageDto.END_DATE, StandardBasicTypes.DATE)
+				.addScalar(InforPageDto.CERT_LINK, StandardBasicTypes.STRING)
+				.addScalar(InforPageDto.COURSE_TITTLE, StandardBasicTypes.STRING)
+				.addScalar(InforPageDto.CATEGORY, StandardBasicTypes.STRING)
+				.addScalar(InforPageDto.PLATFORM, StandardBasicTypes.STRING)
+				.addScalar(InforPageDto.COURSE_LENGTH, StandardBasicTypes.INTEGER);
+		List<InforPageDto> list = query.list();
+		return list;
 	}
 
 	@Override
@@ -74,7 +90,7 @@ public class InforDAOHibernateImpl implements InforDAO {
 				.setParameter("end_date", inforPageDto.getEnd_Date())
 				.setParameter("cert_link", inforPageDto.getCert_Link()).executeUpdate();
 		txn.commit();
-		updateCourseLength(inforPageDto.getCourse_ID(), inforPageDto.getCourse_Length());
+//		updateCourseLength(inforPageDto.getCourse_ID(), inforPageDto.getCourse_Length());
 		System.err.println(inforPageDto.getEmployee_ID());
 		return inforPageDto;
 	}
@@ -90,21 +106,36 @@ public class InforDAOHibernateImpl implements InforDAO {
 		query.setParameter("course_length", time).setParameter("course_id", id).executeUpdate();
 		txn.commit();
 	}
-	
+
 	@Override
-	public void deleteInfor (Integer courseID, Integer employeeID) {
+	public void deleteInfor(Integer courseID, Integer employeeID) {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
 		System.err.println(courseID + "_" + employeeID);
 		org.hibernate.Transaction txn = openSession.beginTransaction();
-		
-		NativeQuery<?> query = openSession.createNativeQuery(
-				"UPDATE certlibrary.course_employee SET course_employee.isDeleted = 1\r\n"
-				+ "WHERE course_employee.employee_id = :employee_id and course_employee.course_id = :course_id");
+
+		NativeQuery<?> query = openSession
+				.createNativeQuery("UPDATE certlibrary.course_employee SET course_employee.isDeleted = 1\r\n"
+						+ "WHERE course_employee.employee_id = :employee_id and course_employee.course_id = :course_id");
 
 		query.setParameter("employee_id", employeeID).setParameter("course_id", courseID).executeUpdate();
 		txn.commit();
 	}
-	
+
+	@Override
+	public void deleteInforobj(Integer courseID, Integer employeeID) {
+		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
+		System.err.println(courseID + "_" + employeeID);
+		org.hibernate.Transaction txn = openSession.beginTransaction();
+
+		NativeQuery<?> query = openSession
+				.createNativeQuery("UPDATE certlibrary.course_employee SET course_employee.isDeleted = 1\r\n"
+						+ "WHERE course_employee.employee_id = :employee_id and course_employee.course_id = :course_id");
+
+		query.setParameter("employee_id", employeeID).setParameter("course_id", courseID).executeUpdate();
+		txn.commit();
+
+	}
+
 //	@Override
 //	public void addNewCourse(String tittle, String platform, String category) {
 //		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
@@ -123,5 +154,4 @@ public class InforDAOHibernateImpl implements InforDAO {
 //		String sql = "select course_id from certlibrary.course_detail order by course_id desc limit 1";
 //		return currentSession.createQuery(sql, Integer.class).getFirstResult();
 //	}
-
 }

@@ -11,7 +11,7 @@ public class InforPageDto {
 	public static final String START_DATE = "start_Date";
 	public static final String END_DATE = "end_Date";
 	public static final String CERT_LINK = "cert_Link";
-	public static final String COURSE_TITLE = "course_Tittle";
+	public static final String COURSE_TITTLE = "course_Tittle";
 	public static final String CATEGORY = "category";
 	public static final String PLATFORM = "platform";
 	public static final String COURSE_LENGTH = "course_Length";
@@ -48,6 +48,7 @@ public class InforPageDto {
 		this.platform = platform;
 		this.course_Length = course_Length;
 	}
+
 
 	public String getFull_Name() {
 		return full_Name;
@@ -105,11 +106,11 @@ public class InforPageDto {
 		this.cert_Link = cert_Link;
 	}
 
-	public String getCourse_Title() {
+	public String getCourse_Tittle() {
 		return course_Tittle;
 	}
 
-	public void setCourse_Title(String course_Tittle) {
+	public void setCourse_Tittle(String course_Tittle) {
 		this.course_Tittle = course_Tittle;
 	}
 

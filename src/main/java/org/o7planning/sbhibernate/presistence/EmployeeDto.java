@@ -50,23 +50,15 @@ public class EmployeeDto {
 	}
 
 	public void setEmail(String email) {
-		this.email = email.trim();
+		this.email = email;
 	}
 
 	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status.toString();
-	}
-
-	public String getPlatform() {
-		return platform;
-	}
-
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getCourse() {
@@ -77,10 +69,17 @@ public class EmployeeDto {
 		this.course = course;
 	}
 
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
 	@Override
 	public String toString() {
 		return "EmployeeDto [id=" + id + ", fullName=" + fullName + ", email=" + email + ", status=" + status
 				+ ", course=" + course + ", platform=" + platform + "]";
 	}
-
 }

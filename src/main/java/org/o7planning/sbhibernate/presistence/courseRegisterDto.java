@@ -1,8 +1,6 @@
 package org.o7planning.sbhibernate.presistence;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.regex.Pattern;
 
 public class courseRegisterDto {
 
@@ -88,6 +86,4 @@ public class courseRegisterDto {
 		return "courseRegisterDto [employee_ID=" + employee_ID + ", course_ID=" + course_ID + ", status=" + status
 				+ ", start_Date=" + start_Date + ", end_Date=" + end_Date + ", cert_Link=" + cert_Link + "]";
 	}
-	
-	
 }

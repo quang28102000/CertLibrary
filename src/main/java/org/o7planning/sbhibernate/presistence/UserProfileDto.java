@@ -1,7 +1,6 @@
 package org.o7planning.sbhibernate.presistence;
 
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
 public class UserProfileDto {
 
@@ -48,16 +47,16 @@ public class UserProfileDto {
 		return skills;
 	}
 
-	public void setSkills(String skills) {
-		this.skills = Pattern.compile(";").split(skills);
+	public void setSkills(String[] skills) {
+		this.skills = skills;
 	}
 
 	public String[] getCourses() {
 		return courses;
 	}
 
-	public void setCourses(String courses) {
-		this.courses = Pattern.compile(";").split(courses);
+	public void setCourses(String[] courses) {
+		this.courses = courses;
 	}
 
 	@Override
@@ -65,5 +64,4 @@ public class UserProfileDto {
 		return "EmployeeDto [id=" + id + ", fullName=" + fullName + ", email=" + email + ", skills="
 				+ Arrays.toString(skills) + ", courses=" + Arrays.toString(courses) + "]";
 	}
-
 }

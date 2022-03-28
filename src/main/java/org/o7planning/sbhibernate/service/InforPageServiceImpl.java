@@ -23,6 +23,12 @@ public class InforPageServiceImpl implements InforPageService{
 	}
 	
 	@Override
+	public List<InforPageDto> getInforDtoName() {
+		// TODO Auto-generated method stub
+		return dao.getInforName();
+	}
+	
+	@Override
 	@Transactional
 	public InforPageDto updateInfor(InforPageDto inforPageDto) {
 		return dao.editInfor(inforPageDto);
@@ -33,5 +39,12 @@ public class InforPageServiceImpl implements InforPageService{
 	public Integer deleteInforDto(Integer courseID, Integer employeeID) {
 		 dao.deleteInfor(courseID, employeeID);
 		 return 1;
+	}
+	
+	@Override
+	@Transactional
+	public int deleteInforobj(Integer courseID, Integer employeeID) {
+		dao.deleteInforobj(courseID, employeeID);
+		return 1;
 	}
 }

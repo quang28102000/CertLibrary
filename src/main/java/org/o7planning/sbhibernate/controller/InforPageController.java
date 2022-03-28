@@ -2,17 +2,13 @@ package org.o7planning.sbhibernate.controller;
 
 import java.util.List;
 
-import org.o7planning.sbhibernate.presistence.CourseDto;
 import org.o7planning.sbhibernate.presistence.InforPageDto;
-import org.o7planning.sbhibernate.presistence.courseRegisterDto;
 import org.o7planning.sbhibernate.service.InforPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +30,14 @@ public class InforPageController {
 	public ResponseEntity<List<InforPageDto>> getAllInformation() {
 		List<InforPageDto> information = inforPageService.getInforDto();
 		System.out.println(information.toString().trim());
-		return new ResponseEntity<List<InforPageDto>>(information, HttpStatus.OK);
+		return new ResponseEntity<>(information, HttpStatus.OK);
+	}
+	
+	@GetMapping("/allName")
+	public ResponseEntity<List<InforPageDto>> getAllInformationName() {
+		List<InforPageDto> information = inforPageService.getInforDtoName();
+		System.out.println(information.toString().trim());
+		return new ResponseEntity<>(information, HttpStatus.OK);
 	}
 	
 	@PutMapping("/update")
@@ -54,6 +57,17 @@ public class InforPageController {
 		
 //        System.err.println(courseId + "_" + employeeId);
 		int flag = inforPageService.deleteInforDto(courseId, employeeId);
+		return new ResponseEntity<>(HttpStatus.OK);
+    }
+	
+	@PutMapping("/deleteobj")
+    public ResponseEntity<InforPageDto> deleteInforObj(@RequestBody InforPageDto inforPageDto) {
+        
+        Integer courseId = inforPageDto.getCourse_ID();
+		Integer employeeId = inforPageDto.getEmployee_ID();
+		
+//        System.err.println(courseId + "_" + employeeId);
+		int flag = inforPageService.deleteInforobj(courseId, employeeId);
 		return new ResponseEntity<>(HttpStatus.OK);
     }
 	

@@ -54,4 +54,6 @@ public class HomePageController {
 		courses.forEach(c -> System.out.println(c));
 		return new ResponseEntity<List<CourseDto>>(courses, HttpStatus.OK);
 	}
+	
+	
 }

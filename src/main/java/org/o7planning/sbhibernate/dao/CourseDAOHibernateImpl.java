@@ -3,8 +3,6 @@ package org.o7planning.sbhibernate.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transaction;
-
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.transform.Transformers;
@@ -45,7 +43,7 @@ public class CourseDAOHibernateImpl implements CourseDao {
 		return currentSession.createQuery(sql, Integer.class).getFirstResult();
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<CourseDto> getCoursesDto() {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();

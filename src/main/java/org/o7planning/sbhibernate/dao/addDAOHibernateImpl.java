@@ -1,17 +1,9 @@
 package org.o7planning.sbhibernate.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
-import org.hibernate.transform.Transformers;
-import org.hibernate.type.StandardBasicTypes;
-import org.o7planning.sbhibernate.presistence.CourseDto;
-import org.o7planning.sbhibernate.presistence.InforPageDto;
-import org.o7planning.sbhibernate.presistence.UserProfileDto;
 import org.o7planning.sbhibernate.presistence.courseRegisterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

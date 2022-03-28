@@ -1,17 +1,12 @@
 package org.o7planning.sbhibernate.controller;
 
-import java.util.List;
-
 import org.o7planning.sbhibernate.presistence.CourseDto;
-import org.o7planning.sbhibernate.presistence.InforPageDto;
 import org.o7planning.sbhibernate.presistence.courseRegisterDto;
 import org.o7planning.sbhibernate.service.CourseService;
-import org.o7planning.sbhibernate.service.InforPageService;
 import org.o7planning.sbhibernate.service.addService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

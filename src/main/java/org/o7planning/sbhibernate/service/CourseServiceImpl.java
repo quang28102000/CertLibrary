@@ -10,8 +10,6 @@ import org.o7planning.sbhibernate.presistence.CourseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 @Transactional
 public class CourseServiceImpl implements CourseService {

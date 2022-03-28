@@ -1,7 +1,6 @@
 package org.o7planning.sbhibernate.presistence;
 
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
 public class CourseDto {
 	public static final String ID = "id";
@@ -41,6 +40,7 @@ public class CourseDto {
 		this.category = category;
 	}
 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -62,7 +62,7 @@ public class CourseDto {
 	}
 
 	public void setImage(String image) {
-		this.image = image.trim();
+		this.image = image;
 	}
 
 	public String getPlatform() {
@@ -93,8 +93,8 @@ public class CourseDto {
 		return skills;
 	}
 
-	public void setSkills(String skills) {
-		this.skills = Pattern.compile(";").split(skills);
+	public void setSkills(String[] skills) {
+		this.skills = skills;
 	}
 
 	@Override
