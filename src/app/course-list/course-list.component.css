@@ -136,13 +136,7 @@ h2{
 h4{
   font-size: 30px;
 }
-.sk {
-  background-color: #B8E2EF;
-  padding: 1px;
-  text-align: center;
-  border: solid 0.5px;
-  border-radius: 7px;
-}
+
 .St{
   background: #F1FFFE;;
   border-radius: 2px;
@@ -165,6 +159,7 @@ h4{
   margin: 20px 0 20px 0;
 }
 .bt {
+  width: 100%;
   height: 50px;
   border-radius: 20px;
   background-color: #2BA1C8;
@@ -174,8 +169,14 @@ h4{
 .delete{
   width: 100%;
 }
-.save{
+
+.btn-edit{
   width: 100%;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #2BA1C8;
+  border: #FFFF solid 0.5px;
+  color: #ffff;
 }
 
 .popup-header{
@@ -317,3 +318,79 @@ th{
   border-radius: 50px;
 }
 /*  */
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  column-gap: 10px;
+}
+
+.sk {
+  width: auto;
+  background-color: #B8E2EF;
+  padding: 10px;
+  text-align: center;
+  border-radius: 7px;
+}
+
+.rowSkills{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 10px;
+}
+
+.itemSkills{
+  width: auto;
+}
+
+.chooseSkills{
+  width: 40px;
+  height: 40px;
+  background-color: #B8E2EF;
+  color: #000;
+  border-radius: 50%;
+  transition: all 500ms ease;
+}
+
+.chooseSkills:hover{
+  background-color: #2BA1C8;
+  color: #fff;
+}
+
+#alert-success{
+  color:green;
+  text-align: center;
+  font-size: 20px;
+  padding-bottom: 10px;
+  display: none;
+}
+#alert-fail{
+  color:red;
+  text-align: center;
+  font-size: 20px;
+  padding-bottom: 10px;
+  display: none;
+}
+
+
+/* Dialog delete */
+
+
+#exampleModalLabel{
+  margin: 3px 30px 3px 50px;
+  color:#040a96;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.qb button{
+  margin: 5px 10px 5px 10px;
+  width: 130px;
+  border-radius: 20px;
+}
+
+#y{
+  margin-left: 90px;
+}

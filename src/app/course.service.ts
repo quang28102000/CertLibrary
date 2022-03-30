@@ -86,9 +86,14 @@ export class CourseService {
   );
 }
 
-  public UpdateCourse(data: any): Observable<any>{
+  public update(data: any): Observable<any>{
     console.log('receive', data);
     return this.http.put<any>(`${this.apiServiceUrl}/course/update`, data);
+  }
+
+  public updateCourse(data: any): Observable<any>{
+    console.log('receive', data);
+    return this.http.put<any>(`${this.apiServiceUrl}/course/updateCourse`, data);
   }
 
 
@@ -126,6 +131,10 @@ export class CourseService {
     console.log('receive', cc);
     const url = `${this.apiServiceUrl}/course/addCourse`;
     return this.http.post<any>(url, cc);
+  }
+
+  public courseDelete(id: number) {
+    return this.http.delete<any>(`${this.apiServiceUrl}/course/delete` + id);
   }
 
 

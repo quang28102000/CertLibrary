@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
+
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
@@ -22,9 +23,10 @@ export class CourseListComponent implements OnInit {
   displayedColumns: string[] = ['index', 'fullName', 'email','course', 'status', 'startDate', 'endDate'];
   dataSource!: MatTableDataSource<any>;
 
+  searchFilter: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
+  @ViewChildren('checkbox') private myCheckboxes! : QueryList<any>;
 
   p: number = 1; //paging
 
@@ -33,13 +35,31 @@ export class CourseListComponent implements OnInit {
 
   filterCategory: String[] = [];
   filterPlatform: String[] = [];
-  courses!:Course[];
+  public courses!:Course[];
   data:any;
   searchTxt: string = '';
   optionCategory: string = '';
   optionPlatform: string = '';
 
   listStudent: any[] = [];
+
+  public disableInputText = true;
+  public display_chooseSkill= false;
+  public skilldb: any;
+  public selectSkills ={
+    skill_id: [] as any,
+    skill_name: [] as any
+  }
+  
+  public updateCourse = {
+    course_name: '',
+    skills: [],
+    platform: '',
+    category: '',
+    totalLength: ''
+  }
+
+  public display = true;
 
 
 
@@ -61,7 +81,6 @@ export class CourseListComponent implements OnInit {
       console.log("course-list b3", res);
 
       res.forEach(element => {
-        console.log('e', element.category);
         this.filterCategory.push(element.category);
         this.filterPlatform.push(element.platform);
         
@@ -77,12 +96,25 @@ export class CourseListComponent implements OnInit {
     this.employeeService.getAll().subscribe(res => {
       this.employees = res;
       console.log("employee-list", res);
-    })
+    });
+
+    this.course.getSkills().subscribe(
+      (s) => this.skilldb = s
+    );
 
 
   }
 
   courseDetail(c:any){
+    //reset update course
+    this.updateCourse = {
+      course_name: '',
+      skills: [],
+      platform: '',
+      category: '',
+      totalLength: ''
+    }
+
     this.data = c;
   }
 
@@ -134,6 +166,145 @@ export class CourseListComponent implements OnInit {
       );
   }
 
+  deleteCourse(id: number){
+    this.course.courseDelete(id).subscribe({
+      next:(res)=>{
+        alert("Xoá thành công !!!");
+      },
+      error: () =>{
+        alert("Xoá thất bại !!!");
+      }
+    })
+  }
+
+  clickEditBtn(){
+    // // ẩn hiện input text và btn add
+    // this.disableInputText = !this.disableInputText;
+    // this.display_chooseSkill = !this.display_chooseSkill;
+    // // ẩn btn chỉnh sửa, hiện btn lưu
+    // var editBtn = document.getElementById('edit') as HTMLElement;
+    // editBtn.setAttribute("style", "display: none");
+    // var saveBtn = document.getElementById('save') as HTMLElement;
+    // saveBtn.setAttribute("style", "display: block");
+
+    // //ẩn tên, hiện ô input tên
+    // var name_data = document.getElementById('name_data') as HTMLElement;
+    // name_data.setAttribute("style", "display: none");
+    // var name_update = document.getElementById('name_update') as HTMLElement;
+    // name_update.setAttribute("style", "display: block");
+
+
+
+    this.changeStyle(true);
+  }
+
+  changeStyle(value: boolean){
+    var str = value ? 'none':'block';
+    var str2 = value ? 'block':'none';
+
+    // ẩn hiện input text và btn add
+    this.disableInputText = !this.disableInputText;
+    this.display_chooseSkill = !this.display_chooseSkill;
+    // ẩn btn chỉnh sửa, hiện btn lưu
+    var editBtn = document.getElementById('edit') as HTMLElement;
+    editBtn.setAttribute("style", "display: " + str);
+    var saveBtn = document.getElementById('save') as HTMLElement;
+    saveBtn.setAttribute("style", "display: "+ str2);
+
+    //ẩn tên, hiện ô input tên
+    var name_data = document.getElementById('name_data') as HTMLElement;
+    name_data.setAttribute("style", "display: " + str);
+    var name_update = document.getElementById('name_update') as HTMLElement;
+    name_update.setAttribute("style", "display: " + str2);
+
+  }
+
+  ChooseSkills(skillsCourse: []){
+    //reset các checkbox
+    let myCheckboxes = this.myCheckboxes.toArray();
+    myCheckboxes.forEach(element => {
+      element.checked = false;
+    });
+
+    //check các skills cũ của course
+    for (let index = 0; index < skillsCourse.length; index++) {
+      const element = skillsCourse[index];
+      myCheckboxes[this.skilldb.findIndex((x: { name: string; }) => x.name == element)].checked = true;
+    }
+
+    //check các skills mới của course (nếu đã chọn)
+    for (let index = 0; index < this.selectSkills.skill_id.length; index++) {
+      const element = this.selectSkills.skill_id[index];
+      myCheckboxes[this.skilldb.findIndex((x: { id: string; }) => x.id == element)].checked = true;
+    }
+
+    $('#popup3').modal('hide');
+    $('#chooseSkills').modal({backdrop: 'static', keyboard: false});
+    $('#chooseSkills').modal('toggle');
+    $("#chooseSkills").attr('aria-hidden', 'true');
+    
+
+  }
+
+  submitSkills(){
+    //reset select skills
+    this.selectSkills ={
+      skill_id : [],
+      skill_name : []
+    } 
+
+    //ẩn modal coursedetail hiện modal chọn skill
+    $('#popup3').modal('toggle');
+    $('#chooseSkills').modal('hide');
+    
+    //lấy ra list các skills (chỉ có id) đã được check
+    let myCheckboxes = this.myCheckboxes.toArray();
+    var checkedSkills = myCheckboxes.filter(checkbox => checkbox.checked == true).map(a => a.value);
+    
+    //lấy ra list các skill (id, name) đã được check
+    this.skilldb.forEach((element: { id: string; name: string }) => {
+      if(checkedSkills.find(a => a == element.id)){
+        this.selectSkills.skill_id.push(element.id);
+        this.selectSkills.skill_name.push(element.name);
+      }
+    });
+
+    console.log('checked', this.selectSkills);
+
+    //ẩn các skill cũ của khoá
+    var skill_data = document.getElementsByClassName('skill_data');
+    for (let index = 0; index < skill_data.length; index++) {
+      const element = skill_data[index];
+      element.setAttribute("style", "display: none");
+    }
+
+    //hiển thị skills đã được chỉnh sửa
+    var update_skill = document.getElementsByClassName('update_skill');
+    for (let index = 0; index < update_skill.length; index++) {
+      const element = update_skill[index];
+      element.setAttribute("style", "display: block");
+    }
+  }
+
+  SaveCourse(){
+    this.updateCourse.skills = this.selectSkills.skill_id;
+    console.log('coursePlatform', this.updateCourse);
+    this.changeStyle(false);
+
+    //gọi service
+    this.course.update(this.updateCourse).subscribe(data=>
+      {
+        console.log("send-data: ", data);
+        var alert = document.getElementById('alert-success') as HTMLElement;
+        alert.setAttribute("style", "display: block");
+      },
+      error=>{
+        console.log("error-add", error);
+        var alert = document.getElementById('alert-fail') as HTMLElement;
+        alert.setAttribute("style", "display: block");
+      }
+    )
+  }
 
 }
 
@@ -241,15 +412,33 @@ export class CourseCreateComponent implements OnInit {
           skills: this.sk,
           skill_flag: flat,
     };
-    console.log('add',addC);
 
+    //check nếu thiếu thông tin thì báo lỗi và return
+    for(const field in this.firstFormGroup.controls){
+      var control = this.firstFormGroup.controls[field];
+      if(control.value == null){
+        var alert = document.getElementById('alert-fail') as HTMLElement;
+        alert.setAttribute("style", "display: block");
+        return;
+      };
+    }
+
+    //gọi service
     this.courseService.courseCreate(addC).subscribe(data=>
       {
         console.log("send-data: ", data);
+        var alert = document.getElementById('alert-success') as HTMLElement;
+        alert.setAttribute("style", "display: block");
+      },
+      error=>{
+        console.log("error-add", error);
+        var alert = document.getElementById('alert-fail') as HTMLElement;
+        alert.setAttribute("style", "display: block");
       }
     )
-    var alert = document.getElementById('alert-success') as HTMLElement;
-    alert.setAttribute("style", "display: block");
+    
+
+
   }
 
   public newSkills = {
@@ -289,6 +478,13 @@ export class CourseCreateComponent implements OnInit {
     }
     //const index = this.sk.skill_id.findIndex(si => si === id);
 
+  }
+
+  resetForm(){
+    let myCheckboxes = this.myCheckboxes.toArray();
+    myCheckboxes.forEach(element => {
+      element.checked = false;
+    });
   }
 
 }

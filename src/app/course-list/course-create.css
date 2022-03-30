@@ -7,7 +7,7 @@
   }
   
   .content{
-    padding: 30px 30px 10px 30px;
+    padding-top: 30px;
   }
   
   .mat-form-field {
@@ -167,6 +167,12 @@
   }
   #alert-success{
     color:green;
+    text-align: center;
+    font-size: 30px;
+    display: none;
+  }
+  #alert-fail{
+    color:red;
     text-align: center;
     font-size: 30px;
     display: none;

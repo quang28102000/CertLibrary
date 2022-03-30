@@ -176,7 +176,7 @@ export class DialogUpdateComponent implements OnInit {
 
 
 
-    this.courseService.UpdateCourse(newItem).subscribe(
+    this.courseService.update(newItem).subscribe(
       data=>{
       console.log('send', data);
 

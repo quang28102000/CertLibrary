@@ -9,8 +9,12 @@ header {
   left: 0px;
   top: 0px;
 
-  background-image: url(src/img/Background.png);
+  background-image: url(https://www.xmple.com/wallpaper/cyan-blue-gradient-linear-1920x1080-c2-5aeae5-7282bd-a-195-f-14.svg);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;/**/
 }
+
 
 #logo {
   position: absolute;
@@ -18,8 +22,8 @@ header {
   height: 70px;
   left: 22px;
   top: 26px;
-  background-color: white;
-  opacity: 0.9;
+  /*background-color: white;
+  opacity: 1;*/
 }
 .PageLogo{
   position: absolute;
@@ -27,7 +31,7 @@ header {
   height: 110px;
   left: 40%;
   right: 30%;
-  top: 1px; 
+  top: 1px;
 }
 .ava {
 
@@ -58,7 +62,7 @@ header {
   height: 59px;
   /* left: 88px;
       top: 150px; */
-  
+
   background: #6DC3D6;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -128,7 +132,7 @@ header {
 
   justify-content: space-evenly;
   margin: 10px;
-  padding: 10px; 
+  padding: 10px;
   filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
 
 }
@@ -158,7 +162,7 @@ div nav button {
   line-height: 27px;
   text-align: center;
 
-  
+
 }
 
 

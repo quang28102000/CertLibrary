@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Thêm khóa học mới</h1>
-<mat-dialog-content>
+<mat-dialog-content class="mat-typography">
   <mat-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup" errorMessage="Vui lòng điền đầy đủ thông tin.">
       <form [formGroup]="firstFormGroup">
@@ -156,10 +156,11 @@
         <h2 class="quest">Hãy bấm xác nhận để hoàn thành thêm khóa mới, hoặc bấm reset để điền lại</h2>
         
         <div class="confirm">
-          <button class="reset" mat-button (click)="stepper.reset()">Reset</button>
+          <button class="reset" mat-button (click)="resetForm();stepper.reset()">Reset</button>
           <button class="complete" (click)="onCreate()">Xác nhận</button>
         </div>
-        <div id="alert-success" style="color: green;">Thành công</div>
+        <div id="alert-success">Thành công</div>
+        <div id="alert-fail">Đã xảy ra lỗi</div>
         <br>
         <div class="arrows">
           <button mat-button matStepperPrevious>
@@ -185,6 +186,3 @@
     </mat-step>
   </mat-stepper>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-</mat-dialog-actions>
