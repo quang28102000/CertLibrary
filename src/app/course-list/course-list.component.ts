@@ -52,6 +52,7 @@ export class CourseListComponent implements OnInit {
   }
   
   public updateCourse = {
+    course_id: '',
     course_name: '',
     skills: [],
     platform: '',
@@ -108,6 +109,7 @@ export class CourseListComponent implements OnInit {
   courseDetail(c:any){
     //reset update course
     this.updateCourse = {
+      course_id: c.id,
       course_name: '',
       skills: [],
       platform: '',
