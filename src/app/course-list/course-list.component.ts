@@ -420,7 +420,7 @@ export class CourseListComponent implements OnInit {
     this.changeStyle(false);
 
     //gọi service
-    this.course.update(this.updateCourse).subscribe(data=>
+    this.course.updateCourse(this.updateCourse).subscribe(data=>
       {
         console.log("send-data: ", data);
         var alert = document.getElementById('alert-success') as HTMLElement;
@@ -576,48 +576,50 @@ export class CourseCreateComponent implements OnInit {
     console.log('skills', this.sk);
 
 
-    // if(this.sk.skill_id.length=0){
-    //   $("#MissingSkill").modal("show");
-    //   console.log("missing skill tag");
-    //   return;
-    // }
-
-    const addC: courseCreate = {
-          course_id: Math.max(...this.courses.map((o: { id: any; }) => o.id), 0)+1,
-          tittle: this.firstFormGroup.controls['tittle'].value,
-          platform: this.firstFormGroup.controls['platform'].value,
-          category: this.firstFormGroup.controls['category'].value,
-          image: this.firstFormGroup.controls['image'].value,
-          courseLength: this.firstFormGroup.controls['courseLength'].value,
-          skills: this.sk,
-          skill_flag: flat,
-    };
-
-    //check nếu thiếu thông tin thì báo lỗi và return
-    for(const field in this.firstFormGroup.controls){
-      var control = this.firstFormGroup.controls[field];
-      if(control.value == null){
-        var alert = document.getElementById('alert-fail') as HTMLElement;
-        alert.setAttribute("style", "display: block");
-        return;
+    if(this.sk.skill_id.length=0){
+      $("#MissingSkill").modal("show");
+      console.log("missing skill tag");
+      return;
+    }else{
+      const addC: courseCreate = {
+        course_id: Math.max(...this.courses.map((o: { id: any; }) => o.id), 0)+1,
+        tittle: this.firstFormGroup.controls['tittle'].value,
+        platform: this.firstFormGroup.controls['platform'].value,
+        category: this.firstFormGroup.controls['category'].value,
+        image: this.firstFormGroup.controls['image'].value,
+        courseLength: this.firstFormGroup.controls['courseLength'].value,
+        skills: this.sk,
+        skill_flag: flat,
       };
+
+      //check nếu thiếu thông tin thì báo lỗi và return
+      for(const field in this.firstFormGroup.controls){
+        var control = this.firstFormGroup.controls[field];
+        if(control.value == null){
+          var alert = document.getElementById('alert-fail') as HTMLElement;
+          alert.setAttribute("style", "display: block");
+          return;
+        };
+      }
+
+      //gọi service
+      this.courseService.courseCreate(addC).subscribe(data=>
+        {
+          console.log("send-data: ", data);
+          $("#success_popup").modal("show");
+          console.log("success");
+          this.dialogRef.closeAll();
+
+        },
+        error=>{
+          console.log("error-add", error);
+          var alert = document.getElementById('alert-fail') as HTMLElement;
+          alert.setAttribute("style", "display: block");
+        }
+      )
+  
     }
 
-    //gọi service
-    this.courseService.courseCreate(addC).subscribe(data=>
-      {
-        console.log("send-data: ", data);
-        $("#success_popup").modal("show");
-        console.log("success");
-        this.dialogRef.closeAll();
-
-      },
-      error=>{
-        console.log("error-add", error);
-        var alert = document.getElementById('alert-fail') as HTMLElement;
-        alert.setAttribute("style", "display: block");
-      }
-    )
     
 
 
