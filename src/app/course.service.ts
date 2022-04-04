@@ -88,7 +88,12 @@ export class CourseService {
 
   public update(data: any): Observable<any>{
     console.log('receive', data);
-    return this.http.put<any>(`${this.apiServiceUrl}/course/update`, data);
+    return this.http.put<any>(`${this.apiServiceUrl}/course/update`, data, {
+          headers: new HttpHeaders({
+            "Content-Type": "application/json",
+          }),
+          responseType: 'text' as 'json'
+      });
   }
 
   public updateCourse(data: any): Observable<any>{

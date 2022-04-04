@@ -166,21 +166,31 @@ export class DialogUpdateComponent implements OnInit {
         course_id: this.editData.courseId,
         employee_id: this.editData.employeeId
       },
-        cert_link: this.courseForm.controls['certLink'].value,
+        certLink: this.courseForm.controls['certLink'].value,
         status: this.courseForm.controls['status'].value*1,
         start_date: start,
         end_date: end,
-        is_deleted: 0
+        isDeleted: 0
     }
     console.log('newItem', newItem);
 
 
 
     this.courseService.update(newItem).subscribe(
-      data=>{
-      console.log('send', data);
+      data =>{
+        console.log("Update Success");
+        $("#success_alert").modal("toggle");
+        this.dialog.closeAll();
+      },
+      error => {
+        console.log("Update Fail");
+        $("#fail_alert").modal("toggle");
+        this.dialog.closeAll();
+      }
+      
+    )
+    
 
-    })
   }
 
 

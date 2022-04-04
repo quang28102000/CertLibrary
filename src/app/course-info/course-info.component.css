@@ -149,7 +149,7 @@ hr{
 }
 
 
-
+/* Dialog Success */
 .btn_success{
   color: #59bd3bc9;
   font-size: 50px;
@@ -166,6 +166,28 @@ hr{
 }
 
 .successHeader{
+  text-align: center;
+  color: rgb(1, 161, 9);
+}
+
+
+/* Dialog Fail */
+.btn_fail{
+  color: #59bd3bc9;
+  font-size: 50px;
+  height: 80px;
+  width: 80px;
+  border-radius: 60px;
+  background: rgba(0, 255, 85, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  margin-left: 34%;
+  margin-bottom: 30px;
+}
+
+.failHeader{
   text-align: center;
   color: rgb(1, 161, 9);
 }

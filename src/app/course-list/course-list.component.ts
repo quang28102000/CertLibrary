@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CourseService } from '../course.service';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Course } from '../course';
 import { EmployeeService } from '../Service/employee.service';
 import { Router } from '@angular/router';
@@ -401,6 +401,10 @@ export class CourseListComponent implements OnInit {
       skills.skill_name.push(element);
     });
 
+    if(this.newSkills.skill_id.length==0){
+      flat=-1;
+    }
+
     console.log('flat', flat);
     console.log('skill', skills);
 
@@ -512,7 +516,8 @@ export class CourseCreateComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    public courseService: CourseService
+    public courseService: CourseService,
+    public dialogRef: MatDialog
     ) {
   }
 
@@ -571,7 +576,11 @@ export class CourseCreateComponent implements OnInit {
     console.log('skills', this.sk);
 
 
-
+    // if(this.sk.skill_id.length=0){
+    //   $("#MissingSkill").modal("show");
+    //   console.log("missing skill tag");
+    //   return;
+    // }
 
     const addC: courseCreate = {
           course_id: Math.max(...this.courses.map((o: { id: any; }) => o.id), 0)+1,
@@ -598,8 +607,10 @@ export class CourseCreateComponent implements OnInit {
     this.courseService.courseCreate(addC).subscribe(data=>
       {
         console.log("send-data: ", data);
-        var alert = document.getElementById('alert-success') as HTMLElement;
-        alert.setAttribute("style", "display: block");
+        $("#success_popup").modal("show");
+        console.log("success");
+        this.dialogRef.closeAll();
+
       },
       error=>{
         console.log("error-add", error);

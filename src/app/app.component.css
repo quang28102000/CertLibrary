@@ -64,7 +64,7 @@ header {
       top: 150px; */
 
   background: #6DC3D6;
-  border: 1px solid #000000;
+  border: 0.75px solid #8c9ed1;
   box-sizing: border-box;
 }
 #navigation a{

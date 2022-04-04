@@ -7,14 +7,14 @@ export interface courseUpdate{
       course_id: number,
       employee_id: number
     },
-      cert_link: String,
+      certLink: String,
       status: number,
       //platform: String;
       //category: String;
       start_date: String,
       end_date: String,
       //courseLength: Number;
-      is_deleted: 0
+      isDeleted: 0
   
   }
   
