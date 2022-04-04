@@ -63,7 +63,7 @@ export class CourseListComponent implements OnInit {
       skill_id: [] as any,
       skill_name: [] as any
     },
-    skillFlat: '',
+    skillFlag: '',
     platform: '',
     category: '',
     totalLength: ''
@@ -150,7 +150,7 @@ export class CourseListComponent implements OnInit {
         skill_id: [] as any,
         skill_name: [] as any
       },
-      skillFlat: '',
+      skillFlag: '',
       platform: '',
       category: '',
       totalLength: ''
@@ -377,8 +377,8 @@ export class CourseListComponent implements OnInit {
     this.enableInputText(false);
     this.enableButton(false);
 
-    //flat la do dai cua select skill
-    var flat = this.selectSkills.skill_id.length;
+    //flag la do dai cua select skill
+    var flag = this.selectSkills.skill_id.length;
 
     var skills = {
       skill_id: [] as any,
@@ -402,10 +402,10 @@ export class CourseListComponent implements OnInit {
     });
 
     if(this.newSkills.skill_id.length==0){
-      flat=-1;
+      flag=-1;
     }
 
-    console.log('flat', flat);
+    console.log('flat', flag);
     console.log('skill', skills);
 
     //
@@ -414,7 +414,7 @@ export class CourseListComponent implements OnInit {
     this.updateCourse.category = this.courseDetailForm.controls['category'].value;
     this.updateCourse.totalLength = this.courseDetailForm.controls['course_length'].value;
     this.updateCourse.skills = skills;
-    this.updateCourse.skillFlat = flat;
+    this.updateCourse.skillFlag = flag;
 
     console.log('coursePlatform', this.updateCourse);
     this.changeStyle(false);
@@ -579,7 +579,6 @@ export class CourseCreateComponent implements OnInit {
     if(this.sk.skill_id.length=0){
       $("#MissingSkill").modal("show");
       console.log("missing skill tag");
-      return;
     }else{
       const addC: courseCreate = {
         course_id: Math.max(...this.courses.map((o: { id: any; }) => o.id), 0)+1,
