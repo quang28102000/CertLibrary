@@ -11,17 +11,36 @@ import fptProject.groupA.CertLibrary.persistence.Skill;
 
 public interface CourseService {
 	List<Course> getAll();
+
 	List<Skill> getCourseSkills();
+
 	Integer numberOfCourses();
+
 	List<CourseDto> getCoursesDto();
+
 	List<CourseHomePageDto> getCoursesHomePageDto();
+
 	Course addCourseForEmployee(Course course, Employee employee);
-	CourseEmployee addCourseEmployee (CourseEmployee courseEmployee);
+
+	CourseEmployee addCourseEmployee(CourseEmployee courseEmployee);
+
 	String deleteCourseEmployeeWithFlag(Integer courseId, Integer employeeId);
+
 	String deleteCourseEmployee(Integer courseId, Integer employeeId);
+
 	String updateCourseEmployee(CourseEmployee courseEmployee);
+
 	String addCourse(Course theCourse);
+
 	String addSkillOfACourse(Integer[] skillsId, String[] skillsName, Integer courseFlag);
+
 	String addCourseDetail(Course theCourse, Integer courseLength, String image);
+
 	String addCourseSkill(Course theCourse, Integer[] skillsId);
+
+	String updateCourse(Course course);
+
+	String updateCourseDetail(Course course, Integer courseLength);
+
+	String updateCourseSkill (Skill[] skills);
 }

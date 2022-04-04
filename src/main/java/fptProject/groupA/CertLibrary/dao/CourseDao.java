@@ -38,4 +38,10 @@ public interface CourseDao {
 	
 	String updateCourseEmployee(CourseEmployee courseEmployee);
 	
+	String updateCourse (Course course);
+	
+	String updateCourseDetail (Course course, Integer courseLength);
+	
+	String updateCourseSkill (Skill[] skills);
+	
 }

@@ -94,4 +94,19 @@ public class CourseServiceImpl implements CourseService {
 		return courseDao.getCourseSkills();
 	}
 
+	@Override
+	public String updateCourse (Course course) {
+		return courseDao.updateCourse(course);
+	}
+
+	@Override
+	public String updateCourseDetail(Course course, Integer courseLength) {
+		return courseDao.updateCourseDetail(course, courseLength);
+	}
+
+	@Override
+	public String updateCourseSkill (Skill[] skills) {
+		return courseDao.updateCourseSkill(skills);
+	}
+
 }

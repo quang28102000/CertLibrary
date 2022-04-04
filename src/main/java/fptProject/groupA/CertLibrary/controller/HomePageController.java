@@ -1,10 +1,7 @@
 package fptProject.groupA.CertLibrary.controller;
 
-import java.lang.reflect.Array;
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +21,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import fptProject.groupA.CertLibrary.dao.CourseDao;
 import fptProject.groupA.CertLibrary.persistence.Course;
 import fptProject.groupA.CertLibrary.persistence.CourseDto;
 import fptProject.groupA.CertLibrary.persistence.CourseEmployee;
 import fptProject.groupA.CertLibrary.persistence.CourseHomePageDto;
-import fptProject.groupA.CertLibrary.persistence.Employee;
 import fptProject.groupA.CertLibrary.persistence.EmployeeCourseDto;
 import fptProject.groupA.CertLibrary.persistence.EmployeeDto;
 import fptProject.groupA.CertLibrary.persistence.Skill;
@@ -74,6 +71,7 @@ public class HomePageController {
 	@GetMapping("/getEmployees")
 	public ResponseEntity<List<EmployeeCourseDto>> getEmployees() {
 		List<EmployeeCourseDto> getEmployees = employeeService.getEmployees();
+		getEmployees.forEach(employee -> System.out.println(employee));
 		return new ResponseEntity<>(getEmployees, HttpStatus.OK);
 	};
 
@@ -158,7 +156,7 @@ public class HomePageController {
 		
 		// CourseDetail
 		Integer courseLength = node.get("courseLength").asInt();
-		String image = node.get("image").toString();
+		String image = node.get("image").asText();
 		
 		Course theCourse = new Course(courseId, tittle, platform, category);
 		
@@ -228,6 +226,49 @@ public class HomePageController {
 		
 		return new ResponseEntity<String>(noti, HttpStatus.OK);
 	};
+	
+	@PutMapping("/updateCourse")
+	public ResponseEntity<String> updateCourse(@RequestBody String jsonText) 
+			throws JsonMappingException, JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode node = mapper.readTree(jsonText);
+		
+		// Course
+		Integer courseId = node.get("course_id").asInt();
+		String courseName = node.get("course_name").asText();
+		String category = node.get("category").asText();
+		String platform = node.get("platform").asText();
+		
+		// CourseDetail
+		Integer totalLength = node.get("totalLength").asInt();
+		
+		Course course = new Course(courseId, courseName, platform, category);
+		
+		// Skills
+		Integer[] skillId = StreamSupport.stream(node.get("skills").get("skill_id").spliterator(), false)
+										.map(skillObj -> mapper.convertValue(skillObj, Integer.class))
+										.toArray(Integer[]::new);
+		String[] skillName = StreamSupport.stream(node.get("skills").get("skill_name").spliterator(), false)
+										  .map(skillObj -> mapper.convertValue(skillObj, String.class))
+										  .toArray(String[]::new);
+		Skill[] skills = new Skill[skillId.length];
+		
+		for(int i = 0; i < skillId.length; i++) {
+			Skill skill = new Skill(skillId[i], skillName[i]);
+			skills[i] = skill;
+		}
+		
+		courseService.updateCourse(course);
+		courseService.updateCourseSkill(skills);
+		courseService.updateCourseSkill(skills);
+		
+		Integer skillFlag = node.get("skillFlag").asInt();
+		String noti = "";
+		
+		noti = courseService.updateCourse(course);
+		
+		return new ResponseEntity<String>(noti, HttpStatus.OK);
+	}
 	
 	@DeleteMapping("/multipleDelete")
 	public ResponseEntity<String> deleteMultipleCourseEmployee(@RequestBody String jsonText) throws JsonMappingException, JsonProcessingException {

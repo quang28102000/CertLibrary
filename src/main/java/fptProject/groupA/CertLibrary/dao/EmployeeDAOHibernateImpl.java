@@ -88,6 +88,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 		NativeQuery<?> query = openSession.createNativeQuery(GET_EMPLOYEE_DTOS);
 		query.addScalar(EmployeeCourseDto.EMPLOYEE_ID, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeCourseDto.FULL_NAME, StandardBasicTypes.STRING)
+			.addScalar(EmployeeDto.EMAIL, StandardBasicTypes.STRING)
 			.addScalar(EmployeeCourseDto.STATUS, StandardBasicTypes.INTEGER)
 			.addScalar(EmployeeCourseDto.START_DATE, StandardBasicTypes.DATE)
 			.addScalar(EmployeeCourseDto.END_DATE, StandardBasicTypes.DATE)
