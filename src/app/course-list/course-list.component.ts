@@ -63,7 +63,7 @@ export class CourseListComponent implements OnInit {
       skill_id: [] as any,
       skill_name: [] as any
     },
-    skillFlag: '',
+    skillFlag: -1,
     platform: '',
     category: '',
     totalLength: ''
@@ -150,7 +150,7 @@ export class CourseListComponent implements OnInit {
         skill_id: [] as any,
         skill_name: [] as any
       },
-      skillFlag: '',
+      skillFlag: -1,
       platform: '',
       category: '',
       totalLength: ''
@@ -278,6 +278,8 @@ export class CourseListComponent implements OnInit {
   }
 
   ChooseSkills(skillsCourse: []){
+    //check flag skills
+    this.skillFlag = 1;
     //reset các checkbox
     let myCheckboxes = this.myCheckboxes.toArray();
     myCheckboxes.forEach(element => {
@@ -372,13 +374,12 @@ export class CourseListComponent implements OnInit {
     }
   }
 
-  SaveCourse(){
-    
+  public skillFlag: number = -1;
+  SaveCourse(data: any){
+    console.log('skillFlag', this.skillFlag);
+
     this.enableInputText(false);
     this.enableButton(false);
-
-    //flag la do dai cua select skill
-    var flag = this.selectSkills.skill_id.length;
 
     var skills = {
       skill_id: [] as any,
@@ -401,20 +402,27 @@ export class CourseListComponent implements OnInit {
       skills.skill_name.push(element);
     });
 
-    if(this.newSkills.skill_id.length==0){
-      flag=-1;
-    }
+    // if(this.newSkills.skill_id.length==0){
+    //   this.skillFlag=-1;
+    // }
 
-    console.log('flat', flag);
-    console.log('skill', skills);
 
+    var oldSkills = data.skills;
+    console.log('oldskills', oldSkills);
+    console.log('newSkill', skills.skill_name);
+
+    
+    var result = oldSkills.length === skills.skill_name.length && oldSkills.every((oldSkill: String, i: number) => oldSkill === skills.skill_name[i]);
+    console.log('result', result);
+
+    console.log('skills', skills);
     //
     this.updateCourse.course_name = this.courseDetailForm.controls['course_name'].value;
     this.updateCourse.platform = this.courseDetailForm.controls['platform'].value;
     this.updateCourse.category = this.courseDetailForm.controls['category'].value;
     this.updateCourse.totalLength = this.courseDetailForm.controls['course_length'].value;
     this.updateCourse.skills = skills;
-    this.updateCourse.skillFlag = flag;
+    this.updateCourse.skillFlag = this.skillFlag;
 
     console.log('coursePlatform', this.updateCourse);
     this.changeStyle(false);
@@ -576,10 +584,10 @@ export class CourseCreateComponent implements OnInit {
     console.log('skills', this.sk);
 
 
-    if(this.sk.skill_id.length=0){
-      $("#MissingSkill").modal("show");
-      console.log("missing skill tag");
-    }else{
+      // while(this.sk.skill_id.length == 0){
+      //   $("#MissingSkill").modal("show");
+      //   console.log("missing skill tag");
+      // }
       const addC: courseCreate = {
         course_id: Math.max(...this.courses.map((o: { id: any; }) => o.id), 0)+1,
         tittle: this.firstFormGroup.controls['tittle'].value,
@@ -617,7 +625,6 @@ export class CourseCreateComponent implements OnInit {
         }
       )
   
-    }
 
     
 

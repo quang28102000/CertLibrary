@@ -2,10 +2,15 @@
   margin-left: 8%;
 }
 
+button{
+  background: transparent;
+  border: none;
+}
 
 header {
   position: static;
-  height: 185px;
+  height: auto;
+  padding-bottom: 10px;
   left: 0px;
   top: 0px;
 
@@ -16,61 +21,79 @@ header {
 }
 
 
-#logo {
-  position: absolute;
-  width: 121px;
-  height: 70px;
-  left: 22px;
-  top: 26px;
-  /*background-color: white;
-  opacity: 1;*/
-}
-.PageLogo{
-  position: absolute;
-  width: 300px;
-  height: 110px;
-  left: 40%;
-  right: 30%;
-  top: 1px;
-}
-.ava {
-
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-
-  display: inline-block;
-  vertical-align: middle;
-}
 #logo_ava {
   display: flex;
-  justify-content: flex-end;
   padding-right: 50px;
   padding-top: 15px;
 }
 
+
+#logo {
+  /* position: absolute; */
+  width: 121px;
+  height: 70px;
+  justify-content: center;
+  /* left: 22px;
+  top: 26px; */
+  /*background-color: white;
+  opacity: 1;*/
+  position: relative;
+  top: 25px;
+}
+.PageLogo{
+  margin: auto;
+  /* position: absolute;
+  width: 300px;
+  height: 110px;
+  left: 40%;
+  right: 30%;
+  top: 1px; */
+  justify-self: center;
+}
+.ava {
+  width: 100px;
+  height: 100px;
+  
+}
+
+
 #navigation {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 10px;
 }
 
 #navigation button {
-  position: sticky;
+  /* position: sticky; */
   width: 303.75px;
-  height: 59px;
+  height: 55px;
+  color: #fff;
   /* left: 88px;
       top: 150px; */
 
-  background: #6DC3D6;
-  border: 0.75px solid #8c9ed1;
+  background: transparent;
+  border-right: 1px solid rgb(188, 215, 255);
+  /* border-color: linear-gradient(to right, red, orange); */
   box-sizing: border-box;
+  /* transition: all 500ms ease; */
+}
+
+#navigation button:last-child{
+  border-right: none;
 }
 #navigation a{
   color: #e2ecff;
   font-weight:500;
+  transition: all 500ms ease;
+}
 
+#navigation a:hover{
+  color: rgb(25, 74, 148);
+}
+
+#responsive_nav{
+  display: none;
 }
 
 #labeltxt {
@@ -180,4 +203,13 @@ footer {
 
 a{
   text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #navigation{
+    display: none;
+  }
+  #responsive_nav{
+    display:block;
+  }
 }

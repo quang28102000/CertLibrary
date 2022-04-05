@@ -19,23 +19,18 @@ svg{
   margin: auto;
   margin-top: 35px;
   margin-bottom: 25px;
-
   /* top: 309px; */
-
   font-family: Karma;
   font-style: normal;
   font-weight: bold;
   font-size: 44px;
   line-height: 100%;
   /* or 64px */
-
   display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: -0.32px;
-
   color: #265A99;
-
   text-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -45,36 +40,29 @@ svg{
   height: 46px;
   margin-left: 70px;
   /* top: 486px; */
-
   font-family: Karma;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
   line-height: 100%;
   /* identical to box height, or 46px */
-
   display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: -0.32px;
-
   color: #3B76BD;
-
   text-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
 }
 
 
 #btn {
   display: flex;
-
   justify-content: space-evenly;
   margin: 10px;
   padding: 10px; 
   filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
-
 }
 button{
-
   font-size: 20px;
 }
 
@@ -88,7 +76,6 @@ div nav button {
   border-radius: 9px;
 }
 #paging {
-
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -98,33 +85,9 @@ div nav button {
   font-size: 18px;
   line-height: 27px;
   text-align: center;
-
-  
 }
 
-/* table {
-  counter-reset: rowNumber;
-}
-
-table tr {
-  counter-increment: rowNumber;
-}
-
-table tr td:first-child::before {
-  content: counter(rowNumber);
-  min-width: 1em;
-}
-
-th, td{
-  text-align: center;
-} */
-
-
-
-
-
-
-/*  */
+/* Modal width style*/
 
 
 .modal-lg, .modal-xl {
@@ -141,19 +104,12 @@ th, td{
   max-width:600px;
 }
 
-.row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-}
+
 .stat-card {
   background: #fff;
   padding: 30px;
-  margin-bottom: 25px;
+  width: 350px;
+  height: 120px;
   border-radius: 5px;
   overflow: hidden;
   display: flex;
@@ -169,10 +125,11 @@ th, td{
 }
 
 .row{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-auto-rows: 1fr;
   justify-content: center;
+  row-gap: 20px;
 }
 
 
@@ -297,3 +254,35 @@ td, th {
 }
 
 
+@media only screen and (max-width: 600px) {
+  /* .stat-card {
+    height: 150px;
+  } */
+  .row{
+    display: block;
+    margin: 0 10px;
+  }
+  .stat-card{
+    margin: 20px 0px;
+    width:90vw;
+  }
+}
+@media only screen and (max-width: 1200px) and (min-width: 601px)  {
+  .row{
+    display: grid;
+    grid-template-columns: auto auto;
+    /* margin: 0 10px; */
+  }
+  .stat-card{
+    margin: 20px 0px;
+    width:300px;
+  }
+}
+
+
+/* @media only screen and (min-width:768px) and (max-width:990px){
+	.mm{
+		background:red;	
+	}
+	
+} */
