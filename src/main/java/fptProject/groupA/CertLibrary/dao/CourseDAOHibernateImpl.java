@@ -112,11 +112,8 @@ public class CourseDAOHibernateImpl implements CourseDao {
 
 			transaction.commit();
 		} catch (Exception e) {
-			transaction.rollback();
+ 			transaction.rollback();
 		}
-
-		System.out.println(course.toString());
-		System.out.println(employee.toString());
 		return course;
 	}
 
@@ -185,11 +182,13 @@ public class CourseDAOHibernateImpl implements CourseDao {
 	@Override
 	public String updateCourse(Course course) {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
-		
-		// Course
+
+		org.hibernate.Transaction transaction = openSession.beginTransaction();
 		openSession.saveOrUpdate(course);
-		System.out.println("Course updated!");
+		transaction.commit();
 		
+		System.out.println("CourseId: " + course.getId() + " and CourseTittle: " + course.getTittle()
+				+ " are updated");
 		return "CourseId: " + course.getId() + " and CourseTittle: " + course.getTittle()
 				+ " are updated";
 	}
@@ -209,26 +208,39 @@ public class CourseDAOHibernateImpl implements CourseDao {
 			 .executeUpdate();
 
 		transaction.commit();
-
+		
+		System.out.println("CourseId: " + course.getId() + " and totalLength: " + courseLength
+				+ " are updated");
+		
 		return "CourseId: " + course.getId() + " and totalLength: " + courseLength
 				+ " are updated";
 	}
 
 	@Override
-	public String updateCourseSkill(Skill[] skills) {
+	public String deleteCourseSkill(Skill[] skills, Integer flag, Course course) {
+		if(flag == -1) {
+			return "There is none updated skills";
+		}
 		
+		// delete all the course & skill relationships
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
 		org.hibernate.Transaction transaction = openSession.beginTransaction();
-
-	
+		
+		NativeQuery<?> query = openSession.createNativeQuery(
+				"DELETE FROM course_skills AS cs \r\n"
+				+ "WHERE cs.course_id = :courseId");
+		
+		// delete the old courses relationships with the skills
 		for(int i = 0; i < skills.length; i++) {
-			openSession.saveOrUpdate(skills[i]);
-			System.out.println("SkillId: " + skills[i].getId() + ", SkillName: " + skills[i].getName());
+			query.setParameter("courseId", course.getId())
+			 	 .executeUpdate();
 		}
 		
 		transaction.commit();
 		
-		return "Skills are updated";
+		Arrays.stream(skills).forEach(skill -> System.out.println("SkillId: " + skill.getId() + ", SkillName: " + skill.getName()));
+		
+		return "Skills are deleted";
 	}
 	
 	@Override
@@ -238,7 +250,9 @@ public class CourseDAOHibernateImpl implements CourseDao {
 
 		NativeQuery<?> query = session.createNativeQuery("DELETE FROM course_employee AS c\r\n"
 				+ "WHERE c.course_id = :courseId AND c.employee_id = :employeeId");
-		query.setParameter("courseId", courseId).setParameter("employeeId", employeeId).executeUpdate();
+		query.setParameter("courseId", courseId)
+			 .setParameter("employeeId", employeeId)
+			 .executeUpdate();
 
 		System.out.println("Deleted CourseEmployee(CourseId: " + courseId + ", EmployeeId: " + employeeId + ")");
 
@@ -259,7 +273,9 @@ public class CourseDAOHibernateImpl implements CourseDao {
 		for (int i = 0; i < newSkillsId.length; i++) {
 			NativeQuery<?> query = session.createNativeQuery(
 					"INSERT INTO " + "skills (skill_id, skill_name)\r\n" + "VALUES (:skillId, :skillName)");
-			query.setParameter("skillId", newSkillsId[i]).setParameter("skillName", newSkillsName[i]).executeUpdate();
+			query.setParameter("skillId", newSkillsId[i])
+				 .setParameter("skillName", newSkillsName[i])
+				 .executeUpdate();
 		}
 
 		transaction.commit();
@@ -305,7 +321,10 @@ public class CourseDAOHibernateImpl implements CourseDao {
 	}
 
 	@Override
-	public String addCourseSkill(Course theCourse, Integer[] skillsId) {
+	public String addCourseSkill(Course theCourse, Integer[] skillsId, Integer flag) {
+		if(flag == -1) {
+			return "there is no need to add new course skills";
+		}
 		Session session = entityManager.unwrap(Session.class).getSessionFactory().openSession();
 		org.hibernate.Transaction transaction = session.beginTransaction();
 
@@ -314,10 +333,12 @@ public class CourseDAOHibernateImpl implements CourseDao {
 					"INSERT INTO course_skills (skill_id, course_id)\r\n" + "VALUES (:skillId, :courseId)");
 			query.setParameter("skillId", skillsId[i]).setParameter("courseId", theCourse.getId()).executeUpdate();
 		}
-
+		
+		Arrays.stream(skillsId).forEach(skill -> System.out.println("SkillId: " + skill + ", CourseId: " + theCourse.getId()));
 		transaction.commit();
+		
+		
 		return "CourseSkills[skillId: " + skillsId.toString() + " and CourseId" + theCourse.getId() + " is added";
 	}
-
 
 }

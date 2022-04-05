@@ -71,7 +71,6 @@ public class HomePageController {
 	@GetMapping("/getEmployees")
 	public ResponseEntity<List<EmployeeCourseDto>> getEmployees() {
 		List<EmployeeCourseDto> getEmployees = employeeService.getEmployees();
-		getEmployees.forEach(employee -> System.out.println(employee));
 		return new ResponseEntity<>(getEmployees, HttpStatus.OK);
 	};
 
@@ -164,15 +163,16 @@ public class HomePageController {
 		String[] skillsName = StreamSupport.stream(node.get("skills").get("skill_name").spliterator(), false)
 											.map(jsonObj -> mapper.convertValue(jsonObj, String.class))
 											.toArray(String[]::new);
-		Integer[] skillsId = StreamSupport.stream(node.get("skills").get("skill_id").spliterator(), false)
-											.map(jsonObj -> mapper.convertValue(jsonObj, Integer.class))
-											.toArray(Integer[]::new);
+		Integer[] skillsId = StreamSupport
+								.stream(node.get("skills").get("skill_id").spliterator(), false)
+								.map(jsonObj -> mapper.convertValue(jsonObj, Integer.class))
+								.toArray(Integer[]::new);
 		Integer skillFlag = node.get("skill_flag").asInt();
 		
 		String notiCourse = courseService.addCourse(theCourse);
 		String notiCourseDetail = courseService.addCourseDetail(theCourse, courseLength, image);
 		String notiSkill  = courseService.addSkillOfACourse(skillsId, skillsName, skillFlag);
-		String notiCourseSkill = courseService.addCourseSkill(theCourse, skillsId);
+		String notiCourseSkill = courseService.addCourseSkill(theCourse, skillsId, skillFlag);
 		
 		System.out.println(notiCourse);
 		System.out.println(notiCourseDetail);
@@ -215,7 +215,8 @@ public class HomePageController {
 					mapper.convertValue(node.get("end_date"), Date.class), 
 					node.get("certLink").asText(), node.get("isDeleted").asInt()));
 		} else if ((newCourseId != oldCourseId) || (newEmployeeId != oldEmployeeId)) {
-			// TH2: một trong 2 hoặc cả hai id đã thay đổi -> xóa row của id cũ -> add id mới
+			// TH2: một trong 2 hoặc cả hai id đã thay đổi 
+			// -> xóa row của id cũ -> add id mới
 			courseService.deleteCourseEmployee(oldCourseId, oldEmployeeId);
 			courseService.addCourseEmployee(new CourseEmployee(newCourseId, newEmployeeId, node.get("status").asInt(),
 					mapper.convertValue(node.get("start_date"), Date.class), 
@@ -245,6 +246,7 @@ public class HomePageController {
 		Course course = new Course(courseId, courseName, platform, category);
 		
 		// Skills
+		Integer skillFlag = node.get("skillFlag").asInt();
 		Integer[] skillId = StreamSupport.stream(node.get("skills").get("skill_id").spliterator(), false)
 										.map(skillObj -> mapper.convertValue(skillObj, Integer.class))
 										.toArray(Integer[]::new);
@@ -259,13 +261,14 @@ public class HomePageController {
 		}
 		
 		courseService.updateCourse(course);
-		courseService.updateCourseSkill(skills);
-		courseService.updateCourseSkill(skills);
+		// OK
+		courseService.updateCourseDetail(course, totalLength);
 		
-		Integer skillFlag = node.get("skillFlag").asInt();
+		
+		courseService.deleteCourseSkill(skills, skillFlag, course);
+		courseService.addCourseSkill(course, skillId, skillFlag);
+		
 		String noti = "";
-		
-		noti = courseService.updateCourse(course);
 		
 		return new ResponseEntity<String>(noti, HttpStatus.OK);
 	}

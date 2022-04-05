@@ -30,7 +30,7 @@ public interface CourseDao {
 	
 	CourseEmployee addCourseEmployee(CourseEmployee courseEmployee);
 
-	String addCourseSkill(Course theCourse, Integer[] skillsId);
+	
 	
 	String deleteCourseEmployeeWithFlag(Integer courseId, Integer employeeId);
 	
@@ -42,6 +42,7 @@ public interface CourseDao {
 	
 	String updateCourseDetail (Course course, Integer courseLength);
 	
-	String updateCourseSkill (Skill[] skills);
+	String deleteCourseSkill (Skill[] skills, Integer flag, Course course);
 	
+	String addCourseSkill(Course theCourse, Integer[] skillsId, Integer flag);
 }

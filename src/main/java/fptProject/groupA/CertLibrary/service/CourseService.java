@@ -36,11 +36,11 @@ public interface CourseService {
 
 	String addCourseDetail(Course theCourse, Integer courseLength, String image);
 
-	String addCourseSkill(Course theCourse, Integer[] skillsId);
+	String addCourseSkill(Course theCourse, Integer[] skillsId, Integer flag);
 
 	String updateCourse(Course course);
 
 	String updateCourseDetail(Course course, Integer courseLength);
 
-	String updateCourseSkill (Skill[] skills);
+	String deleteCourseSkill (Skill[] skills, Integer flag, Course course);
 }

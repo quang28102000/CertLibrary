@@ -85,8 +85,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public String addCourseSkill(Course theCourse, Integer[] skillsId) {
-		return courseDao.addCourseSkill(theCourse, skillsId);
+	public String addCourseSkill(Course theCourse, Integer[] skillsId, Integer flag) {
+		return courseDao.addCourseSkill(theCourse, skillsId, flag);
 	}
 
 	@Override
@@ -105,8 +105,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public String updateCourseSkill (Skill[] skills) {
-		return courseDao.updateCourseSkill(skills);
+	public String deleteCourseSkill (Skill[] skills, Integer flag, Course course) {
+		return courseDao.deleteCourseSkill(skills, flag, course);
 	}
 
 }
