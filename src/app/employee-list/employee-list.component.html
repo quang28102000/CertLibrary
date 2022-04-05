@@ -7,16 +7,18 @@
     <img src="{{item.profileImage}}" alt="">
   </div>
 </div> -->
-
 <div class="container">
-  <div class="item" *ngFor="let item of employees2" (click)="rowClick(item)">
-    <div class="image-cropper">
-      <img class="profileImage" src="{{item.profileImage}}" alt="">
-    </div>
-    <h2 class="fullName">{{item.fullName}}</h2>
-    <p>{{item.email}}</p>
-    <div class="skills">
-      <div class="skill" *ngFor="let skill of item.skills">{{skill}}</div>
+  <h1 id="labeltxt">Danh sách sinh viên</h1>
+  <div class="wrapper">
+    <div class="item" *ngFor="let item of employees2" (click)="rowClick(item)">
+      <div class="image-cropper">
+        <img class="profileImage" src="{{item.profileImage}}" alt="">
+      </div>
+      <h2 class="fullName">{{item.fullName}}</h2>
+      <p>{{item.email}}</p>
+      <div class="skills">
+        <div class="skill" *ngFor="let skill of item.skills">{{skill}}</div>
+      </div>
     </div>
   </div>
 </div>

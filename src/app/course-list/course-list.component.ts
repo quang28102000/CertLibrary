@@ -252,6 +252,12 @@ export class CourseListComponent implements OnInit {
     // var name_update = document.getElementById('name_update') as HTMLElement;
     // name_update.setAttribute("style", "display: block");
 
+    //reset thông báo
+    var alert = document.getElementById('alert-success') as HTMLElement;
+    alert.setAttribute("style", "display: none");
+    var alert2 = document.getElementById('alert-fail') as HTMLElement;
+    alert2.setAttribute("style", "display: none");
+
     this.enableInputText(true);
     this.enableButton(true);
 
@@ -401,10 +407,6 @@ export class CourseListComponent implements OnInit {
     this.newSkills.skill_name.forEach((element: any) => {
       skills.skill_name.push(element);
     });
-
-    // if(this.newSkills.skill_id.length==0){
-    //   this.skillFlag=-1;
-    // }
 
 
     var oldSkills = data.skills;
@@ -675,6 +677,8 @@ export class CourseCreateComponent implements OnInit {
     myCheckboxes.forEach(element => {
       element.checked = false;
     });
+    this.sk.skill_id = [];
+    this.sk.skill_name = [];
   }
 
 }
