@@ -10,13 +10,15 @@ public class UserProfileDto {
 	public static final String EMAIL = "email";
 	public static final String SKILLS = "skills";
 	public static final String COURSES = "courses";
+	public static final String PROFILE_IMAGE = "profile_image";
 
 	private Integer id;
 	private String fullName;
 	private String email;
 	private String[] skills;
 	private String[] courses;
-
+	private String profile_image;
+	
 	public UserProfileDto() {
 	}
 
@@ -60,10 +62,19 @@ public class UserProfileDto {
 		this.courses = Pattern.compile(";").split(courses);
 	}
 
-	@Override
-	public String toString() {
-		return "EmployeeDto [id=" + id + ", fullName=" + fullName + ", email=" + email + ", skills="
-				+ Arrays.toString(skills) + ", courses=" + Arrays.toString(courses) + "]";
+	public String getProfile_image() {
+		return profile_image;
 	}
 
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
+
+	@Override
+	public String toString() {
+		return "UserProfileDto [id=" + id + ", fullName=" + fullName + ", email=" + email + ", skills="
+				+ Arrays.toString(skills) + ", courses=" + Arrays.toString(courses) + ", profile_image=" + profile_image
+				+ "]";
+	}
+	
 }

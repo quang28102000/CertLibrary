@@ -32,9 +32,11 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			+ "ON e.employee_id = es.employee_id\r\n"
 			+ "GROUP BY e.employee_id;";
 
-	private static final String GET_USER_PROFILE_DTOS = "SELECT e.employee_id AS " + UserProfileDto.ID + ", "
+	private static final String GET_USER_PROFILE_DTOS = 
+			"SELECT e.employee_id AS " + UserProfileDto.ID + ", "
 			+ "e.full_name AS " + UserProfileDto.FULL_NAME + ", "
 			+ "TRIM(e.email) AS " + UserProfileDto.EMAIL + ", \n"
+			+ "e.profile_image AS " + UserProfileDto.PROFILE_IMAGE + ", \n"
 	+ "		GROUP_CONCAT(DISTINCT(es.skill_name) SEPARATOR ';') " + UserProfileDto.SKILLS + ", \n"
 	+ "		GROUP_CONCAT(DISTINCT(c.course_tittle) SEPARATOR ';') " + UserProfileDto.COURSES + " \n"
 	+ "	FROM employee AS e JOIN course_employee AS ce \n"
@@ -114,6 +116,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 		query.addScalar(UserProfileDto.ID, StandardBasicTypes.INTEGER)
 			 .addScalar(UserProfileDto.FULL_NAME, StandardBasicTypes.STRING)
 			 .addScalar(UserProfileDto.EMAIL, StandardBasicTypes.STRING)
+			 .addScalar(UserProfileDto.PROFILE_IMAGE, StandardBasicTypes.STRING)
 			 .addScalar(UserProfileDto.SKILLS, StandardBasicTypes.STRING)
 			 .addScalar(UserProfileDto.COURSES, StandardBasicTypes.STRING)
 				.setParameter("employeeId", id)
