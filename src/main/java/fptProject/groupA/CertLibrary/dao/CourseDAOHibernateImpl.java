@@ -38,7 +38,6 @@ public class CourseDAOHibernateImpl implements CourseDao {
 
 	private EntityManager entityManager;
 
-	// constructor injection
 	@Autowired
 	public CourseDAOHibernateImpl(EntityManager entityManager) {
 		this.entityManager = entityManager;
@@ -66,7 +65,7 @@ public class CourseDAOHibernateImpl implements CourseDao {
 		return currentSession.createQuery(sql, Integer.class).getFirstResult();
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<CourseDto> getCoursesDto() {
 		Session openSession = entityManager.unwrap(Session.class).getSessionFactory().openSession();
