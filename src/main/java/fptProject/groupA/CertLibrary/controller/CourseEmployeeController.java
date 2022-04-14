@@ -98,8 +98,6 @@ public class CourseEmployeeController {
 		Integer[] employeeId = StreamSupport.stream(node.get("employee_id").spliterator(), true)
 				.map(jsonObj -> mapper.convertValue(jsonObj, Integer.class)).toArray(Integer[]::new);
 
-//		Integer[] courseId = mapper.convertValue(node.get("course_id"), Integer[].class);
-//		Integer[] employeeId = mapper.convertValue(node.get("employee_id"), Integer[].class);
 		System.out.println(courseId.toString());
 		System.out.println(employeeId.toString());
 

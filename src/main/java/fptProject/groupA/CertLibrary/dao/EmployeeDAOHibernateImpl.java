@@ -22,14 +22,14 @@ import fptProject.groupA.CertLibrary.persistence.UserProfileDto;
 public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	
 	private static final String GET_EMPLOYEE_INFO_DTOS = 
-			"SELECT e.employee_id AS id, " 
+			"SELECT e.employee_id AS " + EmployeeDto.ID + ", " 
 			+ "e.full_name AS " + EmployeeDto.FULL_NAME 
 			+ ", e.email AS " + EmployeeDto.EMAIL 
 			+ ", e.profile_image AS " + EmployeeDto.PROFILE_IMAGE + ", \r\n"
-			+ "GROUP_CONCAT(es.skill_name SEPARATOR ';') " + EmployeeDto.SKILLS + " \r\n"
+			+ "GROUP_CONCAT(s.skill_name SEPARATOR ';') " + EmployeeDto.SKILLS + " \r\n"
 			+ "FROM employee AS e\r\n"
 			+ "JOIN employee_skills AS es\r\n"
-			+ "ON e.employee_id = es.employee_id\r\n"
+			+ "ON e.employee_id = es.employee_id JOIN skills as s ON s.skill_id = es.skill_id\r\n"
 			+ "GROUP BY e.employee_id;";
 
 	private static final String GET_USER_PROFILE_DTOS = 
@@ -37,23 +37,28 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			+ "e.full_name AS " + UserProfileDto.FULL_NAME + ", "
 			+ "TRIM(e.email) AS " + UserProfileDto.EMAIL + ", \n"
 			+ "e.profile_image AS " + UserProfileDto.PROFILE_IMAGE + ", \n"
-	+ "		GROUP_CONCAT(DISTINCT(es.skill_name) SEPARATOR ';') " + UserProfileDto.SKILLS + ", \n"
+	+ "		GROUP_CONCAT(DISTINCT(s.skill_name) SEPARATOR ';') " + UserProfileDto.SKILLS + ", \n"
 	+ "		GROUP_CONCAT(DISTINCT(c.course_tittle) SEPARATOR ';') " + UserProfileDto.COURSES + " \n"
 	+ "	FROM employee AS e JOIN course_employee AS ce \n"
 	+ "	 ON e.employee_id = ce.employee_id JOIN employee_skills AS es \n"
 	+ "	 ON e.employee_id = es.employee_id JOIN course AS c \n"
-	+ "	 ON ce.course_id = c.course_id "
+	+ "	 ON ce.course_id = c.course_id JOIN skills as s\r\n"
+	+ "     ON es.skill_id = s.skill_id"
 	+ "  WHERE e.employee_id = :employeeId";
 	
 	private static final String GET_EMPLOYEE_DTOS = 
-			"SELECT e.employee_id AS employeeId, \r\n"
-			+ "e.full_name AS fullName, e.email AS email, ce.status AS status, \r\n"
-			+ "CAST(ce.start_date AS DATE) AS startDate, CAST(ce.end_date AS DATE) AS endDate, \r\n"
-			+ "c.course_id AS courseId, ce.cert_link AS certLink,\r\n"
-			+ "c.course_tittle AS course, \r\n"
-			+ "cd.course_length AS courseLength,\r\n"
-			+ "c.platform AS platform,\r\n"
-			+ "c.category AS category \r\n"
+			"SELECT e.employee_id AS " + EmployeeCourseDto.EMPLOYEE_ID + ", \r\n"
+			+ "e.full_name AS "+ EmployeeCourseDto.FULL_NAME + ", "
+			+ "e.email AS " + EmployeeCourseDto.EMAIL + ", "
+			+ "ce.status AS " + EmployeeCourseDto.STATUS + ", \r\n"
+			+ "CAST(ce.start_date AS DATE) AS " + EmployeeCourseDto.START_DATE + ", "
+			+ "CAST(ce.end_date AS DATE) AS " + EmployeeCourseDto.END_DATE + ", \r\n"
+			+ "c.course_id AS " + EmployeeCourseDto.COURSE_ID 
+			+ ", ce.cert_link AS " + EmployeeCourseDto.CERT_LINK + ",\r\n"
+			+ "c.course_tittle AS " + EmployeeCourseDto.COURSE + ", \r\n"
+			+ "cd.course_length AS " + EmployeeCourseDto.COURSE_LENGTH + ",\r\n"
+			+ "c.platform AS " + EmployeeCourseDto.PLATFORM + ",\r\n"
+			+ "c.category AS " + EmployeeCourseDto.CATEGORY + " \r\n"
 			+ "FROM employee AS e \r\n"
 			+ "JOIN course_employee AS ce \r\n"
 			+ " ON e.employee_id = ce.employee_id\r\n"

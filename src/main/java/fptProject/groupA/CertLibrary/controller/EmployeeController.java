@@ -22,7 +22,7 @@ public class EmployeeController {
 	@Autowired
 	public EmployeeService employeeService;
 
-	// OK
+//	OK
 	@GetMapping("/getEmployeesInfo")
 	public ResponseEntity<List<EmployeeDto>> getAllEmployeesInfo() {
 		List<EmployeeDto> employees = employeeService.getEmployeesInfo();
@@ -30,6 +30,7 @@ public class EmployeeController {
 		return new ResponseEntity<>(employees, HttpStatus.OK);
 	};
 
+//	OK
 	@GetMapping("/userProfile/{id}")
 	public ResponseEntity<UserProfileDto> getUserProfile(@PathVariable(name = "id", required = false) Integer id) {
 		UserProfileDto userProfile = employeeService.findEmployeeProfile(id);

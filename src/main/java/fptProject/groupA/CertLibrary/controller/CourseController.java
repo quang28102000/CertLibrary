@@ -35,17 +35,30 @@ public class CourseController {
 
 	@Autowired
 	public CourseService courseService;
-
-//	COURSE
-	@GetMapping("/all")
-	public ResponseEntity<List<Course>> getAllCourse() {
-		List<Course> courses = courseService.getAll();
-		// Trường hợp 1: Cập nhật khóa học mới cho một nhân viên thông qua việc 
-		// update thông tim trong courseEmployee
-
+	
+//	OK
+	@GetMapping("/coursesDto")
+	public ResponseEntity<List<CourseDto>> getCoursesDto() {
+		List<CourseDto> courses = courseService.getCoursesDto();
+		courses.forEach(c -> System.out.println(c));
+		return new ResponseEntity<List<CourseDto>>(courses, HttpStatus.OK);
+	}
+	
+//	OK
+	@GetMapping("/coursesHomePageDto")
+	public ResponseEntity<List<CourseHomePageDto>> getCoursesHomePageDto() {
+		List<CourseHomePageDto> courses = courseService.getCoursesHomePageDto();
+		return new ResponseEntity<List<CourseHomePageDto>>(courses, HttpStatus.OK);
+	}
+	
+//	OK
+	@GetMapping("/courseSkills")
+	public ResponseEntity<List<Skill>> getCourseSkills() {
+		List<Skill> courses = courseService.getCourseSkills();
 		return new ResponseEntity<>(courses, HttpStatus.OK);
 	};
 	
+//	
 	@PutMapping("/updateCourse")
 	public ResponseEntity<String> updateCourse(@RequestBody String jsonText) 
 			throws JsonMappingException, JsonProcessingException {
@@ -79,10 +92,7 @@ public class CourseController {
 		}
 		
 		courseService.updateCourse(course);
-		// OK
 		courseService.updateCourseDetail(course, totalLength);
-		
-		
 		courseService.deleteCourseSkill(skills, skillFlag, course);
 		courseService.addCourseSkill(course, skillId, skillFlag);
 		
@@ -91,27 +101,6 @@ public class CourseController {
 		return new ResponseEntity<String>(noti, HttpStatus.OK);
 	}
 
-	
-	// OK
-	@GetMapping("/courseSkills")
-	public ResponseEntity<List<Skill>> getCourseSkills() {
-		List<Skill> courses = courseService.getCourseSkills();
-		return new ResponseEntity<>(courses, HttpStatus.OK);
-	};
-
-	// OK
-	@GetMapping("/coursesDto")
-	public ResponseEntity<List<CourseDto>> getCoursesDto() {
-		List<CourseDto> courses = courseService.getCoursesDto();
-		courses.forEach(c -> System.out.println(c));
-		return new ResponseEntity<List<CourseDto>>(courses, HttpStatus.OK);
-	}
-	
-	@GetMapping("/coursesHomePageDto")
-	public ResponseEntity<List<CourseHomePageDto>> getCoursesHomePageDto() {
-		List<CourseHomePageDto> courses = courseService.getCoursesHomePageDto();
-		return new ResponseEntity<List<CourseHomePageDto>>(courses, HttpStatus.OK);
-	}
 
 	@PostMapping("/addCourseRegister")
 	public ResponseEntity<CourseEmployee> addCourseRegisterForEmployee
@@ -165,4 +154,4 @@ public class CourseController {
 		
 		return new ResponseEntity<Course>(theCourse, HttpStatus.CREATED);
 	};
-}
+ }
