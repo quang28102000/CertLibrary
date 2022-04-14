@@ -13,17 +13,9 @@ export class UserScreenService {
 
   constructor(private http: HttpClient) { }
 
-  public getInfomation(userId:string){
-    const url = `${this.apiServiceUrl}/course/userProfile/${userId}`;
-    //const url = `${this.apiServiceUrl}/course/userProfile`;
-
-    // const url = `${this.apiServiceUrl}/course/userProfile`;
-    // const url = `${this.apiServiceUrl}/ANV1`;
-    return this.http
-    .get<any>(url);
-  }
+  
   public getCourseR() {
-    const urls = `${this.apiServiceUrl}/course/getEmployees`;
+    const urls = `${this.apiServiceUrl}/course/getCourseEmployees`;
     //const urls = `${this.url}/${courseId}`;
     return this.http.get<any>(urls).pipe(
       tap(receiveCourseR => console.log(`receiveCourseR = ${JSON.stringify(receiveCourseR)}`)),
@@ -31,20 +23,8 @@ export class UserScreenService {
     );
   }
 
-  getCertificate(){
-    const urls = `${this.apiServiceUrl}/course/getEmployees`;
-    return this.http.get<any>(urls).pipe(
-      tap(cert => console.log(`cert = ${JSON.stringify(cert)}`)),
-      catchError(error => of([]))
-    );
-  }
+  
 
-  getSkills(){
-    const urls = `${this.apiServiceUrl}/course/coursesDto`;
-    return this.http.get<any>(urls).pipe(
-      tap(skill => console.log(`skill = ${JSON.stringify(skill)}`)),
-      catchError(error => of([]))
-    );
-  }
+  
 
 }

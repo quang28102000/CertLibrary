@@ -39,7 +39,6 @@ import { ManagerComponent } from './manager/manager.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {MatIconModule} from '@angular/material/icon';
-import { CourseAddComponent } from './course-add/course-add.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 
 import { CourseCreateComponent } from './course-list/course-list.component'
@@ -59,7 +58,6 @@ import {MatCardModule} from '@angular/material/card';
     DialogUpdateComponent,
     CourseDeleteComponent,
     ManagerComponent,
-    CourseAddComponent,
     CourseCreateComponent
     
   ],

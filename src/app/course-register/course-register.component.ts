@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CourseService } from '../course.service';
 import { EmployeeService } from '../Service/employee.service';
 import { CourseRegisterDTO, CourseRegisterDTO2, CourseRegisterDTO3 } from '../model/course-register';
 import { map, Observable, startWith } from 'rxjs';
@@ -8,6 +7,8 @@ import { Employee } from '../model/Employee';
 import * as $AB from 'jquery';
 import * as bootstrap from "bootstrap";
 import * as moment from 'moment';
+import { CourseService } from '../Service/course.service';
+import { CourseEmployeeService } from '../Service/course-employee.service';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class CourseRegisterComponent implements OnInit {
 
 
   constructor(public employeeService: EmployeeService,
+    public courseEmployeeService: CourseEmployeeService,
     public courseService: CourseService) { }
 
   ngOnInit(): void {
@@ -46,14 +48,14 @@ export class CourseRegisterComponent implements OnInit {
   }
 
   GetEmployees(){
-    this.employeeService.getAll().subscribe(res => {
+    this.courseEmployeeService.getCourseEmployees().subscribe(res => {
       this.employees = res;
       console.log("employee-list", res);
     })
   }
   
   GetCourse(){
-    this.courseService.getList().subscribe(res => {
+    this.courseService.getAllCourse().subscribe(res => {
       this.courses = res;
       console.log("course-list", res);
       res.forEach(element => {
@@ -116,8 +118,6 @@ export class CourseRegisterComponent implements OnInit {
         }
       )
     }
-    
-            
   }
 
   optionClick(item: any){
@@ -130,7 +130,6 @@ export class CourseRegisterComponent implements OnInit {
     this.platform = course.platform;
     this.totalTime = course.courseLength;
   }
-
 }
 
 

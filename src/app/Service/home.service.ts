@@ -16,8 +16,8 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   public getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.apiServiceUrl}/course/getEmployees`);
-}
+    return this.http.get<Employee[]>(`${this.apiServiceUrl}/course-employee/getCourseEmployees`);
+  }
 
 
   public getUserProfile(): Observable<UserProfile> {

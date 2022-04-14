@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { catchError, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Course } from './course';
-import { CourseRegisterDTO, CourseRegisterDTO2, CourseRegisterDTO3 } from './model/course-register';
-import { CourseDelete, CourseDeleteDto } from './model/course-delete';
-import { courseCreate } from './model/courseC';
+import { Course } from '../course';
+import { CourseRegisterDTO, CourseRegisterDTO2, CourseRegisterDTO3 } from '../model/course-register';
+import { CourseDelete, CourseDeleteDto } from '../model/course-delete';
+import { courseCreate } from '../model/courseC';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +24,12 @@ export class CourseService {
   constructor(private http: HttpClient) { }
 
 
-  public getList():Observable<any[]>{
+  public getAllCourse():Observable<any[]>{
     return this.http.get<any[]>(`${this.apiServiceUrl}/course/coursesDto`);
   }
 
   public getAll(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiServiceUrl}/course/getEmployees`);
+    return this.http.get<any[]>(`${this.apiServiceUrl}/course/getCourseEmployees`);
   }
 
   public getSkills(){
@@ -42,19 +42,6 @@ export class CourseService {
     return this.http.post<any>(url, courseRegister);
   }
 
-//   public getCourseInfo() {
-
-//     const urls = `${this.apiServiceUrl}/course/getEmployees`;
-
-//     return this.http.get<any>(urls).pipe(
-
-//      tap(receiveCourseI => console.log(`receiveCourseI = ${JSON.stringify(receiveCourseI)}`)),
-
-//      catchError(error => of([]))
-
-//    );
-
-//  }
 
  public getCourseInfo(): Observable<CourseDeleteDto[]> {
   return this.http.get<CourseDeleteDto[]>(`${this.apiServiceUrl}/course/getEmployees`);
@@ -63,7 +50,7 @@ export class CourseService {
 
 
  public getCourseCategory(): String[]{
-   this.getList().subscribe((data)=>{
+   this.getAllCourse().subscribe((data)=>{
     data.forEach(element => {
       this.courseCategory.push(element.category);
     });
@@ -86,15 +73,6 @@ export class CourseService {
   );
 }
 
-  public update(data: any): Observable<any>{
-    console.log('receive', data);
-    return this.http.put<any>(`${this.apiServiceUrl}/course/update`, data, {
-          headers: new HttpHeaders({
-            "Content-Type": "application/json",
-          }),
-          responseType: 'text' as 'json'
-      });
-  }
 
   public updateCourse(data: any): Observable<any>{
     console.log('receive', data);
@@ -103,34 +81,8 @@ export class CourseService {
 
 
 
-  public deleteCourse(item: any):Observable<any>{
+  
 
-    const options = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-      }),
-      body: item,
-    };
-
-    const url = `${this.apiServiceUrl}/course/delete`;
-    console.log('receive', item);
-    return this.http.delete<any>(url,options);
-    // return this.http.request('DELETE', url, item)
-  }
-
-  public deleteMultipleCourse(item: any):Observable<any>{
-    const options = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-      }),
-      body: item,
-    };
-
-    const url = `${this.apiServiceUrl}/course/multipleDelete`;
-    return this.http.delete<any>(url, options);
-
-    // return this.http.request('DELETE', url, item)
-  }
 
   public courseCreate(cc: courseCreate): Observable<courseCreate>{
     console.log('receive', cc);
@@ -138,9 +90,6 @@ export class CourseService {
     return this.http.post<any>(url, cc);
   }
 
-  public courseDelete(id: number) {
-    return this.http.delete<any>(`${this.apiServiceUrl}/course/delete` + id);
-  }
 
 
 

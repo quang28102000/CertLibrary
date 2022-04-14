@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { CourseService } from '../course.service';
+import { CourseService } from '../Service/course.service';
 import { of } from 'rxjs';
 import { RouteConfigLoadEnd, Router } from '@angular/router';
 import { CourseDto } from '../model/course-dto';
@@ -13,6 +13,8 @@ import { HomeService } from '../Service/home.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { CourseEmployeeService } from '../Service/course-employee.service';
+import { EmployeeService } from '../Service/employee.service';
 
 export interface DialogData {
   data: any[];
@@ -63,26 +65,25 @@ export class HomeComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private router: Router,
-    private homeService: HomeService,
-    private courseService: CourseService) {}
+    private courseEmployeeService: CourseEmployeeService,
+    private courseService: CourseService,
+    private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
     this.getUserHomePageStatistics();
     this.getCourses();
-    this.totalLengthEmp = this.popup_data.length;
+    this.totalLengthEmp = this.popup_data?.length;
     
   }
 
   getCourses(){
-    this.courseService.getList().subscribe(res => {
+    this.courseService.getAllCourse().subscribe(res => {
       for (let index = 0; index < res.length; index++) {
         res[index].index = index+1;        
       }
       this.courses = res;
       console.log("course-list", res);
       this.dataSource2 = new MatTableDataSource(res);
-      // this.dataSource2.paginator = this.paginator;
-      // this.dataSource2.sort = this.sort;    
     })
   }
 
@@ -109,23 +110,6 @@ export class HomeComponent implements OnInit {
         break;
     }
 
-
-
-    // if(num==5){
-    //   this.popup_data = this.employeesInLast7Days
-    //   this.displayedColumns = this.displayColumns
-    // // }else if(num==2){
-    // //   this.popup_data = this.statistics.get(num);
-    // //   this.displayedColumns = this.displayColumns2;
-    // }
-    // else if(num==-1){
-    //   this.popup_data = this.courses;
-    //   this.displayedColumns = this.displayColumns3;
-    // }
-    // else{
-    //   this.popup_data = this.statistics.get(num);
-    //   this.displayedColumns = this.displayColumns
-    // }
     // set stt
     for (let index = 0; index < this.popup_data.length; index++) {
       this.popup_data[index].index = index+1;        
@@ -149,7 +133,7 @@ export class HomeComponent implements OnInit {
     // Map<status, Map<count, employees>>
     const employeesSubcribedCourse = new Map<Number,Employee[]>();
 
-    this.homeService.getEmployees().subscribe(
+    this.courseEmployeeService.getCourseEmployees().subscribe(
       (employees: Employee[]) => {
         // đã đăng ký = chuwa ht + ddax ht
         employeesSubcribedCourse.set(
@@ -179,7 +163,7 @@ export class HomeComponent implements OnInit {
       }
     )
 
-    this.homeService.getEmployeesInLast7Days().subscribe(
+    this.employeeService.getEmployeesInLast7Days().subscribe(
       res => {
         this.employeesInLast7Days = res;
         console.log( 'EmployeesInLast7Days', res);

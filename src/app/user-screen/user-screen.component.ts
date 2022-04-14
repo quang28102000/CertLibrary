@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { CourseEmployeeService } from '../Service/course-employee.service';
+import { CourseService } from '../Service/course.service';
 import { EmployeeService } from '../Service/employee.service';
 import { UserScreenService } from '../Service/user-screen.service';
 
@@ -25,6 +27,8 @@ export class UserScreenComponent implements OnInit {
 
   constructor(
     private userScreenService: UserScreenService,
+    private courseEmployeeService: CourseEmployeeService,
+    private courseService: CourseService,
     private route: ActivatedRoute,
     private dialogRef: MatDialog,
     private employeeService: EmployeeService
@@ -37,7 +41,7 @@ export class UserScreenComponent implements OnInit {
   }
 
   GetInfomation(userId: string){
-    this.userScreenService.getInfomation(userId).subscribe((data) =>{
+    this.employeeService.getInfomation(userId).subscribe((data) =>{
         console.log(data);
         this.info = data;
         console.log("user",this.info);
@@ -46,30 +50,38 @@ export class UserScreenComponent implements OnInit {
         console.log("error",error.message);
       }
     );
+
+    this.courseEmployeeService.getCourseEmployees().subscribe((data)=>{
+      data = data.filter(emp => emp.employeeId == userId);
+      console.log("employee-course info: ", data);
+    })
     
-    this.employeeService.getAll().subscribe(res => {
-      // status: 1.Đang học, 2. Đã học, 3. Chưa thi, 4. Thi nhưng chưa có bằng 
+    this.courseEmployeeService.getCourseEmployees().subscribe(res => {
+      // status: đã đk, chưa đk, đã hoàn thành, chưa hoàn thành
 
       var totalCourse =  res.filter(item => item.employeeId==this.route.snapshot.paramMap.get('id'));
       //Da dang ky
-      var studyCourse =  totalCourse.filter(item => item.status == 1);
-      var completeCourse =  totalCourse.filter(item => item.status == 2);
+      var registerCourse =  totalCourse.filter(item => item.status == 1);
+      var notRegister =  totalCourse.filter(item => item.status == 2);
+      var completeCourse =  totalCourse.filter(item => item.status == 3);
+      var incompleteCourse =  totalCourse.filter(item => item.status == 4);
+
 
       
       this.employees = res;
-      console.log("list1", totalCourse);
-      console.log("list2", studyCourse);
 
       this.statictics[0] = totalCourse.length;
-      this.statictics[1] = studyCourse.length;
-      this.statictics[2] = completeCourse.length;
+      this.statictics[1] = registerCourse.length;
+      this.statictics[2] = notRegister.length;
+      this.statictics[3] = completeCourse.length;
+      this.statictics[4] = incompleteCourse.length;
     });
   }
 
   cert:any;
   skills:any;
   getCert(): void {
-    this.userScreenService.getCertificate().subscribe(
+    this.courseEmployeeService.getCertificate().subscribe(
       (c) => this.cert = c
     )
     this.getSkill()
@@ -78,10 +90,10 @@ export class UserScreenComponent implements OnInit {
 
 
   getSkill(){
-    this.userScreenService.getSkills().subscribe(
+    this.courseService.getSkills().subscribe(
       (s) => this.skills = s
 
-    );console.log("s", this.skills)
+    );console.log("s", this.skills);
   }
 
 
@@ -111,6 +123,8 @@ export class DialogCourseRecent implements OnInit{
 
 
   constructor(private userScreenService: UserScreenService,
+    private courseEmployeeService: CourseEmployeeService,
+    private courseService:CourseService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.CRid = data.id
       this.cName = data.cn
@@ -118,14 +132,14 @@ export class DialogCourseRecent implements OnInit{
 
   courses: any;
   getCourseRecent(): void {
-    this.userScreenService.getCourseR().subscribe(
+    this.courseEmployeeService.getCourseEmployees().subscribe(
       (updateCourseR) => this.courses = updateCourseR
     )
   }
 
   skills : any;
   getSkill(){
-    this.userScreenService.getSkills().subscribe(
+    this.courseService.getSkills().subscribe(
       (s) => this.skills = s
 
     );console.log("s", this.skills)

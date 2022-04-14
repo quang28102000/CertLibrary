@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Course } from './course';
-import { CourseService } from './course.service';
+import { CourseService } from './Service/course.service';
 
 @Component({
   selector: 'app-root',

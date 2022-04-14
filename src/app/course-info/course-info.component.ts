@@ -1,11 +1,12 @@
 import { EmployeeService } from './../Service/employee.service';
 import { Component, Inject, OnInit } from '@angular/core';
-import { CourseService } from '../course.service';
+import { CourseService } from '../Service/course.service';
 import {MatDialog , MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { courseUpdate } from '../model/courseUpdate';
 import { Employee } from '../model/Employee';
 import { CourseDelete } from '../model/course-delete';
+import { CourseEmployeeService } from '../Service/course-employee.service';
 
 @Component({
   selector: 'app-course-info',
@@ -19,7 +20,7 @@ export class CourseInfoComponent implements OnInit {
   deleteItem: any;
 
   constructor(
-    private courseService : CourseService,
+    private courseEmployeeService : CourseEmployeeService,
 
     public dialog: MatDialog) { }
 
@@ -30,9 +31,10 @@ export class CourseInfoComponent implements OnInit {
 
   cInfo : any;
   getCourseInformation(){
-    this.courseService.getCourseInfo().subscribe(
+    this.courseEmployeeService.getCourseEmployees().subscribe(
       (ci) => this.cInfo = ci
-    )
+    );
+    console.log('Infomation', this.cInfo);
   }
 
   onEdit( c : courseUpdate) {
@@ -55,7 +57,7 @@ export class CourseInfoComponent implements OnInit {
       employee_id: this.deleteItem.employeeId
     }
     console.log('item-convert', deleteItemDto);
-    this.courseService.deleteCourse(deleteItemDto).subscribe((data)=>{
+    this.courseEmployeeService.deleteCourse(deleteItemDto).subscribe((data)=>{
       console.log('item-send', data);
     })
     $('#notification2').modal('show');
@@ -67,6 +69,11 @@ export class CourseInfoComponent implements OnInit {
   }
 
 }
+
+
+
+
+// ############################
 
 @Component({
   selector: 'dialog-update',
@@ -82,7 +89,7 @@ export class DialogUpdateComponent implements OnInit {
     private formBuilder : FormBuilder,
     private dialog : MatDialog,
     private courseService : CourseService,
-    private employeeService: EmployeeService,
+    private courseEmployeeService: CourseEmployeeService,
     @Inject(MAT_DIALOG_DATA) public editData : any,
    ) { }
 
@@ -123,14 +130,14 @@ export class DialogUpdateComponent implements OnInit {
 
 
   GetEmployees(){
-    this.employeeService.getAll().subscribe(res => {
+    this.courseEmployeeService.getCourseEmployees().subscribe(res => {
       this.employees = res;
       console.log("employee-list", res);
     })
   }
 
   GetCourse(){
-    this.courseService.getList().subscribe(res => {
+    this.courseService.getAllCourse().subscribe(res => {
       this.courses = res;
       console.log("course-list", res);
 
@@ -139,7 +146,7 @@ export class DialogUpdateComponent implements OnInit {
 
   cInfo : any;
   getCourseInformation(){
-    this.courseService.getCourseInfo().subscribe(
+    this.courseEmployeeService.getCourseEmployees().subscribe(
       (ci) => this.cInfo = ci
     )
   }
@@ -149,13 +156,8 @@ export class DialogUpdateComponent implements OnInit {
     console.log('editData', this.editData);
 
     var start = new Date(this.courseForm.controls['startDate'].value).toISOString().slice(0,10);
-    // start = start + " 00:00:00";
     var end = new Date(this.courseForm.controls['endDate'].value).toISOString().slice(0,10);
-    // end = end + " 00:00:00";
     console.log('start', start);
-
-    //editData: data cu
-    //courseform.value: data moi
 
     var newItem: courseUpdate = {
       newId:{
@@ -174,9 +176,7 @@ export class DialogUpdateComponent implements OnInit {
     }
     console.log('newItem', newItem);
 
-
-
-    this.courseService.update(newItem).subscribe(
+    this.courseEmployeeService.update(newItem).subscribe(
       data =>{
         console.log("Update Success");
         $("#success_alert").modal("toggle");
@@ -187,21 +187,6 @@ export class DialogUpdateComponent implements OnInit {
         $("#fail_alert").modal("toggle");
         this.dialog.closeAll();
       }
-      
     )
-    
-
   }
-
-
-//   next: (res) => {
-//     alert("Cập nhật thành công !!!");
-//     this.courseForm.reset();
-//     this.dialog.closeAll();
-//   },
-//   error:()=>{
-//     alert("Cập nhật thất bại !!!");
-//   }
-// })
-
 }

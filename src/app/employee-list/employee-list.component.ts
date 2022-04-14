@@ -22,7 +22,6 @@ export class EmployeeListComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    
   }
 
   public totalLength: any; // paging
@@ -36,9 +35,8 @@ export class EmployeeListComponent implements OnInit {
   public employees2!: any[];
 
   ngOnInit(): void {
-    // this.GetEmployeeList();
     this.GetEmployeeList2();
-    this.totalLength = this.employees.length;
+    this.totalLength = this.employees?.length;
   }
 
   // GetEmployeeList(){
@@ -54,7 +52,7 @@ export class EmployeeListComponent implements OnInit {
   // }
 
   GetEmployeeList2(){
-    this.employeeService.getAll2().subscribe(res => {
+    this.employeeService.getAllEmployeeInfo().subscribe(res => {
       this.employees2 = res;
       console.log('employee', res);
       console.log('00');
@@ -64,7 +62,7 @@ export class EmployeeListComponent implements OnInit {
 
   rowClick(employee: any){
     console.log('row clicked', employee);
-    this.router.navigate(['user-screen', employee.employeeId]);
+    this.router.navigate(['user-screen', employee.id]);
   }
 
 }

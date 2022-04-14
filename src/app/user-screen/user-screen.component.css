@@ -1,25 +1,81 @@
 .uin{
   background-color: #A9E3E3;
   padding: 1px 2px 1px 3px;
+  margin-bottom:10px;
 }
 h1{
    text-align: center;
 }
+a{
+  text-decoration: none;
+}
+
+h3, h1{
+  margin: 0;
+  padding: 0;
+}
 p{
+  margin:0;
+  padding:0;
   font-weight: 500;
 }
-#btn{
+
+
+
+.title{
+  margin-top: 35px;
+  font-family: Karma;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 100%;
   text-align: center;
-  margin: 15px 15% 10px 25%;
-  justify-content: center;
+  letter-spacing: -0.32px;
+  color: #265A99;
 }
+
+.subtitle{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  color: #265A99;
+}
+.subinfo{
+  margin-left: 30px;
+}
+
+.info-basic{
+  margin-top: 10px;
+}
+
+.btn-view-cert{
+  margin-top:30px;
+  width: auto;
+}
+
+/* btn Chỉnh sửa */
+#btn-edit-img{
+  margin-top: 10px;
+  margin-left: 45px;
+}
+
+/* Skills */
+.row-skills{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .sk{
+  width: auto;
   background-color: #B8E2EF;
-    padding: 1px;
-    text-align: center;
-    border: solid 0.5px;
-    border-radius: 7px;
+  padding: 6px;
+  margin: 2px;
+  text-align: center;
+  border: solid 0.5px;
+  border-radius: 7px;
 }
+
+
 #divider{
   transform: rotate(90deg);
 }

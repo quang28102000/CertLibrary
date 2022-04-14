@@ -2,8 +2,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { CourseService } from '../course.service';
+import { CourseService } from '../Service/course.service';
 import { CourseDelete, CourseDelete2, CourseDeleteDto } from '../model/course-delete';
+import { CourseEmployeeService } from '../Service/course-employee.service';
 
 @Component({
   selector: 'app-course-delete',
@@ -27,7 +28,7 @@ export class CourseDeleteComponent implements OnInit {
 
   cInfo : CourseDeleteDto[] = [];
   constructor(
-    private courseService : CourseService
+    private courseEmployeeService: CourseEmployeeService
   ) { }
 
   ngOnInit(): void {
@@ -60,7 +61,7 @@ export class CourseDeleteComponent implements OnInit {
   }
 
   getCourseInformation(){
-    this.courseService.getCourseInfo().subscribe(
+    this.courseEmployeeService.getCourseEmployees().subscribe(
       (ci) => {
         console.log("ci", ci);
         this.cInfo = ci}
@@ -76,7 +77,7 @@ export class CourseDeleteComponent implements OnInit {
     }
     console.log('item-convert', deleteItemDto);
     //gọi Service để xoá
-    this.courseService.deleteCourse(deleteItemDto).subscribe((data)=>{
+    this.courseEmployeeService.deleteCourse(deleteItemDto).subscribe((data)=>{
       console.log('item-send', data);
     })
     //filter loại item ra khỏi list sau khi đã xoá
@@ -108,7 +109,7 @@ export class CourseDeleteComponent implements OnInit {
       });
       console.log('list I', listItemArr);
       //gọi service để xoá
-      this.courseService.deleteMultipleCourse(listItemArr).subscribe((data)=>{
+      this.courseEmployeeService.deleteMultipleCourse(listItemArr).subscribe((data)=>{
         console.log('send-data', data);
       });
       //realtime delete, xoá item ra khỏi list
