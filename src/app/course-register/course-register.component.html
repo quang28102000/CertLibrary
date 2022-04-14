@@ -22,7 +22,7 @@
             </div> -->
 
             <div style="border: 1px solid #ccc; padding-left:15px; padding-top: 15px; border-radius: 5px;">
-                <p>Id: {{emp?.employeeId}}</p>
+                <p>Id: {{emp?.id}}</p>
                 <p>Tên: {{emp?.fullName}}</p>
             </div>
 
@@ -81,10 +81,10 @@
                 <mat-form-field appearance="outline">
                     <mat-label>* Trạng thái</mat-label>
                     <mat-select [(value)]="status">
-                      <mat-option value="1">Đang học</mat-option>
-                      <mat-option value="2">Đã học</mat-option>
-                      <mat-option value="3">Chưa thi</mat-option>
-                      <mat-option value="4">Đã thi chưa có bằng</mat-option>
+                      <mat-option value="1">Đã đăng ký</mat-option>
+                      <mat-option value="2">Chưa đăng ký</mat-option>
+                      <mat-option value="3">Đã hoàn thành</mat-option>
+                      <mat-option value="4">Chưa hoàn thành</mat-option>
                     </mat-select>
                   </mat-form-field>
             </div>
@@ -149,7 +149,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of employees" (click)="selectEmployee(item)">
-                <td>{{item.employeeId}}</td>
+                <td>{{item.id}}</td>
                 <td>{{item.fullName}}</td>
                 <td>{{item.email}}</td>
             </tr>
@@ -161,9 +161,6 @@
           </tbody>
         </table>
             </div>
-  
-        </div>
-        <div class="modal-footer">
   
         </div>
       </div>

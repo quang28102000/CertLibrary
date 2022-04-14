@@ -89,6 +89,7 @@ export class DialogUpdateComponent implements OnInit {
     private formBuilder : FormBuilder,
     private dialog : MatDialog,
     private courseService : CourseService,
+    private employeeService: EmployeeService,
     private courseEmployeeService: CourseEmployeeService,
     @Inject(MAT_DIALOG_DATA) public editData : any,
    ) { }
@@ -130,7 +131,11 @@ export class DialogUpdateComponent implements OnInit {
 
 
   GetEmployees(){
-    this.courseEmployeeService.getCourseEmployees().subscribe(res => {
+    // this.courseEmployeeService.getCourseEmployees().subscribe(res => {
+    //   this.employees = res;
+    //   console.log("employee-list", res);
+    // })
+    this.employeeService.getAllEmployeeInfo().subscribe(res => {
       this.employees = res;
       console.log("employee-list", res);
     })

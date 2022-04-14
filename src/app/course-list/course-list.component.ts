@@ -337,7 +337,6 @@ export class CourseListComponent implements OnInit {
 
   public skillFlag: number = -1;
   SaveCourse(data: any){
-    console.log('skillFlag', this.skillFlag);
 
     this.enableInputText(false);
     this.enableButton(false);
@@ -368,10 +367,24 @@ export class CourseListComponent implements OnInit {
     console.log('oldskills', oldSkills);
     console.log('newSkill', skills.skill_name);
 
-    var result = oldSkills.length === skills.skill_name.length && oldSkills.every((oldSkill: String, i: number) => oldSkill === skills.skill_name[i]);
+    var result = oldSkills.length === skills.skill_name.length 
+      && oldSkills.every((oldSkill: String, i: number) => oldSkill === skills.skill_name[i]);
     console.log('result', result);
 
     console.log('skills', skills);
+
+    //set skillFlag
+    this.skillFlag = this.selectSkills.skill_id.length;
+    //nếu thêm những skill có sẵn trong db
+    if(this.newSkills.skill_name.length==0){
+      this.skillFlag = 0;
+    }
+
+    //nếu không thay đổi skill thì flag = -1
+    if(result){
+      this.skillFlag = -1;
+    }
+    console.log('skillFlag', this.skillFlag);
     //
     this.updateCourse.course_name = this.courseDetailForm.controls['course_name'].value;
     this.updateCourse.platform = this.courseDetailForm.controls['platform'].value;
@@ -384,18 +397,18 @@ export class CourseListComponent implements OnInit {
     this.changeStyle(false);
 
     //gọi service
-    this.course.updateCourse(this.updateCourse).subscribe(data=>
-      {
-        console.log("send-data: ", data);
-        var alert = document.getElementById('alert-success') as HTMLElement;
-        alert.setAttribute("style", "display: block");
-      },
-      error=>{
-        console.log("error-add", error);
-        var alert = document.getElementById('alert-fail') as HTMLElement;
-        alert.setAttribute("style", "display: block");
-      }
-    )
+    // this.course.updateCourse(this.updateCourse).subscribe(data=>
+    //   {
+    //     console.log("send-data: ", data);
+    //     var alert = document.getElementById('alert-success') as HTMLElement;
+    //     alert.setAttribute("style", "display: block");
+    //   },
+    //   error=>{
+    //     console.log("error-add", error);
+    //     var alert = document.getElementById('alert-fail') as HTMLElement;
+    //     alert.setAttribute("style", "display: block");
+    //   }
+    // )
   }
 
 

@@ -21,7 +21,7 @@ export class CourseRegisterComponent implements OnInit {
   filterCategory: String[] = [];
   filterPlatform: String[] = [];
   //list 
-  public employees!: Employee[];
+  public employees!: any[];
   public courses!: any[];
 
   public emp!: any;
@@ -48,7 +48,7 @@ export class CourseRegisterComponent implements OnInit {
   }
 
   GetEmployees(){
-    this.courseEmployeeService.getCourseEmployees().subscribe(res => {
+    this.employeeService.getAllEmployeeInfo().subscribe(res => {
       this.employees = res;
       console.log("employee-list", res);
     })
@@ -92,7 +92,7 @@ export class CourseRegisterComponent implements OnInit {
     const addNew3: CourseRegisterDTO3 = {
       courseEmployee:{
         courseId: this.courseSelected.id,
-        employeeId: Number(this.emp.employeeId),
+        employeeId: Number(this.emp.id),
         status: this.status,
         startDate: startDate,
         endDate: endDate,
@@ -112,6 +112,9 @@ export class CourseRegisterComponent implements OnInit {
     });
 
     if(flat==0){
+      console.log('ADD');
+
+
       this.courseService.addCourseRegister(addNew3).subscribe((data)=>{
           console.log("send-data: ", data);
           $('#notification2').modal('show');

@@ -10,7 +10,7 @@
       <mat-form-field appearance="fill">
        <mat-label>Tên nhân viên:</mat-label>
        <mat-select formControlName="employee">
-         <mat-option *ngFor="let item of employees" [value]="item.employeeId">{{item.fullName}}</mat-option>
+         <mat-option *ngFor="let item of employees" [value]="item.id">{{item.fullName}}</mat-option>
        </mat-select>
      </mat-form-field>
 
