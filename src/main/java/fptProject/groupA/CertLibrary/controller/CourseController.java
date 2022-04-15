@@ -94,6 +94,10 @@ public class CourseController {
 		courseService.updateCourse(course);
 		courseService.updateCourseDetail(course, totalLength);
 		courseService.deleteCourseSkill(skills, skillFlag, course);
+		// -1 ~ there's nothing change in the courseSkill -> no need to add new skill or courseSkill
+		//  0 ~ just add courseSkill based on existing skill -> no need to add new skills
+		// n > 0 ~ add new skills based on the array that being send from the front-end
+		courseService.addSkillOfACourse(skillId, skillName, skillFlag);		
 		courseService.addCourseSkill(course, skillId, skillFlag);
 		
 		String noti = "";

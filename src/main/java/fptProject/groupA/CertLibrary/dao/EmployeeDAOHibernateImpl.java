@@ -44,7 +44,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 	+ "	 ON e.employee_id = es.employee_id JOIN course AS c \n"
 	+ "	 ON ce.course_id = c.course_id JOIN skills as s\r\n"
 	+ "     ON es.skill_id = s.skill_id"
-	+ "  WHERE e.employee_id = :employeeId";
+	+ "  WHERE e.employee_id = :employeeId AND ce.is_deleted = 0";
 	
 	private static final String GET_EMPLOYEE_DTOS = 
 			"SELECT e.employee_id AS " + EmployeeCourseDto.EMPLOYEE_ID + ", \r\n"
@@ -79,7 +79,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDao {
 			+ "ON ce.employee_id = e.employee_id\r\n"
 			+ "JOIN course AS c\r\n"
 			+ "ON ce.course_id = c.course_id\r\n"
-			+ "WHERE status = 1 AND ce.start_date > DATE_SUB(CURRENT_DATE(), INTERVAL 7 day);";
+			+ "WHERE is_deleted = 0 AND status = 1 AND ce.start_date > DATE_SUB(CURRENT_DATE(), INTERVAL 7 day);";
 	
 	private EntityManager entityManager;
 	
