@@ -10,6 +10,11 @@ svg{
   margin-top:-100px
 }
 
+a{
+  text-decoration: none;
+  color: #000;
+}
+
 #labeltxt {
   position: relative;
   width: 498px;

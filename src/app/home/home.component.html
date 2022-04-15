@@ -1,14 +1,11 @@
   <p id="labeltxt">Thống kê chung</p>
   <br>
   <div class="row">
-    <div class="col-sm-3"  data-bs-toggle="modal" href="#popup01" (click)="SetPopUpData(1, 'Danh sách sinh viên đăng kí khoá học')">
+    <div class="col-sm-3"  data-bs-toggle="modal" href="#popup01" (click)="SetPopUpData(1, 'Danh sách sinh viên đang học khoá học')">
       <div class="stat-card">
         <div class="stat-card__content">
-          <p class="text-uppercase mb-1 text-muted">Đã đăng kí khoá học</p>
+          <p class="text-uppercase mb-1 text-muted">Đang học khoá học</p>
           <h1><i class="fa fa-user"></i> {{statistics.get(1)!.length}}/{{employees?.length}}</h1>
-          <!-- <div>
-            <span class="text-muted">Tổng số nhân viên</span>
-          </div> -->
         </div>
         <div class="stat-card__icon stat-card__icon--success">
           <div class="stat-card__icon-circle">
@@ -19,14 +16,11 @@
     </div>
 
     <div class="col-sm-3" data-bs-toggle="modal" href="#popup01" 
-    (click)="SetPopUpData(2, 'Danh sách sinh viên chưa đăng kí khoá học')">
+    (click)="SetPopUpData(2, 'Danh sách sinh viên đã hoàn thành khoá học')">
       <div class="stat-card">
         <div class="stat-card__content">
-          <p class="text-uppercase mb-1 text-muted">Chưa đăng kí khoá học</p>
+          <p class="text-uppercase mb-1 text-muted">Đã hoàn thành khoá học</p>
           <h1><i class="fa fa-user"></i> {{statistics.get(2)!.length}}/{{employees?.length}}</h1>
-          <!-- <div>
-            <span class="text-muted">Tổng số nhân viên</span>
-          </div> -->
         </div>
         <div class="stat-card__icon stat-card__icon--success">
           <div class="stat-card__icon-circle">
@@ -37,35 +31,15 @@
     </div>
     
     <div class="col-sm-3" data-bs-toggle="modal" href="#popup01" 
-    (click)="SetPopUpData(3, 'Danh sách sinh viên hoàn thành khoá học')">
+    (click)="SetPopUpData(3, 'Danh sách sinh viên chưa đăng ký khoá học')">
       <div class="stat-card">
         <div class="stat-card__content">
-          <p class="text-uppercase mb-1 text-muted">Đã hoàn thành khoá học</p>
+          <p class="text-uppercase mb-1 text-muted">Chưa đăng ký khoá học</p>
           <h1><i class="fa fa-user"></i> {{statistics.get(3)!.length}}/{{employees?.length}}</h1>
-          <!-- <div>
-            <span class="text-muted">Tổng số nhân viên</span>
-          </div> -->
         </div>
         <div class="stat-card__icon stat-card__icon--success">
           <div class="stat-card__icon-circle">
             <i class="fa fa-graduation-cap"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3" data-bs-toggle="modal" href="#popup01" 
-    (click)="SetPopUpData(4, 'Danh sách sinh viên chưa hoàn thành khoá học')">
-      <div class="stat-card">
-        <div class="stat-card__content">
-          <p class="text-uppercase mb-1 text-muted">Chưa hoàn thành khoá học</p>
-          <h1><i class="fa fa-user"></i> {{statistics.get(4)!.length}}/{{employees?.length}}</h1>
-          <!-- <div>
-            <span class="text-muted">Tổng số nhân viên</span>
-          </div> -->
-        </div>
-        <div class="stat-card__icon stat-card__icon--success">
-          <div class="stat-card__icon-circle">
-            <i class="fa fa-spinner"></i>
           </div>
         </div>
       </div>
@@ -77,9 +51,6 @@
         <div class="stat-card__content">
           <p class="text-uppercase mb-1 text-muted">Đăng kí trong 7 ngày gần nhất</p>
           <h1><i class="fa fa-user"></i> {{employeesInLast7Days?.length}}/{{employees?.length}}</h1>
-          <!-- <div>
-            <span class="text-muted">Tổng số nhân viên</span>
-          </div> -->
         </div>
         <div class="stat-card__icon stat-card__icon--success">
           <div class="stat-card__icon-circle">
@@ -95,9 +66,6 @@
         <div class="stat-card__content">
           <p class="text-uppercase mb-1 text-muted">Tổng số khoá học</p>
           <h1><i class="fa fa-user"></i> {{courses?.length}}</h1>
-          <!-- <div>
-            <span class="text-muted">Tổng số nhân viên</span>
-          </div> -->
         </div>
         <div class="stat-card__icon stat-card__icon--success">
           <div class="stat-card__icon-circle">
@@ -105,6 +73,22 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="col-sm-3">
+      <a href="/employee-list">
+        <div class="stat-card">
+          <div class="stat-card__content">
+            <p class="text-uppercase mb-1 text-muted">Tổng số nhân viên</p>
+            <h1><i class="fa fa-user"></i> {{employeeList?.length}}</h1>
+          </div>
+          <div class="stat-card__icon stat-card__icon--success">
+            <div class="stat-card__icon-circle">
+              <i class="fa fa-spinner"></i>
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 
@@ -152,10 +136,9 @@
             <ng-container matColumnDef="status">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Trạng thái</th>
               <td mat-cell *matCellDef="let row" [ngSwitch]="row.status">
-                <label *ngSwitchCase="1">Đã đăng kí</label>
-                <label *ngSwitchCase="2">Chưa đăng kí</label>
-                <label *ngSwitchCase="3">Đã hoàn thành</label>
-                <label *ngSwitchCase="4">Chưa hoàn thành</label>
+                <label *ngSwitchCase="1">Đang học</label>
+                <label *ngSwitchCase="2">Đã hoàn thành</label>
+                <label *ngSwitchCase="3">Chưa đăng ký</label>
               </td>
             </ng-container>
 

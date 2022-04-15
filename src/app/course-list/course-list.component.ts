@@ -397,18 +397,18 @@ export class CourseListComponent implements OnInit {
     this.changeStyle(false);
 
     //gọi service
-    // this.course.updateCourse(this.updateCourse).subscribe(data=>
-    //   {
-    //     console.log("send-data: ", data);
-    //     var alert = document.getElementById('alert-success') as HTMLElement;
-    //     alert.setAttribute("style", "display: block");
-    //   },
-    //   error=>{
-    //     console.log("error-add", error);
-    //     var alert = document.getElementById('alert-fail') as HTMLElement;
-    //     alert.setAttribute("style", "display: block");
-    //   }
-    // )
+    this.course.updateCourse(this.updateCourse).subscribe(data=>
+      {
+        console.log("send-data: ", data);
+        var alert = document.getElementById('alert-success') as HTMLElement;
+        alert.setAttribute("style", "display: block");
+      },
+      error=>{
+        console.log("error-add", error);
+        var alert = document.getElementById('alert-fail') as HTMLElement;
+        alert.setAttribute("style", "display: block");
+      }
+    )
   }
 
 
@@ -586,7 +586,7 @@ export class CourseCreateComponent implements OnInit {
         $("#success_popup").modal("show");
         console.log("success");
         this.dialogRef.closeAll();
-
+        window.location.reload();
       },
       error=>{
         console.log("error-add", error);

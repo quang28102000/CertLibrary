@@ -57,6 +57,7 @@ export class HomeComponent implements OnInit {
   public popup_data: any;
   public courses!: any[];
   public employees!: any[];
+  public employeeList!: any[];
 
   public employeesInLast7Days!: any[];
 
@@ -72,6 +73,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getUserHomePageStatistics();
     this.getCourses();
+    this.getEmployeeList();
     this.totalLengthEmp = this.popup_data?.length;
     
   }
@@ -92,18 +94,22 @@ export class HomeComponent implements OnInit {
 
     this.displayedColumns = this.displayColumns;
     switch (num) {
+      //danh sách khoá học
       case -1:
         this.popup_data = this.courses;
         this.displayedColumns = this.displayColumns3;
         break;
-      case 2:
+      //chưa đăng ký khoá học
+      case 3:
         this.popup_data = this.statistics.get(num);
         this.displayedColumns = this.displayColumns2;
         break;
+      //list nv đăng ký trong vòng 7 ngày
       case 5:
         this.popup_data = this.employeesInLast7Days
         break;
     
+      // 1,2: đang học, đã hoàn thành
       default:
         this.popup_data = this.statistics.get(num);
         this.displayedColumns = this.displayColumns
@@ -127,6 +133,14 @@ export class HomeComponent implements OnInit {
   }
 
 
+  public getEmployeeList(){
+    this.employeeService.getAllEmployeeInfo().subscribe(
+      data =>{
+        this.employeeList = data;
+        console.log('Danh sach nhan vien',data)
+      }
+    )
+  }
 
 
   public getUserHomePageStatistics(): void {

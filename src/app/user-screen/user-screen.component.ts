@@ -58,23 +58,23 @@ export class UserScreenComponent implements OnInit {
     
     this.courseEmployeeService.getCourseEmployees().subscribe(res => {
       // status: đã đk, chưa đk, đã hoàn thành, chưa hoàn thành
-
+      // đang học, đã hoàn thành, chưa đăng ký
       var totalCourse =  res.filter(item => item.employeeId==this.route.snapshot.paramMap.get('id'));
-      //Da dang ky
-      var registerCourse =  totalCourse.filter(item => item.status == 1);
-      var notRegister =  totalCourse.filter(item => item.status == 2);
-      var completeCourse =  totalCourse.filter(item => item.status == 3);
-      var incompleteCourse =  totalCourse.filter(item => item.status == 4);
+      //đang học
+      var studyCourse =  totalCourse.filter(item => item.status == 1);
+      //đã hoàn thành
+      var completeCourse =  totalCourse.filter(item => item.status == 2);
+      //chưa đăng ký
+      var unRegisterCourse =  totalCourse.filter(item => item.status == 3);
 
 
       
       this.employees = res;
 
       this.statictics[0] = totalCourse.length;
-      this.statictics[1] = registerCourse.length;
-      this.statictics[2] = notRegister.length;
-      this.statictics[3] = completeCourse.length;
-      this.statictics[4] = incompleteCourse.length;
+      this.statictics[1] = studyCourse.length;
+      this.statictics[2] = completeCourse.length;
+      this.statictics[3] = unRegisterCourse.length;
     });
   }
 
