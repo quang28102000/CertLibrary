@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <style>
+        body{
+            background-color:#EDF4FF;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container-fluid">
+            
+                <nav id="logo_ava">
+                    <img src="img/FPT_Software_Logo.png" alt="logo" id="logo">
+                    <img src="img/LogoPage.png" alt="Page logo" class="PageLogo">
+                    <img src="img/Avarta.png" alt="Avatar" class="ava">
+                </nav>
+            
+            <div class="container" class="nav">
+                <div id="navigation">
+                    <button><a href="#">Trang Chủ</a></button>
+                    <button><a href="#">Danh sách khoá học</a></button>
+                    <button><a href="#">Danh sách nhân viên</a></button>
+                    <button class="choose"><a href="#">Quản lý khoá học</a></button>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="container-fluid" id="snv">
+        <h1 id="labeltxt">Thống kê chung</h1>
+        <p id="tag">Nhân Viên:</p>
+        <br><br><br><br>
+        <nav id="btn">
+            <button class="show-popup-employee">Số người đã đăng kí khoá học
+                <p>.../...</p>
+            </button>
+            <button class="show-popup-employee">Số người chưa hoàn thành khoá học
+                <p>.../...</p>
+            </button>
+            <button class="show-popup-employee">
+                số người chưa đăng kí hoá học
+                <p>.../...</p>
+            </button>
+        </nav>
+
+        <br>
+        <nav id="btn">
+            <button class="show-popup-employee">Số người đã hoàn thành khoá học
+                <p>.../...</p>
+            </button>
+            <button class="show-popup-employee">Số người mới đăng ký trong 7 ngày gần nhất
+                <p>...</p>
+            </button>
+        </nav>
+
+        <dialog id="employee-popup" class="popup">
+            <header class="dialog-header">
+                <h1>Số người đăng kí khoá học</h1>
+            </header>
+            <div class="dialog-content">
+                <table id="customers">
+                    <tr>
+                        <th>Stt</th>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>Trạng thái</th>
+                        <th>Tên khoá học</th>
+                        <th>Phân loại</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyen Van A</td>
+                        <td>anguyenvan@gmail.com</td>
+                        <td>Processing</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Internet Technology</td>
+                    </tr>
+                </table>
+                <nav aria-label="Page navigation example" id="paging">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                <button class="btn btn-cancel cancel">Cancel</button>
+            </div>
+        </dialog>
+
+        <svg viewBox="-10 15 1330 450">
+            <path fill="none" stroke="#5390D9" d="M 50 300 Q 100 330 150 300 Q 200 270 250 300 Q 300 330 350 300 Q 400 270 450 300 Q 500 330 550 300 Q 600 270 650 300 Q 700 330 750 300 Q 800 270 850 300 Q 900 330 950 300 Q 1000 270 1050 300 Q 1100 330 1150 300 Q 1200 270 1250 300"></path>
+        </svg>
+        <br><br>
+
+        <nav>
+            <p id="tag">Khóa học:</p>
+            <br><br><br><br>
+            <nav id="btn">
+
+                <button class="show-popup-course">
+                    Tổng số khóa học
+                    <p>...</p>
+                </button>
+            </nav>
+            <br>
+            <nav id="btn">
+                <button class="show-popup-course">Số khóa học đã hoàn thành
+                    <p>.../...</p>
+                </button>
+                <button class="show-popup-course">Số khóa học chưa hoàn thành
+                    <p>.../...</p>
+                </button>
+            </nav>
+        </nav>
+
+        <dialog id="course-popup" class="popup">
+            <header class="dialog-header">
+                <h1>Tổng số khoá học</h1>
+            </header>
+            <div class="dialog-content">
+                <table id="courses">
+                    <tr>
+                        <th>Tên Nhân viên</th>
+                        <th>Tên Khoá Học</th>
+                        <th>Nền Tảng</th>
+                        <th>Loại khoá học</th>
+                        <th>Tổng thời gian học</th>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                    <tr>
+                        <td>Nguyen Van A</td>
+                        <td>Khoa hoc cho nguoi moi bat dau</td>
+                        <td>Coursera</td>
+                        <td>Internet Technology</td>
+                        <td>15 hr</td>
+                    </tr>
+                </table>
+                <nav aria-label="Page navigation example" id="paging">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                <button class="btn btn-cancel cancel">Cancel</button>
+            </div>
+        </dialog>
+    </div>
+    <footer>
+        <nav id="foot1">
+            <p>Tên nhóm: &nbsp;  Nhóm A</p>
+            <p>Email: &nbsp;  TeamA@gmail.com</p>
+        </nav>
+        <nav id="foot2">
+            <p>Số điện thoại: &nbsp;  0281637639</p>
+            <p>Địa chỉ: &nbsp; Khu đô thị FPT, TP Đà Nẵng</p>
+        </nav>
+    </footer>
+
+    <script type="text/javascript" src="bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="home.js"></script>
+</body>
+
+</html>
